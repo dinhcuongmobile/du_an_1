@@ -7,7 +7,7 @@
             <button class="btn btn-secondary btn-sm">Bỏ chọn tất cả</button>
             <button class="btn btn-secondary btn-sm">Xóa các mục đã chọn</button>
             <a href="?act=addsp"><button class="btn btn-secondary btn-sm">Nhập thêm</button></a>
-            <form action="" class="float-right">
+            <form action="?act=listsp" class="float-right" method="post">
                 <div class="input-group">
                     <input type="text" class="form-control" name="kyw" placeholder="Tìm kiếm...">
                     <div class="input-group-append">
@@ -35,30 +35,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="align-middle text-center"><input type="checkbox" name="select" id=""></td>
-                            <td class=" align-middle text-center">1</td>
-                            <td class="col-3 align-middle">OPPO Reno10 5G 8GB 256GB</td>
-                            <td class="col-2 align-middle">10.000.000 VND</td>
-                            <td  class="col-1 align-middle"><img src="" alt="err" height="60px"></td>
-                            <td  class="col-1 align-middle">10</td>
-                            <td  class="col-1 align-middle">Iphone</td>
-                            <td class="col-1 align-middle">Còn hàng</td>
-                            <td class="col-2 align-middle"><a href="?act=updatesp"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
-                                <a href="?act=xoasp"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle text-center"><input type="checkbox" name="select" id=""></td>
-                            <td class=" align-middle text-center">1</td>
-                            <td class="col-3 align-middle">OPPO Reno10 5G 8GB 256GB</td>
-                            <td class="col-2 align-middle">10.000.000 VND</td>
-                            <td  class="col-1 align-middle"><img src="" alt="err" height="60px"></td>
-                            <td  class="col-1 align-middle">10</td>
-                            <td  class="col-1 align-middle">Iphone</td>
-                            <td class="col-1 align-middle">Còn hàng</td>
-                            <td class="col-2 align-middle"><a href="?act=updatesp"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
-                                <a href="?act=xoasp"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
-                        </tr>
+                        <?php
+                        foreach ($listsp as $sp) {
+                            extract($sp);
+                            echo '<tr>
+                                    <td class="align-middle text-center"><input type="checkbox" name="select" id=""></td>
+                                    <td class=" align-middle text-center">'.$id.'</td>
+                                    <td class="col-3 align-middle">'.$tensp.'</td>
+                                    <td class="col-2 align-middle">'.$giasp.' VND</td>
+                                    <td  class="col-1 align-middle"><img src="../view/images/'.$image.'" alt="err" height="60px"></td>
+                                    <td  class="col-1 align-middle">'.$soluong.'</td>
+                                    <td  class="col-1 align-middle">'.$tendm.'</td>
+                                    <td class="col-1 align-middle">'.$trangthai.'</td>
+                                    <td class="col-2 align-middle"><a href="?act=updatesp&id='.$id.'"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
+                                        <a href="?act=xoasp&id='.$id.'"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
+                                </tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>    
             </div>

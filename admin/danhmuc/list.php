@@ -7,7 +7,7 @@
             <button class="btn btn-secondary btn-sm">Bỏ chọn tất cả</button>
             <button class="btn btn-secondary btn-sm">Xóa các mục đã chọn</button>
             <a href="?act=adddm"><button class="btn btn-secondary btn-sm">Nhập thêm</button></a>
-            <form action="" class="float-right">
+            <form action="?act=listdm" class="float-right" method="post">
                 <div class="input-group">
                     <input type="text" class="form-control" name="kyw" placeholder="Tìm kiếm...">
                     <div class="input-group-append">
@@ -30,20 +30,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="col-1 text-center"><input type="checkbox" name="select" id=""></td>
-                            <td class="col-2">1</td>
-                            <td>Iphone</td>
-                            <td class="col-2"><a href="?act=updatedm"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
-                                <a href="?act=xoadm"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
-                        </tr>
-                        <tr>
-                            <td class="col-1 text-center"><input type="checkbox" name="" id=""></td>
-                            <td class="col-2">1</td>
-                            <td>Iphone</td>
-                            <td class="col-2"><a href="?act=updatedm"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
-                                <a href="?act=xoadm"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
-                        </tr>
+                        <?php
+                            foreach ($listdm as $dm) {
+                                extract($dm);
+                                echo '<tr>
+                                        <td class="col-1 text-center"><input type="checkbox" name="select" id=""></td>
+                                        <td class="col-2">'.$id.'</td>
+                                        <td>'.$tendm.'</td>
+                                        <td class="col-2"><a href="?act=updatedm&id='.$id.'"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
+                                            <a href="?act=xoadm&id='.$id.'"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
+                                    </tr>';
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

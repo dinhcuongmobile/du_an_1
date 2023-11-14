@@ -7,7 +7,7 @@
             <button class="btn btn-secondary btn-sm">Bỏ chọn tất cả</button>
             <button class="btn btn-secondary btn-sm">Xóa các mục đã chọn</button>
             <a href="?act=addtk"><button class="btn btn-secondary btn-sm">Nhập thêm</button></a>
-            <form action="" class="float-right">
+            <form action="?act=listqtv" class="float-right" method="post">
                 <div class="input-group">
                     <input type="text" class="form-control" name="kyw" placeholder="Tìm kiếm...">
                     <div class="input-group-append">
@@ -36,33 +36,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="align-middle text-center"><input type="checkbox" name="select" id=""></td>
-                            <td class="align-middle text-center">1</td>
-                            <td class="col-2 align-middle">Nguyễn Văn Cường</td>
-                            <td class="col-1 align-middle">adepzai123</td>
-                            <td  class="col-1 align-middle">adepzai123</td>
-                            <td  class="col-1 align-middle">adepzai272004@gmail.com</td>
-                            <td class="col-1 align-middle">0123456789</td>
-                            <td class="col-2 align-middle">Phú Nghĩa, Chương Mỹ, Hà Nội</td>
-                            <td>Quản trị viên</td>
-                            <td class="col-2 align-middle text-center"><a href="?act=updatetk"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
-                                <a href="?act=xoatk"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle text-center"><input type="checkbox" name="select" id=""></td>
-                            <td class="align-middle text-center">1</td>
-                            <td class="col-2 align-middle">Nguyễn Văn Cường</td>
-                            <td class="col-1 align-middle">adepzai123</td>
-                            <td  class="col-1 align-middle">adepzai123</td>
-                            <td  class="col-1 align-middle">adepzai272004@gmail.com</td>
-                            <td class="col-1 align-middle">0123456789</td>
-                            <td class="col-2 align-middle">Phú Nghĩa, Chương Mỹ, Hà Nội</td>
-                            <td>Quản trị viên</td>
-                            <td class="col-2 align-middle text-center"><a href="?act=updatetk"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
-                                <a href="?act=xoatk"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
-                        </tr>
-                        
+                        <?php
+                        foreach ($listtk as $tk) {
+                            extract($tk);
+                            if($role==1){
+                                $role="Quản trị viên";
+                            }else{
+                                $role="Thành viên";
+                            }
+                            echo '<tr>
+                                    <td class="align-middle text-center"><input type="checkbox" name="select" id=""></td>
+                                    <td class="align-middle text-center">'.$id.'</td>
+                                    <td class="col-2 align-middle">'.$hovaten.'</td>
+                                    <td class="col-1 align-middle">'.$tendangnhap.'</td>
+                                    <td  class="col-1 align-middle">'.$matkhau.'</td>
+                                    <td  class="col-1 align-middle">'.$email.'</td>
+                                    <td class="col-1 align-middle">'.$sodienthoai.'</td>
+                                    <td class="col-2 align-middle">'.$diachi.'</td>
+                                    <td>'.$role.'</td>
+                                    <td class="col-2 align-middle text-center"><a href="?act=updatetk&id='.$id.'"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
+                                        <a href="?act=xoatk&id='.$id.'"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
+                                </tr>';
+                        }
+                        ?>                        
                     </tbody>
                 </table>
             </div>
