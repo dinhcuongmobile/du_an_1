@@ -6,7 +6,7 @@
             <button class="btn btn-secondary btn-sm">Chọn tất cả</button>
             <button class="btn btn-secondary btn-sm">Bỏ chọn tất cả</button>
             <button class="btn btn-secondary btn-sm">Xóa các mục đã chọn</button>
-            <form action="" class="float-right">
+            <form action="?act=listbl" method="post" class="float-right">
                 <div class="input-group">
                     <input type="text" class="form-control" name="kyw" placeholder="Tìm kiếm...">
                     <div class="input-group-append">
@@ -23,8 +23,8 @@
                     <thead class="thead-light">
                         <tr>
                             <th></th>
-                            <th>Mã tài khoản</th>
                             <th>Họ và Tên</th>
+                            <th>Tài khoản</th>
                             <th>Sản phẩm</th>
                             <th>Nội dung</th>
                             <th>Ngày bình luận</th>
@@ -32,24 +32,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center align-middle"><input type="checkbox" name="select" id=""></td>
-                            <td class="col-1 align-middle">1</td>
-                            <td class="col-2 align-middle">Nguyễn Văn Cường</td>
-                            <td class="col-3 align-middle">OPPO Reno10 5G 8GB 256GB</td>
-                            <td  class="col-3 align-middle">Nhìn như cứt mà cũng đòi bán dẹp đi</td>
-                            <td class="col-1 align-middle">27/07/2004</td>
-                            <td class="col-1 align-middle"><a href="?act=xoabl"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center align-middle"><input type="checkbox" name="select" id=""></td>
-                            <td class="col-1 align-middle">2</td>
-                            <td class="col-2 align-middle">Nguyễn Thiện Giáp</td>
-                            <td class="col-3 align-middle">IP15 promax gold 256GB</td>
-                            <td  class="col-3 align-middle">Dùng ok lắm shop hứa sẽ quay lại ủng hộ thêm hihi</td>
-                            <td class="col-1 align-middle">27/07/2004</td>
-                            <td class="col-1 align-middle"><a href="?act=xoabl"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
-                        </tr>
+                        <?php
+                            foreach ($listbl as $bl) {
+                                extract($bl);
+                                echo '<tr>
+                                        <td class="text-center align-middle"><input type="checkbox" name="select" id=""></td>
+                                        <td class="col-2 align-middle">'.$hovaten.'</td>
+                                        <td class="col-1 align-middle">'.$tendangnhap.'</td>
+                                        <td class="col-3 align-middle">'.$tensp.'</td>
+                                        <td  class="col-3 align-middle">'.$noidung.'</td>
+                                        <td class="col-2 align-middle">'.$ngaybinhluan.'</td>
+                                        <td class="col-1 align-middle"><a href="?act=xoabl&id='.$id.'"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
+                                    </tr>';
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

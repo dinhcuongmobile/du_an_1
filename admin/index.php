@@ -4,6 +4,7 @@ include "../model/danhmuc.php";
 include "../model/sanpham.php";
 include "../model/taikhoan.php";
 include "../model/binhluan.php";
+include "../model/donhang.php";
 include "header.php";
 
 if(isset($_GET['act'])&&($_GET['act']!="")){
@@ -71,9 +72,16 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
 
         //don hang-suatiep
         case 'listdh':
+
             include "bill/list.php";
             break;
         case 'listbl':
+            if(isset($_POST['search'])){
+                $kyw=$_POST['kyw'];
+            }else{
+                $kyw="";
+            }
+            $listbl=load_all_bl($kyw);
             include "binhluan/list.php";
             break;
         default:
