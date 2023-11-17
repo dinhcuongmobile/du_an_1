@@ -7,4 +7,48 @@ function load_all_sp($kyw){
     $query .=" ORDER BY id asc";
     return pdo_query($query);
 }
+function load_one_sp($id){
+    $query="SELECT * FROM sanpham WHERE id=".$id;
+    return pdo_query_one($query);
+}
+function insert_sp($danhmuc, $tensp, $giasp, $image, $soluong, $mota) {
+    $conn=pdo_get_connection();
+    $query_check = "SELECT COUNT(*) as count FROM sanpham WHERE image = :image";
+    $stmt = $conn->prepare($query_check);
+    $stmt->execute([':image'=> $image]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($result['count'] > 0) {
+        echo '<script>
+                alert("Sản phẩm đã tồn tại !");
+                window.location.href="?act=addsp";
+            </script>';
+    } else {
+        $query="INSERT INTO `sanpham`(`iddm`, `tensp`, `giasp`, `image`, `soluong`, `mota`) 
+        VALUES ('$danhmuc','$tensp','$giasp','$image','$soluong','$mota')";
+        $result2=pdo_execute($query);
+        echo '<script>
+                    alert("Bạn đã thêm sản phẩm thành công !");
+                    window.location.href="?act=listsp";
+                </script>';
+    }
+}
+function update_sp($id,$danhmuc,$tensp,$giasp,$image,$oldImage,$soluong,$mota,$trangthai){
+    $conn=pdo_get_connection();
+    $query="UPDATE `sanpham` SET `iddm`=:danhmuc,`tensp`=:tensp,`giasp`=:giasp,`image`=:image,`soluong`=:soluong,`mota`=:mota,`trangthai`=:trangthai WHERE `id`=:id";
+    $state=$conn->prepare($query);
+    $state->execute([
+        ':id'=>$id,
+        ':danhmuc'=>$danhmuc,
+        ':tensp'=>$tensp,
+        ':giasp'=>$giasp,
+        ':image'=>($image?$image:$oldImage),
+        ':soluong'=>$soluong,
+        ':trangthai'=>$trangthai,
+        ':mota'=>$mota
+    ]);
+}
+function delete_sp($id){
+    $query="DELETE FROM sanpham WHERE id=".$id;
+    pdo_execute($query);
+}
 ?>

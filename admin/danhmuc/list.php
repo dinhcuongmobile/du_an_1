@@ -38,7 +38,7 @@
                                         <td class="col-2">'.$id.'</td>
                                         <td>'.$tendm.'</td>
                                         <td class="col-2"><a href="?act=updatedm&id='.$id.'"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
-                                            <a href="?act=xoadm&id='.$id.'"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
+                                            <a onclick="return confirm(\'Bạn có muốn xóa không?\')" href="?act=xoadm&id='.$id.'"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
                                     </tr>';
                             }
                         ?>

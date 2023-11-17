@@ -7,21 +7,21 @@
 </div>
 <div class="card shadow mb-4">
     <div class="card-body">
-        <form action="" class="form">
+        <form action="?act=addtk" method="post" class="form">
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="hovaten" class="form-label">Họ và tên</label>
-                    <input type="text" class="form-control" id="hovaten" name="name" placeholder="Nhập họ và tên...">
+                    <input type="text" class="form-control" id="hovaten" name="hovaten" placeholder="Nhập họ và tên...">
                 </div>
                 <div class="col-md-6">
                     <label for="tendangnhap" class="form-label">Tên đăng nhập</label>
-                    <input type="text" class="form-control" id="tendangnhap" name="user" placeholder="Nhập tên đăng nhập...">
+                    <input type="text" class="form-control" id="tendangnhap" name="tendangnhap" placeholder="Nhập tên đăng nhập...">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="matkhau" class="form-label">Mật Khẩu</label>
-                    <input type="password" class="form-control" id="matkhau" name="password" placeholder="Nhập mật khẩu...">
+                    <input type="password" class="form-control" id="matkhau" name="matkhau" placeholder="Nhập mật khẩu...">
                 </div>
                 <div class="col-md-6">
                     <label for="email" class="form-label">Email</label>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="diachi" class="form-label">Địa chỉ</label>
-                    <input type="text" class="form-control" id="diachi" name="address" placeholder="Nhập địa chỉ...">
+                    <input type="text" class="form-control" id="diachi" name="diachi" placeholder="Nhập địa chỉ...">
                 </div>
             </div>
             <div class="mb-3 row">
@@ -49,6 +49,7 @@
             </div>
             <div>
                 <button type="submit" name="submit" class="btn btn-success">Xác nhận</button>
+                <a href="?act=listtk"><button type="button" class="btn btn-success">Quay lại</button></a>
             </div>
         </form>
     </div>

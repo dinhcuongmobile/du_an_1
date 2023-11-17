@@ -1,0 +1,11 @@
+
+.table{
+  vertical-align: baseline;
+}
+td{
+  vertical-align: middle;
+}
+.Err{
+  color: red;
+}
+/*end css*/

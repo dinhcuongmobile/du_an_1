@@ -1,1 +1,3 @@
-<?php header("location: admin/index.php");?>
+<?php 
+    header("location: controller/index.php");
+?>
