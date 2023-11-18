@@ -7,4 +7,12 @@
         $query .=" ORDER BY id asc";
         return pdo_query($query);
     }
+    function delete_dh($id){
+        $query="DELETE FROM donhang WHERE id=".$id;
+        pdo_execute($query);
+    }
+    function delete_giohang($id){
+        $query="DELETE FROM giohang WHERE idbill=".$id;
+        pdo_execute($query);
+    }
 ?>

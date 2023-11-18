@@ -51,8 +51,8 @@
                                                     <td  class="col-2 align-middle">'.$tongtien.' VND</td>
                                                     <td  class="col-2 align-middle">'.$trangthai.'</td>
                                                     <td class="col-2 align-middle">'.$ngaydathang.'</td>
-                                                    <td class="col-2 align-middle"><a href="?act=suadm&id='.$id.'"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
-                                                        <a href="?act=xoadm&id='.$id.'"><button class="btn btn-secondary btn-sm">Hủy</button></a></td>
+                                                    <td class="col-2 align-middle"><a href="?act=suadh&id='.$id.'"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
+                                                        <a href="?act=xoadh&id='.$id.'"><button class="btn btn-secondary btn-sm">Hủy</button></a></td>
                                                 </tr>';
                                         }
                                         ?>

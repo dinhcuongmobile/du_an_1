@@ -158,10 +158,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     $check=false;
                 }
                 if(empty($giasp)||($giasp<0)) $giasp=0;
-                if(empty($soluong)||($soluong<0)){
-                    $soluong=0;
-                    $trangthai=1;
-                }
+                if(empty($soluong)||($soluong<0)){$soluong=0;$trangthai=1;}
                 if(empty($image)){
                     $image=$oldImage;
                 }else{
@@ -193,7 +190,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $id=$_GET['id'];
                 delete_sp($id);
                 echo '<script>
-                        alert("Bạn đã xóa danh mục thành công !");
+                        alert("Bạn đã xóa sản phẩm thành công !");
                         window.location.href="?act=listsp";
                     </script>';
             }
@@ -202,7 +199,40 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             break;
         //thanh vien
         case 'addtk':
-            
+            $tendangnhapErr="";
+            $matkhauErr="";
+            $emailErr="";
+            $sodienthoaiErr="";
+            if(isset($_POST['submit'])){
+                $hovaten=$_POST['hovaten'];
+                $tendangnhap=$_POST['tendangnhap'];
+                $matkhau=$_POST['matkhau'];
+                $email=$_POST['email'];
+                $sodienthoai=$_POST['sodienthoai'];
+                $diachi=$_POST['diachi'];
+                $role=$_POST['role'];
+                $check=true;
+                if(empty(trim($tendangnhap))){$check=false; $tendangnhapErr="Vui lòng không bỏ trống !";} 
+                else{
+                    if(!preg_match("/^\w{6,16}$/",$tendangnhap)){$check=false;$tendangnhapErr="Tên đăng nhập tối thiểu 6 ký tự !";}
+                }
+                if(empty(trim($matkhau))){$check=false; $matkhauErr="Vui lòng không bỏ trống !";}
+                else{
+                    if(!preg_match("/^(?=.*[0-9])(?=.*[A-Z])\w{8,18}$/",$matkhau)){$check=false;$matkhauErr="Mật khẩu tối thiểu 8 ký tự bao gồm ký tự số và ký tự in hoa !";}
+                }
+                if(empty(trim($email))){$check=false; $emailErr="Vui lòng không bỏ trống !";}
+                else{
+                    if(!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/",$email)){$check=false;$emailErr="Email không đúng định dạng !";}
+                }
+                if(empty($sodienthoai)) $sodienthoai="";
+                else {if(!preg_match("/^0[1-9]\d{8}$/",$sodienthoai)){$check=false;$sodienthoaiErr="Số điện thoại không đúng định dạng !";}}
+                if($check){
+                    insert_tk($hovaten,$tendangnhap,$matkhau,$email,$sodienthoai,$diachi,$role);
+                    echo '<script>
+                        alert("Bạn đã thêm tài khoản thành công !");
+                    </script>';
+                }
+            }
             include "taikhoan/add.php";
             break;
         case 'listtv':
@@ -224,10 +254,86 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             include "taikhoan/listqtv.php";
             break;
         case 'updatetk':
+            if(isset($_GET['id'])&&($_GET['id']!="")){
+                $id=$_GET['id'];
+                $tk=load_one_tk($id);
+                if($tk){
+                    $id=$tk['id'];
+                    $hovaten=$tk['hovaten'];
+                    $tendangnhap=$tk['tendangnhap'];
+                    $matkhau=$tk['matkhau'];
+                    $email=$tk['email'];
+                    $sodienthoai=$tk['sodienthoai'];
+                    $diachi=$tk['diachi'];
+                    $role=$tk['role'];
+                }
+            }
+            $tendangnhapErr="";
+            $matkhauErr="";
+            $emailErr="";
+            $sodienthoaiErr="";
+            if(isset($_POST['submit'])){
+                $id=$_POST['id'];
+                $hovaten=$_POST['hovaten'];
+                $tendangnhap=$_POST['tendangnhap'];
+                $matkhau=$_POST['matkhau'];
+                $email=$_POST['email'];
+                $sodienthoai=$_POST['sodienthoai'];
+                $diachi=$_POST['diachi'];
+                $role=$_POST['role'];
+                $check=true;
+                if(empty(trim($tendangnhap))){$check=false; $tendangnhapErr="Vui lòng không bỏ trống !";} 
+                else{
+                    if(!preg_match("/^\w{6,16}$/",$tendangnhap)){$check=false;$tendangnhapErr="Tên đăng nhập tối thiểu 6 ký tự !";}
+                }
+                if(empty(trim($matkhau))){$check=false; $matkhauErr="Vui lòng không bỏ trống !";}
+                else{
+                    if(!preg_match("/^(?=.*[0-9])(?=.*[A-Z])\w{8,18}$/",$matkhau)){$check=false;$matkhauErr="Mật khẩu tối thiểu 8 ký tự bao gồm ký tự số và ký tự in hoa !";}
+                }
+                if(empty(trim($email))){$check=false; $emailErr="Vui lòng không bỏ trống !";}
+                else{
+                    if(!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/",$email)){$check=false;$emailErr="Email không đúng định dạng !";}
+                }
+                if(empty($sodienthoai)) $sodienthoai="";
+                else {if(!preg_match("/^0[1-9]\d{8}$/",$sodienthoai)){$check=false;$sodienthoaiErr="Số điện thoại không đúng định dạng !";}}
+                if($check){
+                    update_tk($id,$hovaten,$tendangnhap,$matkhau,$email,$sodienthoai,$diachi,$role);
+                    echo '<script>
+                        alert("Bạn đã sửa tài khoản thành công !");
+                    </script>';
+                }
+            }
             include "taikhoan/update.php";
             break;
-
-        //don hang-suatiep
+        case 'xoatk':
+            $vaitro="";
+            $duongdan="";
+            if(isset($_GET['id'])&&($_GET['id']!="")){
+                $id=$_GET['id'];
+                $tk=load_one_tk($id);
+                if($tk){
+                    delete_tk($tk['id']);
+                    if($tk['role']==0){
+                        $vaitro=0;
+                        $duongdan="sanpham/listtv.php";
+                        echo '<script>
+                            alert("Bạn đã xóa tài khoản thành công !");
+                            window.location.href="?act=listtv";
+                        </script>';
+                    }else if($tk['role']==1){
+                        $vaitro=1;
+                        $duongdan="sanpham/listqtv.php";
+                        echo '<script>
+                            alert("Bạn đã xóa tài khoản thành công !");
+                            window.location.href="?act=listqtv";
+                        </script>';
+                    }
+                }
+            }else{$duongdan="home.php";}
+            $list=load_all_tk($vaitro,"");
+            include $duongdan;
+            break;
+        //don hang
         case 'listdh':
             if(isset($_POST['search'])){
                 $kyw=$_POST['kyw'];
@@ -235,6 +341,19 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $kyw="";
             }
             $listdh=load_all_dh($kyw);
+            include "donhang/list.php";
+            break;
+        case 'xoadh':
+            if(isset($_GET['id'])&&($_GET['id']!="")){
+                $id=$_GET['id'];
+                delete_giohang($id);
+                delete_dh($id);
+                echo '<script>
+                        alert("Bạn đã xóa thành công !");
+                        window.location.href="?act=listdh";
+                    </script>';
+            }
+            $listdh=load_all_dh("");
             include "donhang/list.php";
             break;
         case 'listbl':

@@ -24,7 +24,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th></th>
-                            <th>STT</th>
+                            <th>MTV</th>
                             <th>Họ và Tên</th>
                             <th>Tên đăng nhập</th>
                             <th>Mật khẩu</th>
