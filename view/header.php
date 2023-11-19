@@ -59,25 +59,25 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-6 col-6">
                             <div class="logo">
-                                <a href="index.html"><img src="../assets/giao_dien_home/assets/images/logo/logo.png" alt="logo"></a>
+                                <a href="?act=trangchu"><img src="../assets/giao_dien_home/assets/images/logo/logo.png" alt="logo"></a>
                             </div>
                         </div>
                         <div class="col-lg-6 d-none d-lg-block d-flex justify-content-center">
                             <div class="main-menu text-center">
                                 <nav>
                                     <ul>
-                                        <li><a href="index.html">Trang Chủ</a></li>
-                                        <li><a href="gioithieu.html">Giới Thiệu</a></li>
+                                        <li><a href="?act=trangchu">Trang Chủ</a></li>
+                                        <li><a href="../assets/giao_dien_home/gioithieu.html">Giới Thiệu</a></li>
                                         <li><a href="#">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a> 
                                             <ul class="sub-menu-style">
-                                                <li><a href="product-details.html">iPhone</a></li>
-                                                <li><a href="product-details-2.html">SamSung</a></li>
-                                                <li><a href="product-details-gallery.html">Xioami</a></li>
-                                                <li><a href="product-details-affiliate.html">Oppo</a></li>     
+                                                <li><a href="../assets/giao_dien_home/product-details.html">iPhone</a></li>
+                                                <li><a href="../assets/giao_dien_home/product-details-2.html">SamSung</a></li>
+                                                <li><a href="../assets/giao_dien_home/product-details-gallery.html">Xioami</a></li>
+                                                <li><a href="../assets/giao_dien_home/product-details-affiliate.html">Oppo</a></li>     
                                             </ul>
                                         </li>
-                                        <li><a href="blog.html">Tin Tức</a></li>
-                                        <li><a href="about-us.html">Liên Hệ </a></li>  
+                                        <li><a href="../assets/giao_dien_home/blog.html">Tin Tức</a></li>
+                                        <li><a href="../assets/giao_dien_home/about-us.html">Liên Hệ </a></li>  
                                     </ul>
                                 </nav>
                             </div>
@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="header-action-style">
-                                    <a title="Đăng nhập" href="login-register.html"><i class="pe-7s-user"></i></a>
+                                    <a title="Đăng nhập" href="?act=dangnhap"><i class="pe-7s-user"></i></a>
                                 </div>
                                 <div class="header-action-style header-action-cart">
                                     <a class="cart-active" href="#"><i class="pe-7s-shopbag"></i>
@@ -149,10 +149,10 @@
                         <h4>Subtotal: <span>$170.00</span></h4>
                     </div>
                     <div class="cart-btn btn-hover">
-                        <a class="theme-color" href="cart.html">view cart</a>
+                        <a class="theme-color" href="?act=giohang">view cart</a>
                     </div>
                     <div class="checkout-btn btn-hover">
-                        <a class="theme-color" href="checkout.html">checkout</a>
+                        <a class="theme-color" href="../assets/giao_dien_home/checkout.html">checkout</a>
                     </div>
                 </div>
             </div>
