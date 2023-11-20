@@ -48,7 +48,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="?act=trangchu">
                     <i class="fas fa-fw fa-house-damage"></i>
-                    <span>Home CC</span>
+                    <span>Home</span>
             </li>
 
             <!-- Divider -->
