@@ -15,6 +15,14 @@ function load_all_sp($kyw){
     $query .=" ORDER BY id asc";
     return pdo_query($query);
 }
+function load_sp_lq($iddm){
+    $query="SELECT sanpham.*, danhmuc.tendm FROM sanpham INNER JOIN danhmuc ON sanpham.iddm=danhmuc.id WHERE 1";
+    if($iddm!=""){
+        $query .=" AND iddm=".$iddm;
+    }
+    $query .=" ORDER BY id asc";
+    return pdo_query($query);
+}
 function load_one_sp($id){
     $query="SELECT * FROM sanpham WHERE id=".$id;
     return pdo_query_one($query);
@@ -59,4 +67,5 @@ function delete_sp($id){
     $query="DELETE FROM sanpham WHERE id=".$id;
     pdo_execute($query);
 }
+
 ?>
