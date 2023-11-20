@@ -68,9 +68,9 @@
                                     <ul>
                                         <li><a href="?act=trangchu">Trang Chủ</a></li>
                                         <li><a href="../assets/giao_dien_home/gioithieu.html">Giới Thiệu</a></li>
-                                        <li><a href="#">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a> 
+                                        <li><a href="?act=sanpham">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a> 
                                             <ul class="sub-menu-style">
-                                                <li><a href="../assets/giao_dien_home/product-details.html">iPhone</a></li>
+                                                <li><a href="?act=sanpham">iPhone</a></li>
                                                 <li><a href="../assets/giao_dien_home/product-details-2.html">SamSung</a></li>
                                                 <li><a href="../assets/giao_dien_home/product-details-gallery.html">Xioami</a></li>
                                                 <li><a href="../assets/giao_dien_home/product-details-affiliate.html">Oppo</a></li>     
@@ -96,9 +96,23 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="header-action-style">
-                                    <a title="Đăng nhập" href="?act=dangnhap"><i class="pe-7s-user"></i></a>
+                                <div class="header-action-style main-menu">
+                                    <nav>
+                                        <ul>
+                                            <li><a title="Đăng nhập" href="?act=dangnhap"><i class="pe-7s-user"></i></a>
+                                                <ul class="sub-menu-style">
+                                                    <li><a href="../assets/giao_dien_home/product-details.html">iPhone</a></li>
+                                                    <li><a href="../assets/giao_dien_home/product-details-2.html">SamSung</a></li>
+                                                    <li><a href="../assets/giao_dien_home/product-details-gallery.html">Xioami</a></li>
+                                                    <li><a href="../assets/giao_dien_home/product-details-affiliate.html">Oppo</a></li>     
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
+                                <!-- <div class="header-action-style">
+                                    <a title="Đăng nhập" href="?act=dangnhap"><i class="pe-7s-user"></i></a>
+                                </div> -->
                                 <div class="header-action-style header-action-cart">
                                     <a class="cart-active" href="#"><i class="pe-7s-shopbag"></i>
                                         <span class="product-count bg-black">01</span>

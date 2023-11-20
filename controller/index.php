@@ -24,6 +24,12 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
         case 'dangnhap':
             include "../view/taikhoan/dangnhap.php";
             break;
+        case 'sanpham':
+            include "../view/sanpham/sanpham.php";
+            break;
+        case 'sanphamdm':
+            include "../view/sanpham/sanphamdanhmuc.php";
+            break;
         default:
         include "../view/home.php";
             break;
