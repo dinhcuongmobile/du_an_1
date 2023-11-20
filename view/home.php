@@ -129,7 +129,7 @@
                 echo '<div class="swiper-slide">
                         <div class="product-wrap" data-aos="fade-up" data-aos-delay="'.$delay.'">
                             <div class="product-img img-zoom mb-25">
-                                <a href="product-details.html">
+                                <a href="?act=chitietsp&id='.$id.'">
                                     <img src="../uploads/'.$image.'" alt="">
                                 </a>
                                 <div class="product-badge badge-top badge-right badge-pink">
@@ -146,7 +146,7 @@
                                 </div>
                             </div>
                             <div class="product-content">
-                                <h3><a href="product-details.html">'.$tensp.'</a></h3>
+                                <h3><a href="?act=chitietsp&id='.$id.'">'.$tensp.'</a></h3>
                                 <div class="product-price">
                                     <span class="new-price">'.number_format($giasp, 0, ',', '.').'₫</span>
                                     <span class="old-price">22.990.000₫ </span>
@@ -157,32 +157,6 @@
                 $delay+=200;
             }
             ?>
-                <!-- <div class="swiper-slide">
-                    <div class="product-wrap" data-aos="fade-up" data-aos-delay="400">
-                        <div class="product-img img-zoom mb-25">
-                            <a href="product-details.html">
-                                <img src="../assets/giao_dien_home/assets/images/category/iphone-15-pro-max_5.webp" alt="">
-                            </a>
-                            <div class="product-action-wrap">
-                                <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="pe-7s-look"></i>
-                                </button>
-                            </div>
-                            <div class="product-action-2-wrap">
-                                <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i>Thêm Vào Giỏ Hàng</button>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="product-details.html">iPhone 15 Pro Max 256GB | Chính hãng VN/A</a></h3>
-                            <div class="product-price">
-                                <span class="new-price"> 
-                                    33.790.000₫  </span>
-                                <span class="old-price"> 34.990.000₫ </span>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
             <div class="product-prev-1 product-nav-1" data-aos="fade-up" data-aos-delay="200"><i class="fa fa-angle-left"></i></div>
             <div class="product-next-1 product-nav-1" data-aos="fade-up" data-aos-delay="200"><i class="fa fa-angle-right"></i></div>
@@ -205,7 +179,7 @@
                         echo '<div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                 <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                     <div class="product-img img-zoom mb-25">
-                                        <a href="../assets/giao_dien_home/product-details.html">
+                                        <a href="?act=chitietsp&id='.$id.'">
                                             <img src="../uploads/'.$image.'" alt="">
                                         </a>
                                         <div class="product-badge badge-top badge-right badge-pink">
@@ -222,7 +196,7 @@
                                         </div>
                                     </div>
                                     <div class="product-content">
-                                        <h3><a href="product-details.html">'.$tensp.'</a></h3>
+                                        <h3><a href="?act=chitietsp&id='.$id.'">'.$tensp.'</a></h3>
                                         <div class="product-price">
                                             <span class="new-price">'.number_format($giasp, 0, ',', '.').'₫</span>
                                             <span class="old-price">45.390.000 đ</span>

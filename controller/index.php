@@ -30,6 +30,20 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
         case 'sanphamdm':
             include "../view/sanpham/sanphamdanhmuc.php";
             break;
+        case 'chitietsp':
+            $danhmuc = "";
+            $splq = "";
+            $sanpham = "";
+            if (isset($_GET['id'])&& ($_GET['id']!="")){
+                $id = $_GET['id'];
+                $sanpham = load_one_sp($id);
+                if($sanpham){
+                    $splq = load_sp_lq($sanpham['iddm']);
+                }
+                $danhmuc = load_one_dm($id);
+            }
+            include "../view/sanpham/chitietsp.php";
+            break;
         default:
         include "../view/home.php";
             break;
