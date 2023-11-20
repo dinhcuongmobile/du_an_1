@@ -44,7 +44,7 @@
                                     <td class="align-middle text-center"><input type="checkbox" name="select" id=""></td>
                                     <td class=" align-middle text-center">'.$id.'</td>
                                     <td class="col-3 align-middle">'.$tensp.'</td>
-                                    <td class="col-2 align-middle">'.$giasp.' VND</td>
+                                    <td class="col-2 align-middle">'.number_format($giasp, 0, ',', '.').' VND</td>
                                     <td  class="col-1 align-middle"><img src="../uploads/'.$image.'" alt="err" height="60px"></td>
                                     <td  class="col-1 align-middle">'.$soluong.'</td>
                                     <td  class="col-1 align-middle">'.$tendm.'</td>
