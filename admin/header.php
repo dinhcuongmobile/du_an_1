@@ -38,7 +38,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink" style="color: #f1c40f;"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">DC MOBILE</div>
+                <div class="sidebar-brand-text mx-3">DC MOBILES</div>
             </a>
 
             <!-- Divider -->
