@@ -101,10 +101,8 @@
                                         <ul>
                                             <li><a title="Đăng nhập" href="?act=dangnhap"><i class="pe-7s-user"></i></a>
                                                 <ul class="sub-menu-style">
-                                                    <li><a href="../assets/giao_dien_home/product-details.html">iPhone</a></li>
-                                                    <li><a href="../assets/giao_dien_home/product-details-2.html">SamSung</a></li>
-                                                    <li><a href="../assets/giao_dien_home/product-details-gallery.html">Xioami</a></li>
-                                                    <li><a href="../assets/giao_dien_home/product-details-affiliate.html">Oppo</a></li>     
+                                                    <li><a href="?act=dangnhap">Đăng nhập</a></li>
+                                                    <li><a href="?act=dangky">Đăng ký</a></li>   
                                                 </ul>
                                             </li>
                                         </ul>

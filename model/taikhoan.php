@@ -29,4 +29,12 @@ function delete_tk($id){
     $query="DELETE FROM taikhoan WHERE id=".$id;
     pdo_execute($query);
 }
+function checkuser($tendangnhap,$matkhau){
+    $query="SELECT * FROM taikhoan WHERE tendangnhap='".$tendangnhap."' AND  matkhau='".$matkhau."'";
+    return pdo_query_one($query);
+}
+function checkemail($email){
+    $query="SELECT * FROM taikhoan WHERE email='".$email."'";
+    return pdo_query_one($query);
+}
 ?>

@@ -26,11 +26,12 @@
                             <th></th>
                             <th>Mã loại</th>
                             <th>Tên sản phẩm</th>
-                            <th>Giá</th>
+                            <th>Giá gốc</th>
+                            <th>Giá khuyến mãi</th>
                             <th>Ảnh</th>
                             <th>Số lượng</th>
+                            <th>Khuyến mãi</th>
                             <th>Danh mục</th>
-                            <th>lượt xem</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,15 +41,17 @@
                             extract($sp);
                             if($soluong<=0) $trangthai=1;
                             else $trangthai=0;
+                            $giakm=$giasp*((100-$khuyenmai)/100);
                             echo '<tr>
                                     <td class="align-middle text-center"><input type="checkbox" name="select" id=""></td>
                                     <td class=" align-middle text-center">'.$id.'</td>
-                                    <td class="col-3 align-middle">'.$tensp.'</td>
+                                    <td class="col-2 align-middle">'.$tensp.'</td>
                                     <td class="col-2 align-middle">'.number_format($giasp, 0, ',', '.').' VND</td>
+                                    <td class="col-2 align-middle">'.number_format($giakm, 0, ',', '.').' VND</td>
                                     <td  class="col-1 align-middle"><img src="../uploads/'.$image.'" alt="err" height="60px"></td>
                                     <td  class="col-1 align-middle">'.$soluong.'</td>
+                                    <td  class="align-middle">'.$khuyenmai.'</td>
                                     <td  class="col-1 align-middle">'.$tendm.'</td>
-                                    <td class="col-1 align-middle">'.$luotxem.'</td>
                                     <td class="col-2 align-middle"><a href="?act=updatesp&id='.$id.'"><button class="btn btn-secondary btn-sm">Sửa</button></a> | 
                                         <a href="?act=xoasp&id='.$id.'"><button class="btn btn-secondary btn-sm">Xóa</button></a></td>
                                 </tr>';

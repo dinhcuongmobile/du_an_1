@@ -27,7 +27,7 @@ function load_one_sp($id){
     $query="SELECT * FROM sanpham WHERE id=".$id;
     return pdo_query_one($query);
 }
-function insert_sp($danhmuc, $tensp, $giasp, $image, $soluong, $mota) {
+function insert_sp($danhmuc, $tensp, $giasp, $image, $soluong,$khuyenmai, $mota) {
     $conn=pdo_get_connection();
     $query_check = "SELECT COUNT(*) as count FROM sanpham WHERE image = :image";
     $stmt = $conn->prepare($query_check);
@@ -39,8 +39,8 @@ function insert_sp($danhmuc, $tensp, $giasp, $image, $soluong, $mota) {
                 window.location.href="?act=addsp";
             </script>';
     } else {
-        $query="INSERT INTO `sanpham`(`iddm`, `tensp`, `giasp`, `image`, `soluong`, `mota`) 
-        VALUES ('$danhmuc','$tensp','$giasp','$image','$soluong','$mota')";
+        $query="INSERT INTO `sanpham`(`iddm`, `tensp`, `giasp`, `image`, `soluong`,`khuyenmai`, `mota`) 
+        VALUES ('$danhmuc','$tensp','$giasp','$image','$soluong','$khuyenmai','$mota')";
         $result2=pdo_execute($query);
         echo '<script>
                     alert("Bạn đã thêm sản phẩm thành công !");
@@ -48,9 +48,9 @@ function insert_sp($danhmuc, $tensp, $giasp, $image, $soluong, $mota) {
                 </script>';
     }
 }
-function update_sp($id,$danhmuc,$tensp,$giasp,$image,$oldImage,$soluong,$mota,$trangthai){
+function update_sp($id,$danhmuc,$tensp,$giasp,$image,$oldImage,$soluong,$khuyenmai,$mota,$trangthai){
     $conn=pdo_get_connection();
-    $query="UPDATE `sanpham` SET `iddm`=:danhmuc,`tensp`=:tensp,`giasp`=:giasp,`image`=:image,`soluong`=:soluong,`mota`=:mota,`trangthai`=:trangthai WHERE `id`=:id";
+    $query="UPDATE `sanpham` SET `iddm`=:danhmuc,`tensp`=:tensp,`giasp`=:giasp,`image`=:image,`soluong`=:soluong,`khuyenmai`=:khuyenmai,`mota`=:mota,`trangthai`=:trangthai WHERE `id`=:id";
     $state=$conn->prepare($query);
     $state->execute([
         ':id'=>$id,
@@ -59,6 +59,7 @@ function update_sp($id,$danhmuc,$tensp,$giasp,$image,$oldImage,$soluong,$mota,$t
         ':giasp'=>$giasp,
         ':image'=>($image?$image:$oldImage),
         ':soluong'=>$soluong,
+        ':khuyenmai'=>$khuyenmai,
         ':trangthai'=>$trangthai,
         ':mota'=>$mota
     ]);

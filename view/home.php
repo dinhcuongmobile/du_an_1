@@ -126,14 +126,16 @@
             foreach ($list_sp_home as $sp) {
                 extract($sp);
                 $delay=200;
-                echo '<div class="swiper-slide">
+                if($soluong>0){
+                    $giakm=$giasp*((100-$khuyenmai)/100);
+                    echo '<div class="swiper-slide">
                         <div class="product-wrap" data-aos="fade-up" data-aos-delay="'.$delay.'">
                             <div class="product-img img-zoom mb-25">
                                 <a href="?act=chitietsp&id='.$id.'">
                                     <img src="../uploads/'.$image.'" alt="">
                                 </a>
                                 <div class="product-badge badge-top badge-right badge-pink">
-                                    <span>-10%</span>
+                                    <span>-'.$khuyenmai.'%</span>
                                 </div>
                                 <div class="product-action-wrap">
                                     <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
@@ -148,13 +150,14 @@
                             <div class="product-content">
                                 <h3><a href="?act=chitietsp&id='.$id.'">'.$tensp.'</a></h3>
                                 <div class="product-price">
-                                    <span class="new-price">'.number_format($giasp, 0, ',', '.').'₫</span>
-                                    <span class="old-price">22.990.000₫ </span>
+                                    <span class="new-price">'.number_format($giakm, 0, ',', '.').'₫</span>
+                                    <span class="old-price">'.number_format($giasp, 0, ',', '.').'₫</span>
                                 </div>
                             </div>
                         </div>
                     </div>';
-                $delay+=200;
+                    $delay+=200;
+                }
             }
             ?>
             </div>
@@ -176,14 +179,16 @@
                 <?php
                     foreach ($list_sp_nb as $sp) {
                         extract($sp);
-                        echo '<div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                        if($soluong>0){
+                            $giakm=$giasp*((100-$khuyenmai)/100);
+                            echo '<div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                 <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                     <div class="product-img img-zoom mb-25">
                                         <a href="?act=chitietsp&id='.$id.'">
                                             <img src="../uploads/'.$image.'" alt="">
                                         </a>
                                         <div class="product-badge badge-top badge-right badge-pink">
-                                            <span>-10%</span>
+                                            <span>-'.$khuyenmai.'%</span>
                                         </div>
                                         <div class="product-action-wrap">
                                             <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
@@ -198,12 +203,13 @@
                                     <div class="product-content">
                                         <h3><a href="?act=chitietsp&id='.$id.'">'.$tensp.'</a></h3>
                                         <div class="product-price">
-                                            <span class="new-price">'.number_format($giasp, 0, ',', '.').'₫</span>
-                                            <span class="old-price">45.390.000 đ</span>
+                                            <span class="new-price">'.number_format($giakm, 0, ',', '.').'₫</span>
+                                            <span class="old-price">'.number_format($giasp, 0, ',', '.').'₫</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>';
+                        }
                     }
                 ?>
             </div>

@@ -93,6 +93,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $giasp=$_POST['giasp'];
                 $image=basename($_FILES['image']['name']);
                 $soluong=$_POST['soluong'];
+                $khuyenmai=$_POST['khuyenmai'];
                 $mota=$_POST['mota'];
                 $danhmuc=$_POST['danhmuc'];
                 $check=true;
@@ -102,6 +103,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 }
                 if(empty($giasp)) $giasp=0;
                 if(empty($soluong)) $soluong=1;
+                if(empty($khuyenmai)) $khuyenmai=0;
                 if(empty($image)){
                     $check=false;
                     $imageErr="Vui lòng uploads file ảnh !";
@@ -119,7 +121,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     }
                 }
                 if($check){
-                    insert_sp($danhmuc,$tensp,$giasp,$image,$soluong,$mota);
+                    insert_sp($danhmuc,$tensp,$giasp,$image,$soluong,$khuyenmai,$mota);
                     
                 }
             }
@@ -136,6 +138,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     $tensp=$sp['tensp'];
                     $giasp=$sp['giasp'];
                     $soluong=$sp['soluong'];
+                    $khuyenmai=$sp['khuyenmai'];
                     $mota=$sp['mota'];
                     $danhmuc=$sp['iddm'];
                 }
@@ -150,6 +153,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $giasp=$_POST['giasp'];
                 $image=basename($_FILES['image']['name']);
                 $soluong=$_POST['soluong'];
+                $khuyenmai=$_POST['khuyenmai'];
                 $mota=$_POST['mota'];
                 $danhmuc=$_POST['danhmuc'];
                 $check=true;
@@ -158,6 +162,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     $check=false;
                 }
                 if(empty($giasp)||($giasp<0)) $giasp=0;
+                if(empty($khuyenmai)||($khuyenmai<0)) $khuyenmai=0;
                 if(empty($soluong)||($soluong<0)){$soluong=0;$trangthai=1;}
                 if(empty($image)){
                     $image=$oldImage;
@@ -175,7 +180,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     }
                 }
                 if($check){
-                    update_sp($id,$danhmuc,$tensp,$giasp,$image,$oldImage,$soluong,$mota,$trangthai);
+                    update_sp($id,$danhmuc,$tensp,$giasp,$image,$oldImage,$soluong,$khuyenmai,$mota,$trangthai);
                     echo '<script>
                         alert("Bạn đã sửa sản phẩm thành công !");
                         window.location.href="?act=listsp";

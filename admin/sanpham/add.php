@@ -27,6 +27,10 @@
                 <input type="number" class="form-control" id="soluong" name="soluong" placeholder="Nhập số lượng..." value="<?=$soluong?>">
             </div>
             <div class="mb-3">
+                <label for="khuyenmai" class="form-label">Khuyến mãi (%)</label>
+                <input type="number" class="form-control" id="khuyenmai" name="khuyenmai" placeholder="Nhập khuyến mãi..." value="<?=$khuyenmai?>">
+            </div>
+            <div class="mb-3">
                 <label for="mota">Mô tả</label>
                 <textarea class="form-control" rows="5" id="mota" name="mota" placeholder="Nhập mô tả..."></textarea>
             </div>
