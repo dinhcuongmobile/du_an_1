@@ -150,34 +150,31 @@
                 <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
                 <div class="cart-content">
                     <h3>Shopping Cart</h3>
-                    <ul>
-                        <li>
-                            <div class="cart-img">
-                                <a href="#"><img src="../assets/giao_dien_home/assets/images/cart/cart-1.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h4><a href="#">Stylish Swing Chair</a></h4>
-                                <span> 1 × $49.00	</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#">×</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="cart-img">
-                                <a href="#"><img src="../assets/giao_dien_home/assets/images/cart/cart-2.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h4><a href="#">Modern Chairs</a></h4>
-                                <span> 1 × $49.00	</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#">×</a>
-                            </div>
-                        </li>
-                    </ul>
+                    <?php
+                        $tongthanhtoan=0;
+                        if(isset($listgh)){
+                            foreach ($listgh as $giohang){
+                                extract($giohang);
+                                echo '<ul>
+                                        <li>
+                                            <div class="cart-img">
+                                                <a href="?act=chitietsp&id='.$idsanpham.'"><img src="../uploads/'.$image.'" alt=""></a>
+                                            </div>
+                                            <div class="cart-title">
+                                                <h4><a href="?act=chitietsp&id='.$idsanpham.'">'.$tensp.'</a></h4>
+                                                <span>'.$soluong.'  x  '.number_format($giakm, 0, ',', '.').'₫</span>
+                                            </div>
+                                            <div class="cart-delete">
+                                                <a href="?act=xoagiohang&id='.$idsanpham.'"><i class=" ti-trash "></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>';
+                                $tongthanhtoan+=$thanhtien;
+                            }
+                        }                       
+                    ?>
                     <div class="cart-total">
-                        <h4>Subtotal: <span>$170.00</span></h4>
+                        <h4>Thành tiền: <span><?=number_format($tongthanhtoan, 0, ',', '.')?>₫</span></h4>
                     </div>
                     <div class="cart-btn btn-hover">
                         <a class="theme-color" href="?act=giohang">view cart</a>

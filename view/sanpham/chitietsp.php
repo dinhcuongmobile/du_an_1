@@ -7,7 +7,7 @@
                         ?>
                     <div class="product-details-img-wrap" data-aos="fade-up" data-aos-delay="200">
                             <div class="swiper-container product-details-big-img-slider-2 pd-big-img-style">
-                                <a href="">
+                                <a href="?act=chitietsp&id=<?=$id?>">
                                     <img src="../uploads/<?=$image?>" alt="">
                                 </a>
                             </div>
@@ -18,10 +18,10 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="product-details-content" data-aos="fade-up" data-aos-delay="400">
-                            <h2><?=$tensp?></h2>
+                            <a style="font-size: 25px" href="?act=chitietsp&id=<?=$id?>"><?=$tensp?></a>
                             <div class="product-details-price">
-                                <span class="old-price">$25.89 </span>
-                                <span class="new-price"><?=number_format($giasp, 0, ',', '.')?>đ</span>
+                                <span class="old-price"><?=number_format($giasp, 0, ',', '.')?>đ</span>
+                                <span class="new-price"><?=number_format($giakm, 0, ',', '.')?>đ</span>
                             </div>
                         <?php
                             extract($danhmuc);
@@ -30,19 +30,28 @@
                                 <ul>
                                     <li><span class="title">Category:</span>
                                         <ul>
-                                            <li><a href="#"><?=$tendm?></a></li>
+                                            <li><a href="?act=sanpham&id=<?=$id?>"><?=$tendm?></a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
+                        <?php
+                            extract($sanpham);
+                        ?>
+                        <form action="?act=themgiohang" method="post">
                             <div class="product-details-action-wrap">
                                 <div class="product-quality">
-                                    <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
+                                    <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="<?=$soluong?>">
                                 </div>
-                                <div class="single-product-cart btn-hover">
-                                    <a href="#">Add to cart</a>
+                                <div class="single-product-cart btn-hover">                                   
+                                    <input type="hidden" name="id" value="<?=$id?>">
+                                    <input type="hidden" name="tensp" value="<?=$tensp?>">
+                                    <input type="hidden" name="image" value="<?=$image?>">
+                                    <input type="hidden" name="giasp" value="<?=$giakm?>">
+                                    <button class="theme-color" type="submit" name="themgiohang" class="product-action-btn-2"><i class="pe-7s-cart" title="Add To Cart"></i> Thêm vào giỏ hàng</button>                                  
                                 </div>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -107,7 +116,6 @@
                 <div class="related-product-active swiper-container">
                     <div class="swiper-wrapper">
                         <?php
-
                             foreach($splq as $sp){
                                 extract($sp);
                                 echo '<div class="swiper-slide">
@@ -117,23 +125,23 @@
                                                     <img src="../uploads/'.$image.'" alt="">
                                                 </a>
                                                 <div class="product-badge badge-top badge-right badge-pink">
-                                                    <span>-10%</span>
-                                                </div>
-                                                <div class="product-action-wrap">
-                                                    <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                                    <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                        <i class="pe-7s-look"></i>
-                                                    </button>
+                                                    <span>'.$khuyenmai.'%</span>
                                                 </div>
                                                 <div class="product-action-2-wrap">
-                                                    <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                                    <form action="?act=themgiohang" method="post">
+                                                        <input type="hidden" name="id" value="'.$id.'">
+                                                        <input type="hidden" name="tensp" value="'.$tensp.'">
+                                                        <input type="hidden" name="image" value="'.$image.'">
+                                                        <input type="hidden" name="giasp" value="'.$giakm.'">
+                                                        <button type="submit" name="themgiohang" class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                             <div class="product-content">
                                                 <h3><a href="?act=chitietsp&id='.$id.'">'.$tensp.'</a></h3>
                                                 <div class="product-price">
-                                                    <span class="old-price">$25.89 </span>
-                                                    <span class="new-price">'.number_format($giasp, 0, ',', '.').'₫</span>
+                                                    <span class="old-price">'.number_format($giasp, 0, ',', '.').'₫</span>
+                                                    <span class="new-price">'.number_format($giakm, 0, ',', '.').'₫</span>
                                                 </div>
                                             </div>
                                         </div>
