@@ -6,9 +6,9 @@
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                                 <div class="footer-widget footer-about mb-40">
                                     <div class="footer-logo">
-                                        <a href="../assets/giao_dien_home/index.html"><img src="../assets/giao_dien_home/assets/images/logo/logo.png" alt="logo"></a>
+                                        <a href="../assets/giao_dien_home/index.html"><img src="../assets/images/logo.png" alt="logo"></a>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, cons adipi elit, sed do eiusmod tempor incididunt ut aliqua.</p>
+                                    <p>Đã bán là không lom dom</p>
                                     <div class="payment-img">
                                         <a href="#"><img src="../assets/giao_dien_home/assets/images/icon-img/payment.png" alt="logo"></a>
                                     </div>
