@@ -7,18 +7,19 @@ include "../model/sanpham.php";
 include "../model/taikhoan.php";
 include "../model/binhluan.php";
 include "../model/donhang.php";
-
-if(!isset($_SESSION['giohang'])){
-    $_SESSION['giohang']=[];
+if(isset($_SESSION['user'])) {
+    $listgh=load_all_giohang($_SESSION['user']['id']); 
+    $countgh=count_giohang($_SESSION['user']['id']);
+    $minicart=load_minicart($_SESSION['user']['id']);
 }
 $list_sp_home=load_sp_home();
 $list_sp_nb=load_sp_nb();
 $listdm=load_all_dm("");
-
 include "../view/header.php";
 if(isset($_GET['act'])&&($_GET['act']!="")){
     $act=$_GET['act'];
     switch ($act) {
+        /* Tai khoan */
         case 'dangky':
             $tendangnhapErr="";
             $matkhauErr="";
@@ -117,40 +118,43 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             }
             include "../view/taikhoan/quenmatkhau.php";
             break;
+        /* End tai khoan */
         case 'giohang':
+            include "../view/cart/giohang.php";
+            break;
+        case 'themgiohang':
+            if(isset($_SESSION['user'])){
+                if (isset($_POST['themgiohang'])) {
+                    $idsanpham = $_POST['id'];
+                    $giasp = $_POST['giasp'];
+                    $soluong = 1;
+                    $thanhtien = $giasp * $soluong;
+                    $check = true;
+                    foreach ($listgh as $giohang) {
+                        if ($idsanpham == $giohang['idsanpham']) {
+                            $giohang['soluong'] += $soluong;
+                            $giohang['thanhtien'] = $giasp * $giohang['soluong'];
+                            update_giohang($giohang['soluong'],$giohang['thanhtien'],$giohang['idsanpham']);
+                            $check = false;
+                            break;
+                        }
+                    }
+                
+                    if ($check) {
+                        insert_cart($_SESSION['user']['id'], $idsanpham, $soluong, $thanhtien);
+                    }
+                    header('location: ?act=giohang');
+                }
+            }else{header('location: ?act=dangnhap');}
             include "../view/cart/giohang.php";
             break;
         case 'xoagiohang':
             if(isset($_GET['id'])){
-                array_splice($_SESSION['giohang'],$_GET['id'],1);
+                delete_giohang($_GET['id']);
             }else{
-                $_SESSION['giohang']=[];
+                delete_giohang(0);
             }
             header ('location: ?act=giohang');
-            break;
-        case 'themgiohang':
-            if(isset($_POST['themgiohang'])){
-                $id=$_POST['id'];
-                $tensp=$_POST['tensp'];
-                $image=$_POST['image'];
-                $giasp=$_POST['giasp'];
-                $check = true;
-                foreach ($_SESSION['giohang'] as &$item) {
-                    if ($item[0] == $id) {
-                        $item[4]++;
-                        $item[5] = $item[4] * $giasp;
-                        $check = false;
-                    }
-                }
-                if ($check) {
-                    $soluong = 1;
-                    $ttien = $soluong * $giasp;
-                    $spadd = [$id, $tensp, $image, $giasp, $soluong, $ttien];
-                    array_push($_SESSION['giohang'], $spadd);
-                }
-                header('location: ?act=giohang');
-            }
-            include "../view/cart/giohang.php";
             break;
         case 'tieptucdathang':
             if(isset($_POST['dathang'])){
@@ -174,6 +178,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             }
             include "../view/cart/thongtindathang.php";
             break;
+        /* END GIO HANG */
         case 'sanpham':
             if(isset($_GET['id'])&&($_GET['id']!="")){
                 $list_sp_home=load_all_spdm($_GET['id']);

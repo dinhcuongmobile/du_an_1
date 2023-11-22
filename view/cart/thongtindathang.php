@@ -54,10 +54,10 @@ if(!$_SESSION['user']){
                                         <ul>
                                             <?php
                                             $tongthanhtoan=0;
-                                            foreach ($_SESSION['giohang'] as $giohang) {
+                                            foreach ($listgh as $giohang) {
                                                 extract($giohang);
-                                                echo ' <li>'.$giohang[1].'<span>'.number_format($giohang[5], 0, ',', '.').'₫</span></li>';
-                                                $tongthanhtoan+=$giohang[5];
+                                                echo ' <li>'.$tensp.'<span>'.number_format($thanhtien, 0, ',', '.').'₫</span></li>';
+                                                $tongthanhtoan+=$thanhtien;
                                             }
                                             ?>
                                         </ul>

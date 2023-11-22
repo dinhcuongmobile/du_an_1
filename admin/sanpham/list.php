@@ -41,7 +41,6 @@
                             extract($sp);
                             if($soluong<=0) $trangthai=1;
                             else $trangthai=0;
-                            $giakm=$giasp*((100-$khuyenmai)/100);
                             echo '<tr>
                                     <td class="align-middle text-center"><input type="checkbox" name="select" id=""></td>
                                     <td class=" align-middle text-center">'.$id.'</td>

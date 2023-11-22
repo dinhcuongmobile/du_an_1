@@ -19,23 +19,25 @@
                                 <tbody>
                                     <?php
                                         $tongthanhtoan=0;
-                                        foreach ($_SESSION['giohang'] as $giohang) {
-                                            extract($giohang);
-                                            echo '<tr>
-                                                    <td class="product-thumbnail">
-                                                        <a href="?act=chitietsp&id='.$giohang[0].'"><img src="../uploads/'.$giohang[2].'" alt=""></a>
-                                                    </td>
-                                                    <td class="product-name">
-                                                        <h5><a href="?act=chitietsp&id='.$giohang[0].'">'.$giohang[1].'</a></h5>
-                                                    </td>
-                                                    <td class="product-cart-price"><span class="amount">'.number_format($giohang[3], 0, ',', '.').'₫</span></td>
-                                                    <td class="cart-quality">
-                                                        <input type="text" name="quality" value="'.$giohang[4].'" style="width:30%; margin-left:5%;" disabled>
-                                                    </td>
-                                                    <td class="product-total"><span>'.number_format($giohang[5], 0, ',', '.').'₫</span></td>
-                                                    <td class="product-remove"><a href="?act=xoagiohang&id='.$giohang[0].'"><i class=" ti-trash "></i></a></td>
-                                                </tr>';
-                                            $tongthanhtoan+=$giohang[5];
+                                        if(isset($listgh)){
+                                            foreach ($listgh as $giohang) {
+                                                extract($giohang);
+                                                echo '<tr>
+                                                        <td class="product-thumbnail">
+                                                            <a href="?act=chitietsp&id='.$idsanpham.'"><img src="../uploads/'.$image.'" alt=""></a>
+                                                        </td>
+                                                        <td class="product-name">
+                                                            <h5><a href="?act=chitietsp&id='.$idsanpham.'">'.$tensp.'</a></h5>
+                                                        </td>
+                                                        <td class="product-cart-price"><span class="amount">'.number_format($giakm, 0, ',', '.').'₫</span></td>
+                                                        <td class="cart-quality">
+                                                            <input type="text" name="quality" value="'.$soluong.'" style="width:30%; margin-left:5%;" disabled>
+                                                        </td>
+                                                        <td class="product-total"><span>'.number_format($thanhtien, 0, ',', '.').'₫</span></td>
+                                                        <td class="product-remove"><a href="?act=xoagiohang&id='.$idsanpham.'"><i class=" ti-trash "></i></a></td>
+                                                    </tr>';
+                                                $tongthanhtoan+=$thanhtien;
+                                            }
                                         }
                                     ?>
                                 </tbody>
@@ -61,23 +63,22 @@
             <div class="col-lg-4 col-md-12 col-12" style="width:100%;">
                 <div class="grand-total-wrap">
                     <div class="grand-total-content">
-                        <!-- <h3>Tổng tiền hàng <span>$180.00</span></h3> -->
-                        <!-- <div class="grand-shipping">
-                            <span>Phương thức thanh toán</span>
-                            <ul>
-                                <li><input type="radio" name="phuongthuctt" value="Thanh toán khi nhận hàng" checked><label>Thanh toán khi nhận hàng</label></li>
-                                <li><input type="radio" name="phuongthuctt" value="Chuyển khoản"><label><span>Chuyển khoản</span></label></li>
-                            </ul>
-                        </div>
-                        <div class="shipping-country">
-                            <p>Shipping to Bangladesh</p>
-                        </div> -->
                         <div class="grand-total">
                             <h4>Tổng thanh toán <span><?=number_format($tongthanhtoan, 0, ',', '.');?>đ</span></h4>
                         </div>
                     </div>
                     <div class="grand-total-btn btn-hover">
-                        <a class="btn theme-color" href="?act=tieptucdathang">Tiếp tục đặt hàng</a>
+                        <?php
+                            if(isset($_SESSION['user'])){
+                                if(isset($countgh)){
+                                    if($countgh['COUNT(*)']==0) $tieptucdathang="#";
+                                    else $tieptucdathang="?act=tieptucdathang";
+                                }
+                            }else{
+                                $tieptucdathang="?act=dangnhap";
+                            }
+                        ?>
+                        <a class="btn theme-color" href="<?=$tieptucdathang?>">Tiếp tục đặt hàng</a>
                     </div>
                 </div>
             </div>

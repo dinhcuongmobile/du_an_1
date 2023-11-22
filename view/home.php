@@ -126,7 +126,6 @@
                 extract($sp);
                 $delay=200;
                 if($soluong>0){
-                    $giakm=$giasp*((100-$khuyenmai)/100);
                     echo '<div class="swiper-slide">
                         <div class="product-wrap" data-aos="fade-up" data-aos-delay="'.$delay.'">
                             <div class="product-img img-zoom mb-25">
@@ -139,8 +138,6 @@
                                 <div class="product-action-2-wrap">
                                     <form action="?act=themgiohang" method="post">
                                         <input type="hidden" name="id" value="'.$id.'">
-                                        <input type="hidden" name="tensp" value="'.$tensp.'">
-                                        <input type="hidden" name="image" value="'.$image.'">
                                         <input type="hidden" name="giasp" value="'.$giakm.'">
                                         <button type="submit" name="themgiohang" class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
                                     </form>
@@ -179,7 +176,6 @@
                     foreach ($list_sp_nb as $sp) {
                         extract($sp);
                         if($soluong>0){
-                            $giakm=$giasp*((100-$khuyenmai)/100);
                             echo '<div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                 <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                     <div class="product-img img-zoom mb-25">
@@ -192,8 +188,6 @@
                                         <div class="product-action-2-wrap">
                                             <form action="?act=themgiohang" method="post">
                                                 <input type="hidden" name="id" value="'.$id.'">
-                                                <input type="hidden" name="tensp" value="'.$tensp.'">
-                                                <input type="hidden" name="image" value="'.$image.'">
                                                 <input type="hidden" name="giasp" value="'.$giakm.'">
                                                 <button type="submit" name="themgiohang" class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
                                             </form>

@@ -101,6 +101,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $khuyenmai=$_POST['khuyenmai'];
                 $mota=$_POST['mota'];
                 $danhmuc=$_POST['danhmuc'];
+                $giakm=$giasp*((100-$khuyenmai)/100);
                 $check=true;
                 if(empty(trim($tensp))){
                     $tenspErr="Vui lòng nhập tên sản phẩm !";
@@ -126,7 +127,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     }
                 }
                 if($check){
-                    insert_sp($danhmuc,$tensp,$giasp,$image,$soluong,$khuyenmai,$mota);
+                    insert_sp($danhmuc,$tensp,$giasp,$giakm,$image,$soluong,$khuyenmai,$mota);
                     
                 }
             }
@@ -161,6 +162,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $khuyenmai=$_POST['khuyenmai'];
                 $mota=$_POST['mota'];
                 $danhmuc=$_POST['danhmuc'];
+                $giakm=$giasp*((100-$khuyenmai)/100);
                 $check=true;
                 if(empty(trim($tensp))){
                     $tenspErr="Vui lòng nhập tên sản phẩm !";
@@ -181,11 +183,12 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     }else{
                         if($check){
                             move_uploaded_file($file_tmp,$target_file);
+                            unlink("../uploads/".$oldImage);
                         }
                     }
                 }
                 if($check){
-                    update_sp($id,$danhmuc,$tensp,$giasp,$image,$oldImage,$soluong,$khuyenmai,$mota,$trangthai);
+                    update_sp($id,$danhmuc,$tensp,$giasp,$giakm,$image,$oldImage,$soluong,$khuyenmai,$mota,$trangthai);
                     echo '<script>
                         alert("Bạn đã sửa sản phẩm thành công !");
                         window.location.href="?act=listsp";
@@ -199,6 +202,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             if(isset($_GET['id'])&&($_GET['id']!="")){
                 $id=$_GET['id'];
                 delete_sp($id);
+                unlink("../uploads/".$_GET['image']);
                 echo '<script>
                         alert("Bạn đã xóa sản phẩm thành công !");
                         window.location.href="?act=listsp";
