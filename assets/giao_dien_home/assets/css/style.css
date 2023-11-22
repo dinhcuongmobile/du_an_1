@@ -60,6 +60,8 @@
   padding-right: 15px;
 }
 
+/*tu css*/
+
 .row {
   margin-right: -15px;
   margin-left: -15px;
@@ -11814,7 +11816,6 @@ textarea {
     margin-top: 20px;
   }
 }
-
 .your-order-area .Place-order a {
   background-color: #e97730;
   display: block;

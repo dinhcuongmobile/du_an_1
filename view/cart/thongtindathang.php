@@ -1,281 +1,105 @@
+<?php
+if(!$_SESSION['user']){
+    header('location: ?act=dangnhap');
+}
+?>
+
 <div class="checkout-main-area pb-100 pt-100">
     <div class="container">
-        <div class="customer-zone mb-20">
-            <p class="cart-page-title">Returning customer? <a class="checkout-click1" href="#">Click here to login</a></p>
-            <div class="checkout-login-info">
-                <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer, please proceed to the Billing & Shipping section.</p>
-                <form action="#">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="sin-checkout-login">
-                                <label>Username or email address <span>*</span></label>
-                                <input type="text" name="user-name">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="sin-checkout-login">
-                                <label>Passwords <span>*</span></label>
-                                <input type="password" name="user-password">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="button-remember-wrap">
-                        <button class="button" type="submit">Login</button>
-                        <div class="checkout-login-toggle-btn">
-                            <input type="checkbox">
-                            <label>Remember me</label>
-                        </div>
-                    </div>
-                    <div class="lost-password">
-                        <a href="#">Lost your password?</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="customer-zone mb-20">
-            <p class="cart-page-title">Have a coupon? <a class="checkout-click3" href="#">Click here to enter your code</a></p>
-            <div class="checkout-login-info3">
-                <form action="#">
-                    <input type="text" placeholder="Coupon code">
-                    <input type="submit" value="Apply Coupon">
-                </form>
-            </div>
-        </div>
         <div class="checkout-wrap pt-30">
-            <div class="row">
-                <div class="col-lg-7">
-                    <div class="billing-info-wrap">
-                        <h3>Billing Details</h3>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="billing-info mb-20">
-                                    <label>First Name <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="billing-info mb-20">
-                                    <label>Last Name <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="billing-info mb-20">
-                                    <label>Company Name <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="billing-select select-style mb-20">
-                                    <label>Country <abbr class="required" title="required">*</abbr></label>
-                                    <select class="select-two-active">
-                                        <option>Select a country</option>
-                                        <option>Azerbaijan</option>
-                                        <option>Bahamas</option>
-                                        <option>Bahrain</option>
-                                        <option>Bangladesh</option>
-                                        <option>Barbados</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="billing-info mb-20">
-                                    <label>Street Address <abbr class="required" title="required">*</abbr></label>
-                                    <input class="billing-address" placeholder="House number and street name" type="text">
-                                    <input placeholder="Apartment, suite, unit etc." type="text">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="billing-info mb-20">
-                                    <label>Town / City <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <div class="billing-info mb-20">
-                                    <label>State / County <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <div class="billing-info mb-20">
-                                    <label>Postcode / ZIP <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <div class="billing-info mb-20">
-                                    <label>Phone <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <div class="billing-info mb-20">
-                                    <label>Email Address <abbr class="required" title="required">*</abbr></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="checkout-account mb-25">
-                            <input class="checkout-toggle2" type="checkbox">
-                            <span>Create an account?</span>
-                        </div>
-                        <div class="checkout-account-toggle open-toggle2 mb-30">
-                            <label>Email Address</label>
-                            <input placeholder="Password" type="password">
-                        </div>
-                        <div class="checkout-account mt-25">
-                            <input class="checkout-toggle" type="checkbox">
-                            <span>Ship to a different address?</span>
-                        </div>
-                        <div class="different-address open-toggle mt-30">
+            <form action="?act=tieptucdathang" method="post">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="billing-info-wrap">
+                            <h3>Chi tiết thanh toán</h3>
                             <div class="row">
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-12">
                                     <div class="billing-info mb-20">
-                                        <label>First Name</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-20">
-                                        <label>Last Name</label>
-                                        <input type="text">
+                                        <label>Họ và Tên<abbr class="required" title="required">*</abbr></label>
+                                        <input type="text" name="hovaten" value="<?=$_SESSION['user']['hovaten']?>">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-20">
-                                        <label>Company Name</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="billing-select select-style mb-20">
-                                        <label>Country</label>
-                                        <select class="select-two-active">
-                                            <option>Select a country</option>
-                                            <option>Azerbaijan</option>
-                                            <option>Bahamas</option>
-                                            <option>Bahrain</option>
-                                            <option>Bangladesh</option>
-                                            <option>Barbados</option>
-                                        </select>
+                                        <label>Số điện thoại<abbr class="required" title="required">*</abbr></label>
+                                        <input type="text" name="sodienthoai" value="<?=$_SESSION['user']['sodienthoai']?>">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-20">
-                                        <label>Street Address</label>
-                                        <input class="billing-address" placeholder="House number and street name" type="text">
-                                        <input placeholder="Apartment, suite, unit etc." type="text">
+                                        <label>Địa chỉ<abbr class="required" title="required">*</abbr></label>
+                                        <input type="text" name="diachi" value="<?=$_SESSION['user']['diachi']?>">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-20">
-                                        <label>Town / City</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-20">
-                                        <label>State / County</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-20">
-                                        <label>Postcode / ZIP</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-20">
-                                        <label>Phone</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-20">
-                                        <label>Email Address</label>
-                                        <input type="text">
+                                        <label>Email<abbr class="required" title="required">*</abbr></label>
+                                        <input type="text" name="email" value="<?=$_SESSION['user']['email']?>">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="additional-info-wrap">
-                            <label>Order notes</label>
-                            <textarea placeholder="Notes about your order, e.g. special notes for delivery. " name="message"></textarea>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="your-order-area">
+                            <h3>Đơn hàng của bạn</h3>
+                            <div class="your-order-wrap gray-bg-4">
+                                <div class="your-order-info-wrap">
+                                    <div class="your-order-info">
+                                        <ul>
+                                            <li>Sản phẩm <span>Tổng cộng</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-middle">
+                                        <ul>
+                                            <?php
+                                            $tongthanhtoan=0;
+                                            foreach ($_SESSION['giohang'] as $giohang) {
+                                                extract($giohang);
+                                                echo ' <li>'.$giohang[1].'<span>'.number_format($giohang[5], 0, ',', '.').'₫</span></li>';
+                                                $tongthanhtoan+=$giohang[5];
+                                            }
+                                            ?>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-info order-shipping">
+                                        <ul>
+                                            <li>Thông tin <p>Enter your full address </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-info order-total">
+                                        <ul>
+                                            <li>Thành tiền <span><?=number_format($tongthanhtoan, 0, ',', '.')?>đ</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="payment-method">
+                                    <div class="pay-top sin-payment">
+                                        <input id="payment_method_1" class="input-radio" type="radio" value="1" checked="checked" name="phuongthuctt">
+                                        <label for="payment_method_1">CHUYỂN KHOẢN TRỰC TIẾP</label>
+                                        <div class="payment-box payment_method_bacs">
+                                            <p>Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi.
+                                             Vui lòng sử dụng ID đơn hàng của bạn làm tài liệu tham khảo thanh toán.</p>
+                                        </div>
+                                    </div>
+                                    <div class="pay-top sin-payment">
+                                        <input id="payment-method-3" class="input-radio" type="radio" value="0" name="phuongthuctt">
+                                        <label for="payment-method-3">THANH TOÁN KHI GIAO HÀNG</label>
+                                        <div class="payment-box payment_method_bacs">
+                                            <p>Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi.
+                                                Vui lòng sử dụng ID đơn hàng của bạn làm tài liệu tham khảo thanh toán.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Place-order btn-hover">
+                                <button type="submit" name="dathang" class="btn btn-danger" style="width:100%;">Đặt hàng</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="your-order-area">
-                        <h3>Your order</h3>
-                        <div class="your-order-wrap gray-bg-4">
-                            <div class="your-order-info-wrap">
-                                <div class="your-order-info">
-                                    <ul>
-                                        <li>Product <span>Total</span></li>
-                                    </ul>
-                                </div>
-                                <div class="your-order-middle">
-                                    <ul>
-                                        <li>Product Name X 1 <span>$329 </span></li>
-                                        <li>Product Name X 1 <span>$329 </span></li>
-                                    </ul>
-                                </div>
-                                <div class="your-order-info order-subtotal">
-                                    <ul>
-                                        <li>Subtotal <span>$329 </span></li>
-                                    </ul>
-                                </div>
-                                <div class="your-order-info order-shipping">
-                                    <ul>
-                                        <li>Shipping <p>Enter your full address </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="your-order-info order-total">
-                                    <ul>
-                                        <li>Total <span>$273.00 </span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="payment-method">
-                                <div class="pay-top sin-payment">
-                                    <input id="payment_method_1" class="input-radio" type="radio" value="cheque" checked="checked" name="payment_method">
-                                    <label for="payment_method_1"> Direct Bank Transfer </label>
-                                    <div class="payment-box payment_method_bacs">
-                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
-                                    </div>
-                                </div>
-                                <div class="pay-top sin-payment">
-                                    <input id="payment-method-2" class="input-radio" type="radio" value="cheque" name="payment_method">
-                                    <label for="payment-method-2">Check payments</label>
-                                    <div class="payment-box payment_method_bacs">
-                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
-                                    </div>
-                                </div>
-                                <div class="pay-top sin-payment">
-                                    <input id="payment-method-3" class="input-radio" type="radio" value="cheque" name="payment_method">
-                                    <label for="payment-method-3">Cash on delivery </label>
-                                    <div class="payment-box payment_method_bacs">
-                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
-                                    </div>
-                                </div>
-                                <div class="pay-top sin-payment sin-payment-3">
-                                    <input id="payment-method-4" class="input-radio" type="radio" value="cheque" name="payment_method">
-                                    <label for="payment-method-4">PayPal <img alt="" src="assets/images/icon-img/payment.png"><a href="#">What is PayPal?</a></label>
-                                    <div class="payment-box payment_method_bacs">
-                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="Place-order btn-hover">
-                            <a href="?act=dongydathang">Đặt hàng</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

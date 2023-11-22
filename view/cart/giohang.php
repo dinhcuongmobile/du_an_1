@@ -10,61 +10,34 @@
                                     <tr>
                                         <th class="width-thumbnail"></th>
                                         <th class="width-name">Sản phẩm</th>
-                                        <th class="width-price"> Giá</th>
+                                        <th class="width-price">Đơn giá</th>
                                         <th class="width-quantity">Số lượng</th>
-                                        <th class="width-subtotal">Thành tiền</th>
+                                        <th class="width-subtotal">Số tiền</th>
                                         <th class="width-remove"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <a href="product-details.html"><img src="assets/images/cart/cart-1.jpg" alt=""></a>
-                                        </td>
-                                        <td class="product-name">
-                                            <h5><a href="product-details.html">Stylish Swing Chair</a></h5>
-                                        </td>
-                                        <td class="product-cart-price"><span class="amount">$120.00</span></td>
-                                        <td class="cart-quality">
-                                            <div class="product-quality">
-                                                <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
-                                            </div>
-                                        </td>
-                                        <td class="product-total"><span>$120.00</span></td>
-                                        <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <a href="product-details.html"><img src="assets/images/cart/cart-2.jpg" alt=""></a>
-                                        </td>
-                                        <td class="product-name">
-                                            <h5><a href="product-details.html">Modern Lounge Chairs</a></h5>
-                                        </td>
-                                        <td class="product-cart-price"><span class="amount">$120.00</span></td>
-                                        <td class="cart-quality">
-                                            <div class="product-quality">
-                                                <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
-                                            </div>
-                                        </td>
-                                        <td class="product-total"><span>$120.00</span></td>
-                                        <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <a href="product-details.html"><img src="assets/images/cart/cart-3.jpg" alt=""></a>
-                                        </td>
-                                        <td class="product-name">
-                                            <h5><a href="product-details.html">Modern Swivel Chair</a></h5>
-                                        </td>
-                                        <td class="product-cart-price"><span class="amount">$120.00</span></td>
-                                        <td class="cart-quality">
-                                            <div class="product-quality">
-                                                <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
-                                            </div>
-                                        </td>
-                                        <td class="product-total"><span>$120.00</span></td>
-                                        <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
-                                    </tr>
+                                    <?php
+                                        $tongthanhtoan=0;
+                                        foreach ($_SESSION['giohang'] as $giohang) {
+                                            extract($giohang);
+                                            echo '<tr>
+                                                    <td class="product-thumbnail">
+                                                        <a href="?act=chitietsp&id='.$giohang[0].'"><img src="../uploads/'.$giohang[2].'" alt=""></a>
+                                                    </td>
+                                                    <td class="product-name">
+                                                        <h5><a href="?act=chitietsp&id='.$giohang[0].'">'.$giohang[1].'</a></h5>
+                                                    </td>
+                                                    <td class="product-cart-price"><span class="amount">'.number_format($giohang[3], 0, ',', '.').'₫</span></td>
+                                                    <td class="cart-quality">
+                                                        <input type="text" name="quality" value="'.$giohang[4].'" style="width:30%; margin-left:5%;" disabled>
+                                                    </td>
+                                                    <td class="product-total"><span>'.number_format($giohang[5], 0, ',', '.').'₫</span></td>
+                                                    <td class="product-remove"><a href="?act=xoagiohang&id='.$giohang[0].'"><i class=" ti-trash "></i></a></td>
+                                                </tr>';
+                                            $tongthanhtoan+=$giohang[5];
+                                        }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -73,10 +46,10 @@
                         <div class="col-lg-12">
                             <div class="cart-shiping-update-wrapper">
                                 <div class="cart-shiping-update btn-hover">
-                                    <a href="#">Tiếp tục mua sắm</a>
+                                    <a href="?act=trangchu">Tiếp tục mua sắm</a>
                                 </div>
                                 <div class="cart-clear btn-hover">
-                                    <a href="#">Dọn dẹp giỏ hàng</a>
+                                    <a href="?act=xoagiohang">Dọn dẹp giỏ hàng</a>
                                 </div>
                             </div>
                         </div>
@@ -85,71 +58,22 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="cart-calculate-discount-wrap mb-40">
-                    <h4>Calculate shipping </h4>
-                    <div class="calculate-discount-content">
-                        <div class="select-style mb-15">
-                            <select class="select-two-active">
-                                <option>Bangladesh</option>
-                                <option>Bahrain</option>
-                                <option>Azerbaijan</option>
-                                <option>Barbados</option>
-                                <option>Barbados</option>
-                            </select>
-                        </div>
-                        <div class="select-style mb-15">
-                            <select class="select-two-active">
-                                <option>State / County</option>
-                                <option>Bahrain</option>
-                                <option>Azerbaijan</option>
-                                <option>Barbados</option>
-                                <option>Barbados</option>
-                            </select>
-                        </div>
-                        <div class="input-style">
-                            <input type="text" placeholder="Town / City">
-                        </div>
-                        <div class="input-style">
-                            <input type="text" placeholder="Postcode / ZIP">
-                        </div>
-                        <div class="calculate-discount-btn btn-hover">
-                            <a class="btn theme-color" href="#">Update</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="cart-calculate-discount-wrap mb-40">
-                    <h4>Coupon Discount </h4>
-                    <div class="calculate-discount-content">
-                        <p>Enter your coupon code if you have one.</p>
-                        <div class="input-style">
-                            <input type="text" placeholder="Coupon code">
-                        </div>
-                        <div class="calculate-discount-btn btn-hover">
-                            <a class="btn theme-color" href="#">Apply Coupon</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12 col-12">
+            <div class="col-lg-4 col-md-12 col-12" style="width:100%;">
                 <div class="grand-total-wrap">
                     <div class="grand-total-content">
-                        <h3>Subtotal <span>$180.00</span></h3>
-                        <div class="grand-shipping">
-                            <span>Shipping</span>
+                        <!-- <h3>Tổng tiền hàng <span>$180.00</span></h3> -->
+                        <!-- <div class="grand-shipping">
+                            <span>Phương thức thanh toán</span>
                             <ul>
-                                <li><input type="radio" name="shipping" value="info" checked="checked"><label>Free shipping</label></li>
-                                <li><input type="radio" name="shipping" value="info" checked="checked"><label>Flat rate: <span>$100.00</span></label></li>
-                                <li><input type="radio" name="shipping" value="info" checked="checked"><label>Local pickup: <span>$120.00</span></label></li>
+                                <li><input type="radio" name="phuongthuctt" value="Thanh toán khi nhận hàng" checked><label>Thanh toán khi nhận hàng</label></li>
+                                <li><input type="radio" name="phuongthuctt" value="Chuyển khoản"><label><span>Chuyển khoản</span></label></li>
                             </ul>
                         </div>
                         <div class="shipping-country">
                             <p>Shipping to Bangladesh</p>
-                        </div>
+                        </div> -->
                         <div class="grand-total">
-                            <h4>Total <span>$185.00</span></h4>
+                            <h4>Tổng thanh toán <span><?=number_format($tongthanhtoan, 0, ',', '.');?>đ</span></h4>
                         </div>
                     </div>
                     <div class="grand-total-btn btn-hover">

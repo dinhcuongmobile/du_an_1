@@ -8,7 +8,6 @@
                         <div class="row align-items-center">
                             <div class="col-lg-6 col-md-6">
                                 <div class="slider-content-1 slider-animated-1">
-                                    
                                     <h1 class="animated">iPhone <br>15 Promax</h1>
                                     <div class="slider-btn btn-hover">
                                         <a href="product-details.html" class="btn animated">
@@ -137,14 +136,14 @@
                                 <div class="product-badge badge-top badge-right badge-pink">
                                     <span>-'.$khuyenmai.'%</span>
                                 </div>
-                                <div class="product-action-wrap">
-                                    <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                    <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="pe-7s-look"></i>
-                                    </button>
-                                </div>
                                 <div class="product-action-2-wrap">
-                                    <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
+                                    <form action="?act=themgiohang" method="post">
+                                        <input type="hidden" name="id" value="'.$id.'">
+                                        <input type="hidden" name="tensp" value="'.$tensp.'">
+                                        <input type="hidden" name="image" value="'.$image.'">
+                                        <input type="hidden" name="giasp" value="'.$giakm.'">
+                                        <button type="submit" name="themgiohang" class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="product-content">
@@ -190,14 +189,14 @@
                                         <div class="product-badge badge-top badge-right badge-pink">
                                             <span>-'.$khuyenmai.'%</span>
                                         </div>
-                                        <div class="product-action-wrap">
-                                            <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                            <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="pe-7s-look"></i>
-                                            </button>
-                                        </div>
                                         <div class="product-action-2-wrap">
-                                            <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i>Thêm Vào Giỏ Hàng</button>
+                                            <form action="?act=themgiohang" method="post">
+                                                <input type="hidden" name="id" value="'.$id.'">
+                                                <input type="hidden" name="tensp" value="'.$tensp.'">
+                                                <input type="hidden" name="image" value="'.$image.'">
+                                                <input type="hidden" name="giasp" value="'.$giakm.'">
+                                                <button type="submit" name="themgiohang" class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="product-content">

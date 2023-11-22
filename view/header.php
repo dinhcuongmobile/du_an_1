@@ -70,10 +70,12 @@
                                         <li><a href="../assets/giao_dien_home/gioithieu.html">Giới Thiệu</a></li>
                                         <li><a href="?act=sanpham">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a> 
                                             <ul class="sub-menu-style">
-                                                <li><a href="?act=sanpham">iPhone</a></li>
-                                                <li><a href="../assets/giao_dien_home/product-details-2.html">SamSung</a></li>
-                                                <li><a href="../assets/giao_dien_home/product-details-gallery.html">Xioami</a></li>
-                                                <li><a href="../assets/giao_dien_home/product-details-affiliate.html">Oppo</a></li>     
+                                                <?php
+                                                    foreach ($listdm as $dm) {
+                                                        extract($dm);
+                                                        echo '<li><a href="?act=sanpham&id='.$id.'">'.$tendm.'</a></li>';
+                                                    }
+                                                ?>
                                             </ul>
                                         </li>
                                         <li><a href="../assets/giao_dien_home/blog.html">Tin Tức</a></li>
@@ -99,12 +101,28 @@
                                 <div class="header-action-style main-menu">
                                     <nav>
                                         <ul>
-                                            <li><a title="Đăng nhập" href="?act=dangnhap"><i class="pe-7s-user"></i></a>
-                                                <ul class="sub-menu-style">
-                                                    <li><a href="?act=dangnhap">Đăng nhập</a></li>
-                                                    <li><a href="?act=dangky">Đăng ký</a></li>   
-                                                </ul>
-                                            </li>
+                                            <?php
+                                                if(isset($_SESSION['user'])&&$_SESSION['user']!=""){
+                                                    extract($_SESSION['user']);
+                                            ?>
+                                                <li><a title="Tài khoản" href="?act=thongtintk"><i class="pe-7s-user"></i></a>
+                                                    <ul class="sub-menu-style">
+                                                        <li><a href="?act=thongtintk" style="font-size:13px;">Thông tin tài khoản</a></li>
+                                                        <li><a href="?act=donmua" style="font-size:13px;">Đơn mua</a></li>
+                                                        <?php if($role==1):?>
+                                                            <li><a href="../admin/index.php" style="font-size:13px;">Quản trị viên</a></li>
+                                                        <?php endif;?>
+                                                        <li><a href="?act=dangxuat" style="font-size:13px;">Đăng xuất</a></li>
+                                                    </ul>
+                                                </li>
+                                            <?php }else{ ?>
+                                                <li><a title="Đăng nhập" href="?act=dangnhap"><i class="pe-7s-user"></i></a>
+                                                    <ul class="sub-menu-style">
+                                                        <li><a href="?act=dangnhap" style="font-size:13px;">Đăng nhập</a></li>
+                                                        <li><a href="?act=dangky" style="font-size:13px;">Đăng ký</a></li>   
+                                                    </ul>
+                                                </li>
+                                            <?php }?>
                                         </ul>
                                     </nav>
                                 </div>

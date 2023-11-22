@@ -27,6 +27,10 @@ function load_one_sp($id){
     $query="SELECT * FROM sanpham WHERE id=".$id;
     return pdo_query_one($query);
 }
+function load_all_spdm($iddm){
+    $query="SELECT * FROM sanpham WHERE iddm=".$iddm;
+    return pdo_query($query);
+}
 function insert_sp($danhmuc, $tensp, $giasp, $image, $soluong,$khuyenmai, $mota) {
     $conn=pdo_get_connection();
     $query_check = "SELECT COUNT(*) as count FROM sanpham WHERE image = :image";
