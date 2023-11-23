@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 22, 2023 lúc 06:45 PM
+-- Thời gian đã tạo: Th10 23, 2023 lúc 05:46 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -87,12 +87,20 @@ INSERT INTO `danhmuc` (`id`, `tendm`) VALUES
 CREATE TABLE `donhang` (
   `id` int(11) NOT NULL,
   `idtaikhoan` int(5) NOT NULL,
+  `hovatennhan` varchar(255) NOT NULL,
   `ngaydathang` datetime NOT NULL,
   `diachinhan` varchar(255) NOT NULL,
   `sodienthoainhan` varchar(20) NOT NULL,
   `phuongthuctt` tinyint(1) NOT NULL COMMENT '0. thanh toán khi nhận hàng 1. Chuyển khoản',
   `trangthai` tinyint(1) NOT NULL COMMENT '0. chưa duyệt 1.Đã duyệt '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `donhang`
+--
+
+INSERT INTO `donhang` (`id`, `idtaikhoan`, `hovatennhan`, `ngaydathang`, `diachinhan`, `sodienthoainhan`, `phuongthuctt`, `trangthai`) VALUES
+(1, 5, 'Tong hoagn bach', '2023-11-08 11:39:14', 'ha noi', '0123456789', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -107,6 +115,13 @@ CREATE TABLE `giohang` (
   `soluong` int(5) NOT NULL,
   `thanhtien` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giohang`
+--
+
+INSERT INTO `giohang` (`id`, `idtaikhoan`, `idsanpham`, `soluong`, `thanhtien`) VALUES
+(52, 1, 17, 1, 2632000);
 
 -- --------------------------------------------------------
 
@@ -171,9 +186,7 @@ INSERT INTO `taikhoan` (`id`, `hovaten`, `tendangnhap`, `matkhau`, `email`, `sod
 (2, 'Nguyễn Thiện Giáp', 'thiengiap2004', 'thiengiap2004', 'giapntph38266@fpt.edu.vn', '0357864779', 'Hà Nội', 1),
 (3, 'Nguyễn Hồng Phúc', 'nguyenhongphuc', 'nguyenhongphuc', 'phucnh34678@fpt.edu.vn', '0389119333', 'Phú Thọ', 1),
 (4, 'Nguyễn Viết Sơn', 'sonchuche', 'sonchuche123', 'nguyenvietson@gmail.com', '0123456789', 'Hà Nội', 0),
-(5, 'Tống Hoàng Bách', 'tonghoangbach123', 'Tonghoangbach123', 'tonghoangbach@gmail.com', '0123456789', 'Bắc Giang', 0),
-(10, '', 'tuanbacninh', 'Tuanbacninh123', 'tuanbacninh@gmail.com', '', '', 0),
-(11, '', 'thaygiao', 'Thaygiao123', 'thaygiao@gmail.com', '', '', 0);
+(5, 'Tống Hoàng Bách', 'tonghoangbach123', 'Tonghoangbach123', 'tonghoangbach@gmail.com', '0123456789', 'Bắc Giang', 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -255,13 +268,13 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`

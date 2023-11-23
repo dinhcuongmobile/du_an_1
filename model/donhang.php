@@ -1,22 +1,4 @@
 <?php
-    function load_all_dh($kyw){
-        $query="SELECT donhang.*, taikhoan.* FROM donhang INNER JOIN taikhoan ON donhang.idtaikhoan=taikhoan.id WHERE 1";
-        if($kyw!=""){
-            $query .=" AND (taikhoan.tendangnhap LIKE '%" . $kyw . "%' OR taikhoan.sodienthoai LIKE '%" . $kyw . "%' OR taikhoan.email LIKE '%" . $kyw . "%')";
-        }
-        $query .=" ORDER BY donhang.id asc";
-        return pdo_query($query);
-    }
-    function delete_dh($id){
-        $query="DELETE FROM donhang WHERE id=".$id;
-        pdo_execute($query);
-    }
-    function insert_bill($idtaikhoan,$hovaten,$diachi,$sodienthoai,$email,$phuongthuctt,$ngaydathang,$tongtien){
-        $query="INSERT INTO donhang(idtaikhoan,hovaten,diachi,sodienthoai,email,phuongthuctt,ngaydathang,tongtien) 
-        VALUES('$idtaikhoan','$hovaten','$diachi','$sodienthoai','$email','$phuongthuctt','$ngaydathang','$tongtien')";
-        return pdo_execute_return_lastInsertId($query);
-    }
-
     /* Trong qua trinh sua */
     function insert_cart($idtaikhoan,$idsanpham,$soluong,$thanhtien){
         $query="INSERT INTO `giohang`(`idtaikhoan`, `idsanpham`, `soluong`, `thanhtien`) VALUES ('$idtaikhoan','$idsanpham','$soluong','$thanhtien')";
@@ -48,5 +30,14 @@
     function count_giohang($idtaikhoan){
         $query="SELECT COUNT(*) FROM giohang WHERE idtaikhoan=".$idtaikhoan;
         return pdo_query_one($query);
+    }
+    function mua_hang($idtaikhoan,$hovatennhan,$ngaydathang,$diachinhan,$sodienthoainhan,$phuongthuctt,$trangthai){
+        $query="INSERT INTO `donhang`(`idtaikhoan`, `hovatennhan`, `ngaydathang`, `diachinhan`, `sodienthoainhan`, `phuongthuctt`, `trangthai`) 
+        VALUES ('$idtaikhoan','$hovatennhan','$ngaydathang','$diachinhan','$sodienthoainhan','$phuongthuctt','$trangthai')";
+        pdo_execute($query);
+    }
+    function insert_chitietdonhang($iddonhang,$idsanpham,$soluong,$dongia,$thanhtien){
+        $query="INSERT INTO `chitietdonhang`(`iddonhang`, `idsanpham`, `soluong`, `dongia`, `thanhtien`) VALUES ('$iddonhang','$idsanpham','$soluong','$dongia','$thanhtien')";
+        pdo_execute($query);
     }
 ?>

@@ -12,6 +12,8 @@
                         <div class="login-form-container">
                             <div class="login-register-form">
                                 <form action="?act=dangky" method="post">
+                                    <input type="text" name="hovaten" placeholder="Họ và Tên" value="<?= isset($hovaten) ? ($hovaten) : '' ?>">
+                                    <p style="color:red;"><?=$hovatenErr?></p>
                                     <input type="text" name="dkyuser" placeholder="Username" value="<?= isset($dkyuser) ? ($dkyuser) : '' ?>">
                                     <p style="color:red;"><?=$tendangnhapErr?></p>
                                     <input type="password" name="dkypass" placeholder="Password" value="<?= isset($dkypass) ? ($dkypass) : '' ?>">

@@ -31,10 +31,30 @@ if(!$_SESSION['user']){
                                         <input type="text" name="diachi" value="<?=$_SESSION['user']['diachi']?>">
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="billing-info mb-20">
-                                        <label>Email<abbr class="required" title="required">*</abbr></label>
-                                        <input type="text" name="email" value="<?=$_SESSION['user']['email']?>">
+                                <div class="checkout-account mt-25">
+                                    <input class="checkout-toggle" type="checkbox" name="diachikhac" value="check">
+                                    <span>Giao hàng tới một địa chỉ khác?</span>
+                                </div>
+                                <div class="different-address open-toggle mt-30">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="billing-info mb-20">
+                                                <label>Họ và Tên<abbr class="required" title="required">*</abbr></label>
+                                                <input type="text" name="hovatennhan">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="billing-info mb-20">
+                                                <label>Số điện thoại<abbr class="required" title="required">*</abbr></label>
+                                                <input type="text" name="sodienthoainhan">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="billing-info mb-20">
+                                                <label>Địa chỉ<abbr class="required" title="required">*</abbr></label>
+                                                <input type="text" name="diachinhan" value="<?=$_SESSION['user']['diachi']?>">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

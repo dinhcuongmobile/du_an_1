@@ -132,7 +132,12 @@
                                 </div> -->
                                 <div class="header-action-style header-action-cart">
                                     <a class="cart-active" href="#"><i class="pe-7s-shopbag"></i>
-                                        <span class="product-count bg-black">01</span>
+                                        <?php
+                                            if(isset($countgh)){
+                                                echo '<span class="product-count bg-black">'.$countgh['COUNT(*)'].'</span>';
+                                            }
+                                        ?>
+                                        
                                     </a>
                                 </div>
                                 <div class="header-action-style d-block d-lg-none">
@@ -149,42 +154,45 @@
             <div class="sidebar-cart-all">
                 <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
                 <div class="cart-content">
-                    <h3>Shopping Cart</h3>
+                    <h3>Giỏ hàng</h3>
                     <ul>
-                        <li>
-                            <div class="cart-img">
-                                <a href="#"><img src="../assets/giao_dien_home/assets/images/cart/cart-1.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h4><a href="#">Stylish Swing Chair</a></h4>
-                                <span> 1 × $49.00	</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#">×</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="cart-img">
-                                <a href="#"><img src="../assets/giao_dien_home/assets/images/cart/cart-2.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h4><a href="#">Modern Chairs</a></h4>
-                                <span> 1 × $49.00	</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#">×</a>
-                            </div>
-                        </li>
+                        <?php
+                        $tongthanhtoan=0;
+                        if(isset($minicart)){
+                            foreach ($minicart as $mini) {
+                                extract($mini);
+                                echo '<li>
+                                        <div class="cart-img">
+                                            <a href="?act=chitietsp&id='.$idsp.'"><img src="../uploads/'.$image.'" alt=""></a>
+                                        </div>
+                                        <div class="cart-title">
+                                            <h4><a href="?act=chitietsp&id='.$idsp.'">'.$tensp.'</a></h4>
+                                            <span> '.$soluong.' × '.number_format($giakm, 0, ',', '.').'₫</span>
+                                        </div>
+                                        <div class="cart-delete">
+                                            <a href="#">×</a>
+                                        </div>
+                                    </li>';
+                                    $tongthanhtoan+=$thanhtien;
+                            }
+                        }else{
+                            echo '<p style="color:red;">Quý khách vui lòng đăng nhập tài khoản để có thể mua sản phẩm hoặc thêm vào giỏ hàng !</p>';
+                        }
+                        ?>
                     </ul>
                     <div class="cart-total">
-                        <h4>Subtotal: <span>$170.00</span></h4>
+                        <h4>Thành tiền: <span><?=number_format($tongthanhtoan, 0, ',', '.')?>đ</span></h4>
                     </div>
                     <div class="cart-btn btn-hover">
-                        <a class="theme-color" href="?act=giohang">view cart</a>
+                        <a class="theme-color" href="?act=giohang">Xem giỏ hàng</a>
                     </div>
-                    <div class="checkout-btn btn-hover">
-                        <a class="theme-color" href="../assets/giao_dien_home/checkout.html">checkout</a>
-                    </div>
+                    <?php
+                        if($tongthanhtoan>0){
+                            echo '<div class="checkout-btn btn-hover">
+                                    <a class="theme-color" href="?act=tieptucdathang">Thanh toán</a>
+                                </div>';
+                        }
+                    ?>
                 </div>
             </div>
         </div>

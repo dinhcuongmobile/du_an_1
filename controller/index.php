@@ -21,14 +21,20 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
     switch ($act) {
         /* Tai khoan */
         case 'dangky':
+            $hovatenErr="";
             $tendangnhapErr="";
             $matkhauErr="";
             $emailErr="";
             if(isset($_POST['dangky'])){
+                $hovaten=$_POST['hovaten'];
                 $dkyemail=$_POST['dkyemail'];
                 $dkyuser=$_POST['dkyuser'];
                 $dkypass=$_POST['dkypass'];
                 $check=true;
+                if(empty(trim($hovaten))){$check=false; $hovatenErr="Vui lòng không bỏ trống !";} 
+                else{
+                    if(!preg_match("/^[a-zA-Z ]{6,}$/",$hovaten)){$check=false;$hovatenErr="Họ và tên tối thiểu 6 ký tự và không bao gồm chữ số!";}
+                }
                 if(empty(trim($dkyuser))){$check=false; $tendangnhapErr="Vui lòng không bỏ trống !";} 
                 else{
                     if(!preg_match("/^\w{6,16}$/",$dkyuser)){$check=false;$tendangnhapErr="Tên đăng nhập tối thiểu 6 ký tự !";}
@@ -58,8 +64,13 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $pass=$_POST['password'];
                 $checkuser=checkuser($user,$pass);
                 if(is_array($checkuser)){
-                    $_SESSION['user']=$checkuser;
-                    header('location: ?act=trangchu');
+                    if($checkuser['matkhau']!=$pass||$checkuser['tendangnhap']!=$user){
+                        $tkErr="Tài khoản không tồn tại. Vui lòng kiểm tra lại hoặc đăng ký !";
+                        session_unset();
+                    }else{
+                        $_SESSION['user']=$checkuser;
+                        header("location: ?act=trangchu");
+                    }
                     
                 }else{
                     $tkErr="Tài khoản không tồn tại. Vui lòng kiểm tra lại hoặc đăng ký !";
@@ -157,25 +168,6 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             header ('location: ?act=giohang');
             break;
         case 'tieptucdathang':
-            if(isset($_POST['dathang'])){
-                $idtaikhoan=$_SESSION['user']['id'];
-                $hovaten=$_POST['hovaten'];
-                $email=$_POST['email'];
-                $sodienthoai=$_POST['sodienthoai'];
-                $diachi=$_POST['diachi'];
-                $phuongthuctt=$_POST['phuongthuctt'];
-                $ngaydathang=date('h:i:sa d/m/Y');
-                $tongtien=tongdonhang();
-                $idbill=insert_bill($idtaikhoan,$hovaten,$diachi,$sodienthoai,$email,$phuongthuctt,$ngaydathang,$tongtien);
-                foreach ($_SESSION['giohang'] as $giohang) {
-                    insert_cart($idtaikhoan,$giohang[0],$giohang[2],$giohang[1],$giohang[3],$giohang[4],$giohang[5],$idbill);
-                }
-                $_SESSION['giohang']=[];
-                echo '<script>
-                        alert("Bạn đã đặt hàng thành công !");
-                        window.location.href="?act=thongtintk";
-                    </script>';
-            }
             include "../view/cart/thongtindathang.php";
             break;
         /* END GIO HANG */

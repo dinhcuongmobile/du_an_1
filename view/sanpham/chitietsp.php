@@ -7,7 +7,7 @@
                         ?>
                     <div class="product-details-img-wrap" data-aos="fade-up" data-aos-delay="200">
                             <div class="swiper-container product-details-big-img-slider-2 pd-big-img-style">
-                                <a href="">
+                                <a href="#">
                                     <img src="../uploads/<?=$image?>" alt="">
                                 </a>
                             </div>
@@ -20,8 +20,8 @@
                         <div class="product-details-content" data-aos="fade-up" data-aos-delay="400">
                             <h2><?=$tensp?></h2>
                             <div class="product-details-price">
-                                <span class="old-price">$25.89 </span>
-                                <span class="new-price"><?=number_format($giasp, 0, ',', '.')?>đ</span>
+                                <span class="old-price"><?=number_format($giasp, 0, ',', '.')?>đ</span>
+                                <span class="new-price"><?=number_format($giakm, 0, ',', '.')?>đ</span>
                             </div>
                         <?php
                             extract($danhmuc);
@@ -30,17 +30,21 @@
                                 <ul>
                                     <li><span class="title">Category:</span>
                                         <ul>
-                                            <li><a href="#"><?=$tendm?></a></li>
+                                            <li><a href="?act=sanpham&id=<?=$id?>"><?=$tendm?></a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
                             <div class="product-details-action-wrap">
-                                <div class="product-quality">
-                                    <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
-                                </div>
                                 <div class="single-product-cart btn-hover">
-                                    <a href="#">Add to cart</a>
+                                <?php
+                                    extract($sanpham);
+                                ?>
+                                    <form action="?act=themgiohang" method="post">
+                                        <input type="hidden" name="id" value="<?=$id?>">
+                                        <input type="hidden" name="giasp" value="<?=$giakm?>">
+                                        <button type="submit" name="themgiohang" class="product-action-btn-2 btn btn-warning" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -54,9 +58,6 @@
                     <a class="active" data-bs-toggle="tab" href="#des-details1"> Mô tả </a>
                     <a data-bs-toggle="tab" href="#des-details3" class=""> Đánh giá </a>
                 </div>
-                <?php
-                    extract($sanpham);
-                ?>
                 <div class="tab-content">
                     <div id="des-details1" class="tab-pane active">
                         <div class="product-description-content text-center">
