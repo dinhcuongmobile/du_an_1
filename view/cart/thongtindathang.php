@@ -16,23 +16,26 @@ if(!$_SESSION['user']){
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-20">
                                         <label>Họ và Tên<abbr class="required" title="required">*</abbr></label>
-                                        <input type="text" name="hovaten" value="<?=$_SESSION['user']['hovaten']?>">
+                                        <input type="text" value="<?=$_SESSION['user']['hovaten']?>" disabled>
+                                        <input type="hidden" name="hovaten" value="<?=$_SESSION['user']['hovaten']?>" >
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-20">
                                         <label>Số điện thoại<abbr class="required" title="required">*</abbr></label>
-                                        <input type="text" name="sodienthoai" value="<?=$_SESSION['user']['sodienthoai']?>">
+                                        <input type="text" value="<?=$_SESSION['user']['sodienthoai']?>" disabled>
+                                        <input type="hidden" name="sodienthoai" value="<?=$_SESSION['user']['sodienthoai']?>" >
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-20">
                                         <label>Địa chỉ<abbr class="required" title="required">*</abbr></label>
-                                        <input type="text" name="diachi" value="<?=$_SESSION['user']['diachi']?>">
+                                        <input type="text" value="<?=$_SESSION['user']['diachi']?>" disabled>
+                                        <input type="hidden" name="diachi" value="<?=$_SESSION['user']['diachi']?>" >
                                     </div>
                                 </div>
                                 <div class="checkout-account mt-25">
-                                    <input class="checkout-toggle" type="checkbox" name="diachikhac" value="check">
+                                    <input class="checkout-toggle" type="checkbox" name="diachikhac" value="diachimoi">
                                     <span>Giao hàng tới một địa chỉ khác?</span>
                                 </div>
                                 <div class="different-address open-toggle mt-30">
@@ -40,19 +43,22 @@ if(!$_SESSION['user']){
                                         <div class="col-lg-12">
                                             <div class="billing-info mb-20">
                                                 <label>Họ và Tên<abbr class="required" title="required">*</abbr></label>
-                                                <input type="text" name="hovatennhan">
+                                                <input type="text" name="hovatennhan" value="<?= isset($hovatennhan) ? ($hovatennhan) : '' ?>">
+                                                <p style="color:red;"><?= isset($hovatenErr) ? ($hovatenErr) : '' ?></p>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="billing-info mb-20">
                                                 <label>Số điện thoại<abbr class="required" title="required">*</abbr></label>
-                                                <input type="text" name="sodienthoainhan">
+                                                <input type="text" name="sodienthoainhan" value="<?= isset($sodienthoainhan) ? ($sodienthoainhan) : '' ?>">
+                                                <p style="color:red;"><?= isset($sodienthoaiErr) ? ($sodienthoaiErr) : '' ?></p>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="billing-info mb-20">
                                                 <label>Địa chỉ<abbr class="required" title="required">*</abbr></label>
-                                                <input type="text" name="diachinhan" value="<?=$_SESSION['user']['diachi']?>">
+                                                <input type="text" name="diachinhan" value="<?= isset($diachinhan) ? ($diachinhan) : '' ?>">
+                                                <p style="color:red;"><?= isset($diachiErr) ? ($diachiErr) : '' ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -84,7 +90,7 @@ if(!$_SESSION['user']){
                                     </div>
                                     <div class="your-order-info order-shipping">
                                         <ul>
-                                            <li>Thông tin <p>Enter your full address </p>
+                                            <li>Thông tin <p><?=$_SESSION['user']['diachi']?></p>
                                             </li>
                                         </ul>
                                     </div>

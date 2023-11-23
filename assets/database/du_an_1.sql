@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 23, 2023 lúc 05:46 AM
+-- Thời gian đã tạo: Th10 23, 2023 lúc 02:20 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -92,15 +92,8 @@ CREATE TABLE `donhang` (
   `diachinhan` varchar(255) NOT NULL,
   `sodienthoainhan` varchar(20) NOT NULL,
   `phuongthuctt` tinyint(1) NOT NULL COMMENT '0. thanh toán khi nhận hàng 1. Chuyển khoản',
-  `trangthai` tinyint(1) NOT NULL COMMENT '0. chưa duyệt 1.Đã duyệt '
+  `trangthai` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0. chưa duyệt 1.Đã duyệt '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `donhang`
---
-
-INSERT INTO `donhang` (`id`, `idtaikhoan`, `hovatennhan`, `ngaydathang`, `diachinhan`, `sodienthoainhan`, `phuongthuctt`, `trangthai`) VALUES
-(1, 5, 'Tong hoagn bach', '2023-11-08 11:39:14', 'ha noi', '0123456789', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -121,7 +114,10 @@ CREATE TABLE `giohang` (
 --
 
 INSERT INTO `giohang` (`id`, `idtaikhoan`, `idsanpham`, `soluong`, `thanhtien`) VALUES
-(52, 1, 17, 1, 2632000);
+(52, 1, 17, 2, 5264000),
+(53, 1, 3, 1, 15393000),
+(54, 5, 16, 1, 3493000),
+(55, 5, 15, 2, 62986000);
 
 -- --------------------------------------------------------
 
@@ -256,7 +252,7 @@ ALTER TABLE `binhluan`
 -- AUTO_INCREMENT cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc`
@@ -268,13 +264,13 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`

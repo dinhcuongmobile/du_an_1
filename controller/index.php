@@ -168,6 +168,56 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             header ('location: ?act=giohang');
             break;
         case 'tieptucdathang':
+            $hovatenErr="";
+            $sodienthoaiErr="";
+            $diachiErr="";
+            if(isset($_POST['dathang'])){
+                $ngaydathang = date('Y-m-d H:i:s');
+                $phuongthuctt=$_POST['phuongthuctt'];
+                if(isset($_POST['diachikhac'])){
+                    $hovatennhan=$_POST['hovatennhan'];
+                    $diachinhan=$_POST['diachinhan'];
+                    $sodienthoainhan=$_POST['sodienthoainhan'];
+                    $checkdck=true;
+                    if(empty(trim($hovatennhan))){$checkdck=false; $hovatenErr="Vui lòng không bỏ trống !";} 
+                    else{
+                        if(!preg_match("/^[a-zA-Z ]{6,}$/",$hovatennhan)){$checkdck=false;$hovatenErr="Họ và tên tối thiểu 6 ký tự và không bao gồm chữ số!";}
+                    }
+                    if(empty(trim($sodienthoainhan))) {$checkdck=false; $sodienthoaiErr="Vui lòng không bỏ trống !";} 
+                    else {
+                        if(!preg_match("/^0[1-9]\d{8}$/",$sodienthoainhan)){$checkdck=false;$sodienthoaiErr="Số điện thoại không đúng định dạng !";}
+                    }
+                    if(empty(trim($diachinhan))){$checkdck=false; $diachiErr="Vui lòng không bỏ trống !";} 
+                    else{
+                        if(!preg_match("/^[a-zA-Z0-9 ]{25,}$/",$diachinhan)){$checkdck=false;$diachiErr="Kiểm tra lại địa chỉ !";}
+                    }
+                    if($checkdck){
+                        $iddonhang=mua_hang($_SESSION['user']['id'],$hovatennhan,$ngaydathang,$diachinhan,$sodienthoainhan,$phuongthuctt,0);
+                        foreach ($listgh as $gh) {
+                            extract($gh);
+                            insert_chitietdonhang($iddonhang,$idsp,$soluong,$giakm,$thanhtien);
+                        }
+                        echo '<script>
+                                alert("Bạn đã mua hàng thành công !");
+                                window.location.href="?act=trangchu";
+                            </script>';
+                    }
+                }else{
+                    $hovaten=$_POST['hovaten'];
+                    $sodienthoai=$_POST['sodienthoai'];
+                    $diachi=$_POST['diachi'];
+                    $iddonhang=mua_hang($_SESSION['user']['id'],$hovaten,$ngaydathang,$diachi,$sodienthoai,$phuongthuctt,0);
+                    foreach ($listgh as $gh) {
+                        extract($gh);
+                        insert_chitietdonhang($iddonhang,$idsp,$soluong,$giakm,$thanhtien);
+                    }
+                    echo '<script>
+                            alert("Bạn đã mua hàng thành công !");
+                            window.location.href="?act=trangchu";
+                        </script>';
+                }
+                
+            }
             include "../view/cart/thongtindathang.php";
             break;
         /* END GIO HANG */
