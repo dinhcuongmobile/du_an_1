@@ -8,4 +8,17 @@
     $query .=" ORDER BY id asc";
     return pdo_query($query);
 }
+function load_bl_sp($idsanpham){
+    $query="SELECT binhluan.*, taikhoan.hovaten, taikhoan.tendangnhap FROM binhluan
+    INNER JOIN taikhoan ON binhluan.idtaikhoan=taikhoan.id WHERE idsanpham=".$idsanpham;
+    return pdo_query($query);
+}
+function insert_bl($idtaikhoan,$idsanpham,$noidung,$ngaybinhluan){
+    $query="INSERT INTO `binhluan`(`idtaikhoan`, `idsanpham`, `noidung`, `ngaybinhluan`) VALUES ('$idtaikhoan','$idsanpham','$noidung','$ngaybinhluan')";
+    pdo_execute($query);
+}
+function dem_bl_sp($idsanpham){
+    $query="SELECT COUNT(*) as countbl FROM binhluan WHERE idsanpham='$idsanpham'";
+    return pdo_query_one($query);
+}
 ?>

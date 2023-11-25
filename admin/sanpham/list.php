@@ -3,9 +3,9 @@
     <h1 class="h3 mb-2 text-gray-800 mb-5">Danh sách sản phẩm</h1>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <button class="btn btn-secondary btn-sm">Chọn tất cả</button>
-            <button class="btn btn-secondary btn-sm">Bỏ chọn tất cả</button>
-            <button class="btn btn-secondary btn-sm">Xóa các mục đã chọn</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="chontatca()">Chọn tất cả</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="bochontatca()">Bỏ chọn tất cả</button>
+            <button type="button" class="btn btn-secondary btn-sm">Xóa các mục đã chọn</button>
             <a href="?act=addsp"><button class="btn btn-secondary btn-sm">Nhập thêm</button></a>
             <form action="?act=listsp" class="float-right" method="post">
                 <div class="input-group">

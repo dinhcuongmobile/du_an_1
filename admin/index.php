@@ -127,8 +127,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     }
                 }
                 if($check){
-                    insert_sp($danhmuc,$tensp,$giasp,$giakm,$image,$soluong,$khuyenmai,$mota);
-                    
+                    insert_sp($danhmuc, $tensp, $giasp, $image,$giakm, $soluong,$khuyenmai, $mota);                 
                 }
             }
             $listdm=load_all_dm("");
@@ -354,21 +353,58 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             }else{
                 $kyw="";
             }
-            $listdh=load_all_dh($kyw);
+            $listdh=load_all_ctdh($kyw,1);
             include "donhang/list.php";
+            break;
+        case 'kiemduyet':
+            if(isset($_POST['search'])){
+                $kyw=$_POST['kyw'];
+            }else{
+                $kyw="";
+            }
+            $listdh=load_all_ctdh($kyw,0);
+            include "donhang/kiemduyet.php";
+            break;
+        case 'duyetdon':
+            if(isset($_GET['id'])&&($_GET['id']!="")){
+                $id=$_GET['id'];
+                update_donhang(1,0,$id);
+                header("location:?act=kiemduyet");
+            }
+            include "donhang/kiemduyet.php";
+            break;
+        case 'suadh':
+            if(isset($_GET['id'])&&($_GET['id']!="")){
+                $id=$_GET['id'];
+                $dh=load_one_dh($id);
+                if($dh){
+                    $id=$dh['id'];
+                    $giaohang=$dh['giaohang'];
+                }
+            }
+            if(isset($_POST['submit'])){
+                $id=$_POST['id'];
+                $giaohang=$_POST['giaohang'];
+                update_donhang(1,$giaohang,$id);
+                header("location:?act=listdh");
+            }
+            include "donhang/update.php";
             break;
         case 'xoadh':
             if(isset($_GET['id'])&&($_GET['id']!="")){
                 $id=$_GET['id'];
-                delete_giohang($id);
-                delete_dh($id);
-                echo '<script>
-                        alert("Bạn đã xóa thành công !");
-                        window.location.href="?act=listdh";
-                    </script>';
+                $listdh=load_one_dh($id);
+                if($listdh){
+                    delete_chitietdh($listdh['id']);
+                    delete_donhang($listdh['id']);
+                    if($listdh['trangthai']==0){
+                        header("location: ?act=kiemduyet");
+                    }else{
+                        header("location: ?act=listdh");
+                    }
+                }
+                
             }
-            $listdh=load_all_dh("");
-            include "donhang/list.php";
             break;
         case 'listbl':
             if(isset($_POST['search'])){

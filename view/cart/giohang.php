@@ -31,7 +31,7 @@
                                                         </td>
                                                         <td class="product-cart-price"><span class="amount">'.number_format($giakm, 0, ',', '.').'₫</span></td>
                                                         <td class="cart-quality">
-                                                            <input type="text" name="quality" value="'.$soluong.'" style="width:30%; margin-left:5%;" disabled>
+                                                            <input type="text" name="soluong" value="'.$soluong.'" style="text-align:center; width:30%; margin-left:5%;" disabled>
                                                         </td>
                                                         <td class="product-total"><span>'.number_format($thanhtien, 0, ',', '.').'₫</span></td>
                                                         <td class="product-remove"><a href="?act=xoagiohang&id='.$idsanpham.'"><i class=" ti-trash "></i></a></td>

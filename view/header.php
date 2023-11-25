@@ -74,7 +74,7 @@
                                                 <?php
                                                     foreach ($listdm as $dm) {
                                                         extract($dm);
-                                                        echo '<li><a href="?act=sanpham&id='.$id.'">'.$tendm.'</a></li>';
+                                                        echo '<li><a href="?act=spdanhmuc&id='.$id.'">'.$tendm.'</a></li>';
                                                     }
                                                 ?>
                                             </ul>

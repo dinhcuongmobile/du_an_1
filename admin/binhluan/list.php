@@ -3,9 +3,9 @@
     <h1 class="h3 mb-2 text-gray-800 mb-5">Danh sách bình luận</h1>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <button class="btn btn-secondary btn-sm">Chọn tất cả</button>
-            <button class="btn btn-secondary btn-sm">Bỏ chọn tất cả</button>
-            <button class="btn btn-secondary btn-sm">Xóa các mục đã chọn</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="chontatca()">Chọn tất cả</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="bochontatca()">Bỏ chọn tất cả</button>
+            <button type="button" class="btn btn-secondary btn-sm">Xóa các mục đã chọn</button>
             <form action="?act=listbl" method="post" class="float-right">
                 <div class="input-group">
                     <input type="text" class="form-control" name="kyw" placeholder="Tìm kiếm...">
@@ -36,7 +36,7 @@
                             foreach ($listbl as $bl) {
                                 extract($bl);
                                 echo '<tr>
-                                        <td class="text-center align-middle"><input type="checkbox" name="select" id=""></td>
+                                        <td class="text-center align-middle"><input type="checkbox" name="select"></td>
                                         <td class="col-2 align-middle">'.$hovaten.'</td>
                                         <td class="col-1 align-middle">'.$tendangnhap.'</td>
                                         <td class="col-3 align-middle">'.$tensp.'</td>

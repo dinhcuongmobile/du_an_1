@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- Custom fonts for this template -->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="../assets/images/favicon-32x32.png" type="image/x-icon">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -110,14 +111,22 @@
                     </div>
                 </div>
             </li>
-            
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="?act=listdh">
-                    <i class="fas fa-fw fa-cart-arrow-down"></i>
-                    <span>Quản lý đơn hàng</span></a>
-            </li>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+                    aria-expanded="true" aria-controls="collapseFive">
+                    <i class="fas fa-fw fa-cart-arrow-down"></i>
+                    <span>Quản lý đơn hàng</span>
+                </a>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="?act=listdh">Danh sách đơn hàng</a>
+                        <a class="collapse-item" href="?act=kiemduyet">Kiểm duyệt</a>
+                    </div>
+                </div>
+            </li>
+            
             <!-- Nav Item - Tables -->
             <li class="nav-item mb-3">
                 <a class="nav-link" href="?act=listbl">

@@ -66,7 +66,6 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 if(is_array($checkuser)){
                     if($checkuser['matkhau']!=$pass||$checkuser['tendangnhap']!=$user){
                         $tkErr="Tài khoản không tồn tại. Vui lòng kiểm tra lại hoặc đăng ký !";
-                        session_unset();
                     }else{
                         $_SESSION['user']=$checkuser;
                         header("location: ?act=trangchu");
@@ -161,9 +160,9 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             break;
         case 'xoagiohang':
             if(isset($_GET['id'])){
-                delete_giohang($_GET['id']);
+                delete_giohang($_GET['id'],0);
             }else{
-                delete_giohang(0);
+                delete_giohang(0,0);
             }
             header ('location: ?act=giohang');
             break;
@@ -172,6 +171,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             $sodienthoaiErr="";
             $diachiErr="";
             if(isset($_POST['dathang'])){
+                date_default_timezone_set('Asia/Ho_Chi_Minh');
                 $ngaydathang = date('Y-m-d H:i:s');
                 $phuongthuctt=$_POST['phuongthuctt'];
                 if(isset($_POST['diachikhac'])){
@@ -196,11 +196,9 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                         foreach ($listgh as $gh) {
                             extract($gh);
                             insert_chitietdonhang($iddonhang,$idsp,$soluong,$giakm,$thanhtien);
+                            $soluongsp=$soluongsp-$soluong;
+                            update_sl_sp($idsp,$soluongsp);
                         }
-                        echo '<script>
-                                alert("Bạn đã mua hàng thành công !");
-                                window.location.href="?act=trangchu";
-                            </script>';
                     }
                 }else{
                     $hovaten=$_POST['hovaten'];
@@ -210,36 +208,73 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     foreach ($listgh as $gh) {
                         extract($gh);
                         insert_chitietdonhang($iddonhang,$idsp,$soluong,$giakm,$thanhtien);
+                        $soluongsp=$soluongsp-$soluong;
+                        update_sl_sp($idsp,$soluongsp);
                     }
-                    echo '<script>
+                }
+                delete_giohang(0,$_SESSION['user']['id']);
+                // update_sl_sp($id,$soluong);
+                echo '<script>
                             alert("Bạn đã mua hàng thành công !");
                             window.location.href="?act=trangchu";
                         </script>';
-                }
                 
             }
-            include "../view/cart/thongtindathang.php";
+            include "../view/cart/dongydathang.php";
             break;
         /* END GIO HANG */
         case 'sanpham':
-            if(isset($_GET['id'])&&($_GET['id']!="")){
-                $list_sp_home=load_all_spdm($_GET['id']);
+            if(isset($_POST['submittimkiem'])) $kyw=$_POST['timkiem'];
+            else $kyw="";
+            if(isset($_POST['submitlocgia'])){
+                $giadau=$_POST['giaspdau'];
+                $giacuoi=$_POST['giaspcuoi'];
             }else{
-                $list_sp_home=load_all_sp("");
+                $giadau=0;
+                $giacuoi=0;
             }
+            $list_sp_home=load_all_spdm(0,$kyw,$giadau,$giacuoi);
             include "../view/sanpham/sanpham.php";
             break;
-        case 'sanphamdm':
-            include "../view/sanpham/sanphamdanhmuc.php";
+        case 'spdanhmuc':
+            if(isset($_GET['id'])&&($_GET['id']!="")){
+                if(isset($_POST['submittimkiem'])) $kyw=$_POST['timkiem'];
+                else $kyw="";
+                if(isset($_POST['submitlocgia'])){
+                    $giadau=$_POST['giaspdau'];
+                    $giacuoi=$_POST['giaspcuoi'];
+                }else{
+                    $giadau=0;
+                    $giacuoi=0;
+                }
+                $list_sp_dm=load_all_spdm($_GET['id'],$kyw,$giadau,$giacuoi);
+                $sp=load_one_spdm($_GET['id']);
+            }
+            include "../view/sanpham/spdanhmuc.php";
             break;
         case 'chitietsp':
             if (isset($_GET['id'])&& ($_GET['id']!="")){
                 $id = $_GET['id'];
                 $sanpham = load_one_sp($id);
                 if($sanpham){
+                    $luotxem=$sanpham['luotxem']+1;
+                    update_luotxem_sp($sanpham['id'],$luotxem);
+                    $noidungErr="";
+                    if(isset($_POST['binhluanok'])){
+                        $noidung=$_POST['noidung'];
+                        $ngaybinhluan=date('Y-m-d');
+                        if(empty(trim($noidung))){
+                            $noidungErr="Vui lòng nhập nội dung bình luận trước khi gửi !";
+                        }else{
+                            insert_bl($_SESSION['user']['id'],$sanpham['id'],$noidung,$ngaybinhluan);
+                            header("location: {$_SERVER['HTTP_REFERER']}");
+                        }
+                    }
                     $splq = load_sp_lq($sanpham['iddm']);
+                    $listbl=load_bl_sp($sanpham['id']);
+                    $danhmuc = load_one_dm($sanpham['iddm']);
+                    $dembl=dem_bl_sp($sanpham['id']);
                 }
-                $danhmuc = load_one_dm($sanpham['iddm']);
             }
             include "../view/sanpham/chitietsp.php";
             break;
@@ -251,6 +286,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
     include "../view/home.php";
 }
 
-
+$spmin=giasp_min();
+$spmax=giasp_max();
 include "../view/footer.php";
 ?>

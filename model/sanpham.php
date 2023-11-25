@@ -10,7 +10,7 @@ function load_sp_nb(){
 function load_all_sp($kyw){
     $query="SELECT sanpham.*, danhmuc.tendm FROM sanpham INNER JOIN danhmuc ON sanpham.iddm=danhmuc.id WHERE 1";
     if($kyw!=""){
-        $query .=" AND tensp like '%".$kyw."%'";
+        $query .=" AND (tensp like '%".$kyw."%' OR giasp LIKE '%" . $kyw . "%')";
     }
     $query .=" ORDER BY id asc";
     return pdo_query($query);
@@ -27,11 +27,28 @@ function load_one_sp($id){
     $query="SELECT * FROM sanpham WHERE id=".$id;
     return pdo_query_one($query);
 }
-function load_all_spdm($iddm){
+function load_one_spdm($iddm){
     $query="SELECT * FROM sanpham WHERE iddm=".$iddm;
+    return pdo_query_one($query);
+}
+function dem_sp_dm($iddm){
+    $query="SELECT COUNT(*) as countsp FROM sanpham WHERE iddm='$iddm'";
+    return pdo_query_one($query);
+}
+function load_all_spdm($iddm,$kyw,$giadau,$giacuoi){
+    $query="SELECT * FROM sanpham WHERE 1";
+    if($iddm > 0){
+        $query .=" AND iddm=$iddm";
+    }
+    if($kyw != ''){
+        $query .=" AND tensp like '%".$kyw."%' ";
+    }
+    if($giadau>0 && $giacuoi>0){
+        $query .=" AND giakm BETWEEN $giadau AND $giacuoi";
+    }
     return pdo_query($query);
 }
-function insert_sp($danhmuc, $tensp, $giasp, $image, $soluong,$khuyenmai, $mota) {
+function insert_sp($danhmuc, $tensp, $giasp, $image,$giakm, $soluong,$khuyenmai, $mota) {
     $conn=pdo_get_connection();
     $query_check = "SELECT COUNT(*) as count FROM sanpham WHERE image = :image";
     $stmt = $conn->prepare($query_check);
@@ -69,9 +86,24 @@ function update_sp($id,$danhmuc,$tensp,$giasp,$giakm,$image,$oldImage,$soluong,$
         ':mota'=>$mota
     ]);
 }
+function update_sl_sp($id,$soluong){
+    $query="UPDATE sanpham SET `soluong`='$soluong' WHERE id='$id'";
+    pdo_execute($query);
+}
+function update_luotxem_sp($id,$luotxem){
+    $query="UPDATE sanpham SET `luotxem`='$luotxem' WHERE id='$id'";
+    pdo_execute($query);
+}
 function delete_sp($id){
     $query="DELETE FROM sanpham WHERE id=".$id;
     pdo_execute($query);
 }
-
+function giasp_min(){
+    $query="SELECT MIN(giasp) AS giaspmin FROM sanpham";
+    return pdo_query_one($query);
+}
+function giasp_max(){
+    $query="SELECT MAX(giasp) AS giaspmax FROM sanpham";
+    return pdo_query_one($query);
+}
 ?>

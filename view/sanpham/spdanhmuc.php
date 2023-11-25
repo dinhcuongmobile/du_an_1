@@ -7,7 +7,7 @@
                         <div id="shop-1" class="tab-pane active">
                             <div class="row">
                                 <?php
-                                    foreach ($list_sp_home as $sp) {
+                                    foreach ($list_sp_dm as $sp) {
                                         extract($sp);
                                         if($soluong>0){
                                         echo '<div class="col-lg-4 col-sm-5">
@@ -45,16 +45,17 @@
                 </div>
             </div>
             <div class="col-lg-3">
+                <?php extract($sp);?>
                 <div class="sidebar-wrapper">
                     <div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">
                         <div class="search-wrap-2">
-                            <form class="search-2-form" method="post" action="?act=sanpham">
+                            <form class="search-2-form" method="post" action="?act=spdanhmuc&id=<?=$iddm?>">
                                 <input placeholder="Tìm kiếm*" type="text" name="timkiem">
                                 <button class="button-search" type="submit" name="submittimkiem"><i class=" ti-search "></i></button>
                             </form>
                         </div>
                     </div>
-                    <form action="?act=sanpham" method="post">
+                    <form action="?act=spdanhmuc&id=<?=$iddm?>" method="post">
                         <div class="sidebar-widget  mb-40 pb-35" data-aos="fade-up" data-aos-delay="200">
                             <div class="sidebar-widget-title mb-30">
                                 <h3>Lọc giá</h3>

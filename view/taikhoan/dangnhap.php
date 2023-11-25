@@ -12,8 +12,8 @@
                         <div class="login-form-container">
                             <div class="login-register-form">
                                 <form action="?act=dangnhap" method="post">
-                                    <input type="text" name="username" placeholder="Username">
-                                    <input type="password" name="password" placeholder="Password">
+                                    <input type="text" name="username" placeholder="Username" value="<?= isset($user) ? ($user) : '' ?>">
+                                    <input type="password" name="password" placeholder="Password" value="<?= isset($pass) ? ($pass) : '' ?>">
                                     <p style="color:red;"><?=$tkErr?></p>
                                     <div class="login-toggle-btn">
                                         <a href="?act=quenmatkhau">Quên mật khẩu?</a>

@@ -30,14 +30,11 @@
                                 <ul>
                                     <li><span class="title">Category:</span>
                                         <ul>
-                                            <li><a href="?act=sanpham&id=<?=$id?>"><?=$tendm?></a></li>
+                                            <li><a href="?act=spdanhmuc&id=<?=$id?>"><?=$tendm?></a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
-                        <?php
-                            extract($sanpham);
-                        ?>
                         <form action="?act=themgiohang" method="post">
                             <div class="product-details-action-wrap">
                                 <div class="single-product-cart btn-hover">
@@ -71,36 +68,49 @@
                     </div>
                     <div id="des-details3" class="tab-pane">
                         <div class="review-wrapper">
-                            <h3>1 đánh giá</h3>
-                            <div class="single-review">
-                                <div class="review-img">
-                                    <img src="assets/images/product-details/review-1.png" alt="">
-                                </div>
-                                <div class="review-content">
-                                    <h5><span>HasTech</span> - April 29, 2022</h5>
-                                    <p>Như cc</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ratting-form-wrapper">
-                            <div class="ratting-form">
-                                <form action="#">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="rating-form-style mb-15">
-                                                <label>Đánh giá của bạn <span>*</span></label>
-                                                <textarea name="Your Review"></textarea>
+                            <?php extract($dembl);?>
+                            <h3><?=$countbl?> đánh giá</h3>
+                            <?php
+                                foreach ($listbl as $bl) {
+                                    extract($bl);
+                                    echo '<div class="single-review">
+                                            <div class="review-img">
+                                                <img src="../assets/images/userbl.png" alt="">
                                             </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="form-submit">
-                                                <input type="submit" value="Submit">
+                                            <div class="review-content">
+                                                <h5><span>'.$hovaten.'</span> - '.$ngaybinhluan.'</h5>
+                                                <p>'.$noidung.'</p>
                                             </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                                        </div>';
+                                }
+                                ?>
+                            
                         </div>
+                        <?php
+                            if(isset($_SESSION['user'])){
+                                extract($sanpham);
+                                echo '<div class="ratting-form-wrapper">
+                                        <div class="ratting-form">
+                                            <form action="?act=chitietsp&id='.$id.'" method="post">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="rating-form-style mb-15">
+                                                            <label>Đánh giá của bạn <span>*</span></label>
+                                                            <textarea name="noidung"></textarea>
+                                                            <p style="color:red;">'.$noidungErr.'</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-submit">
+                                                            <input type="submit" name="binhluanok" value="Gửi">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>';
+                            }
+                        ?>
                     </div>
                 </div>
             </div>

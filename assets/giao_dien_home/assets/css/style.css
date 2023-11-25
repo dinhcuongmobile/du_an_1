@@ -8268,7 +8268,7 @@ textarea {
 }
 
 .single-review .review-img img {
-  width: 100px;
+  width: 50px;
 }
 
 .single-review .review-content {
@@ -8905,7 +8905,7 @@ textarea {
 
 .sidebar-widget .price-filter .price-slider-amount .label-input input {
   height: auto;
-  width: 50%;
+  width: 100%;
   font-size: 14px;
   background-color: transparent;
   border: none;
