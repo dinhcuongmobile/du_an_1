@@ -199,7 +199,13 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                             $soluongsp=$soluongsp-$soluong;
                             update_sl_sp($idsp,$soluongsp);
                         }
-                    }
+                        delete_giohang(0,$_SESSION['user']['id']);
+                        // update_sl_sp($id,$soluong);
+                        echo '<script>
+                                    alert("Bạn đã mua hàng thành công !");
+                                    window.location.href="?act=trangchu";
+                                </script>';
+                            }
                 }else{
                     $hovaten=$_POST['hovaten'];
                     $sodienthoai=$_POST['sodienthoai'];
@@ -211,13 +217,13 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                         $soluongsp=$soluongsp-$soluong;
                         update_sl_sp($idsp,$soluongsp);
                     }
+                    delete_giohang(0,$_SESSION['user']['id']);
+                    // update_sl_sp($id,$soluong);
+                    echo '<script>
+                                alert("Bạn đã mua hàng thành công !");
+                                window.location.href="?act=trangchu";
+                            </script>';
                 }
-                delete_giohang(0,$_SESSION['user']['id']);
-                // update_sl_sp($id,$soluong);
-                echo '<script>
-                            alert("Bạn đã mua hàng thành công !");
-                            window.location.href="?act=trangchu";
-                        </script>';
                 
             }
             include "../view/cart/dongydathang.php";
