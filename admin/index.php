@@ -17,6 +17,14 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
     switch ($act) {
         //danh muc
         case 'listdm':
+            if(isset($_POST['xoacacmucchon'])){
+                if(isset($_POST['select'])){
+                    $ids=$_POST['select'];
+                    foreach ($ids as $id) {
+                        delete_dm($id);
+                    }
+                }
+            }
             if(isset($_POST['search'])){
                 $kyw=$_POST['kyw'];
             }else{
@@ -82,6 +90,18 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
 
         //san pham
         case 'listsp':
+            if(isset($_POST['xoacacmucchon'])){
+                if(isset($_POST['select'])){
+                    $ids=$_POST['select'];
+                    foreach ($ids as $id) {
+                        $sp=load_one_sp($id);
+                        if($sp){
+                            unlink("../uploads/".$sp['image']);
+                            delete_sp($sp['id']);
+                        }
+                    }
+                }
+            }
             if(isset($_POST['search'])){
                 $kyw=$_POST['kyw'];
             }else{
@@ -200,12 +220,15 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
         case 'xoasp':
             if(isset($_GET['id'])&&($_GET['id']!="")){
                 $id=$_GET['id'];
-                delete_sp($id);
-                unlink("../uploads/".$_GET['image']);
-                echo '<script>
+                $sp=load_one_sp($id);
+                if($sp){
+                    unlink("../uploads/".$sp['image']);
+                    delete_sp($sp['id']);
+                    echo '<script>
                         alert("Bạn đã xóa sản phẩm thành công !");
                         window.location.href="?act=listsp";
                     </script>';
+                }
             }
             $listsp=load_all_sp("");
             include "sanpham/list.php";
@@ -241,14 +264,31 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 else {if(!preg_match("/^0[1-9]\d{8}$/",$sodienthoai)){$check=false;$sodienthoaiErr="Số điện thoại không đúng định dạng !";}}
                 if($check){
                     insert_tk($hovaten,$tendangnhap,$matkhau,$email,$sodienthoai,$diachi,$role);
-                    echo '<script>
-                        alert("Bạn đã thêm tài khoản thành công !");
-                    </script>';
+                    if($role==0){
+                        echo '<script>
+                                alert("Bạn đã thêm tài khoản thành công !");
+                                window.location.href="?act=listtv";
+                            </script>';
+                    }else{
+                        echo '<script>
+                                alert("Bạn đã thêm tài khoản thành công !");
+                                window.location.href="?act=listqtv";
+                            </script>';
+                    }
+                    
                 }
             }
             include "taikhoan/add.php";
             break;
         case 'listtv':
+            if(isset($_POST['xoacacmucchon'])){
+                if(isset($_POST['select'])){
+                    $ids=$_POST['select'];
+                    foreach ($ids as $id) {
+                        delete_tk($id);
+                    }
+                }
+            }
             if(isset($_POST['search'])){
                 $kyw=$_POST['kyw'];
             }else{
@@ -258,6 +298,14 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             include "taikhoan/listtv.php";
             break;
         case 'listqtv':
+            if(isset($_POST['xoacacmucchon'])){
+                if(isset($_POST['select'])){
+                    $ids=$_POST['select'];
+                    foreach ($ids as $id) {
+                        delete_tk($id);
+                    }
+                }
+            }
             if(isset($_POST['search'])){
                 $kyw=$_POST['kyw'];
             }else{
@@ -348,6 +396,15 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             break;
         //don hang
         case 'listdh':
+            if(isset($_POST['xoacacmucchon'])){
+                if(isset($_POST['select'])){
+                    $ids=$_POST['select'];
+                    foreach ($ids as $id) {
+                        delete_chitietdh($id);
+                        delete_donhang($id);
+                    }
+                }
+            }
             if(isset($_POST['search'])){
                 $kyw=$_POST['kyw'];
             }else{
@@ -357,6 +414,15 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             include "donhang/list.php";
             break;
         case 'kiemduyet':
+            if(isset($_POST['xoacacmucchon'])){
+                if(isset($_POST['select'])){
+                    $ids=$_POST['select'];
+                    foreach ($ids as $id) {
+                        delete_chitietdh($id);
+                        delete_donhang($id);
+                    }
+                }
+            }
             if(isset($_POST['search'])){
                 $kyw=$_POST['kyw'];
             }else{
@@ -407,12 +473,32 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             }
             break;
         case 'listbl':
+            if(isset($_POST['xoacacmucchon'])){
+                if(isset($_POST['select'])){
+                    $ids=$_POST['select'];
+                    foreach ($ids as $id) {
+                        delete_bl($id);
+                    }
+                }
+            }
             if(isset($_POST['search'])){
                 $kyw=$_POST['kyw'];
             }else{
                 $kyw="";
             }
             $listbl=load_all_bl($kyw);
+            include "binhluan/list.php";
+            break;
+        case 'xoabl':
+            if(isset($_GET['id'])&&($_GET['id']!="")){
+                $id=$_GET['id'];
+                delete_bl($id);
+                echo '<script>
+                        alert("Bạn đã xóa bình luận thành công !");
+                        window.location.href="?act=listbl";
+                    </script>';
+            }
+            $listbl=load_all_bl("");
             include "binhluan/list.php";
             break;
         default:

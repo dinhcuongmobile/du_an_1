@@ -21,4 +21,8 @@ function dem_bl_sp($idsanpham){
     $query="SELECT COUNT(*) as countbl FROM binhluan WHERE idsanpham='$idsanpham'";
     return pdo_query_one($query);
 }
+function delete_bl($id){
+    $query="DELETE FROM binhluan WHERE id='$id'";
+    pdo_execute($query);
+}
 ?>
