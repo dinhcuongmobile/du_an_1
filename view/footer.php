@@ -9,46 +9,43 @@
                                         <a href="../assets/giao_dien_home/index.html"><img src="../assets/images/logo.png" alt="logo"></a>
                                     </div>
                                     <p>Đã bán là không lom dom</p>
-                                    <div class="payment-img">
-                                        <a href="#"><img src="../assets/giao_dien_home/assets/images/icon-img/payment.png" alt="logo"></a>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                                 <div class="footer-widget footer-widget-margin-1 footer-list mb-40">
-                                    <h3 class="footer-title">Information</h3>
+                                    <h3 class="footer-title">Thông tin</h3>
                                     <ul>
-                                        <li><a href="../assets/giao_dien_home/about-us.html">About Us</a></li>
-                                        <li><a href="#">Delivery Information</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                        <li><a href="#">Terms & Conditions</a></li>
-                                        <li><a href="#">Customer Service</a></li>
+                                        <li><a href="#">Tin tức</a></li>
+                                        <li><a href="#">Giới thiệu</a></li>
+                                        <li><a href="#">Bảo hành</a></li>
+                                        <li><a href="#">Đánh giá chất lượng</a></li>
+                                        <li><a href="#">Phương thức thanh toán</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-6 col-sm-6 col-12">
                                 <div class="footer-widget footer-list mb-40">
-                                    <h3 class="footer-title">My Accound</h3>
+                                    <h3 class="footer-title">Chính sách</h3>
                                     <ul>
-                                        <li><a href="../assets/giao_dien_home/my-account.html">My Account</a></li>
-                                        <li><a href="#">Order History</a></li>
-                                        <li><a href="../assets/giao_dien_home/wishlist.html">Wish List</a></li>
-                                        <li><a href="#">Newsletter</a></li>
-                                        <li><a href="#">Order History</a></li>
+                                        <li><a href="#">Thu cũ đổi mới</a></li>
+                                        <li><a href="#">Giao hàng</a></li>
+                                        <li><a href="#">Đổi trả</a></li>
+                                        <li><a href="#">Bảo hành</a></li>
+                                        <li><a href="#">Bảo mật thông tin</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                 <div class="footer-widget footer-widget-margin-2 footer-address mb-40">
-                                    <h3 class="footer-title">Get in touch</h3>
+                                    <h3 class="footer-title">Địa chỉ liên hệ</h3>
                                     <ul>
-                                        <li><span>Address: </span>Your address goes here </li>
-                                        <li><span>Telephone Enquiry:</span> (012) 345 6789</li>
-                                        <li><span>Email: </span>demo@example.com</li>
+                                        <li><span>Địa chỉ: </span>FPT Polytechnic</li>
+                                        <li><span>Liên hệ:</span> (012) 345 6789</li>
+                                        <li><span>Email: </span>dinhcuongmobile@.com</li>
                                     </ul>
                                     <div class="open-time">
-                                        <p>Open : <span>8:00 AM</span> - Close : <span>18:00 PM</span></p>
-                                        <p>Saturday - Sunday : Close</p>
+                                        <p>Giờ mở cửa : <span>8:00 AM</span> <br> Giờ đóng cửa : <span>20:00 PM</span></p>
+                                        <p>Thứ bảy - Chủ nhật : Đóng cửa</p>
                                     </div>
                                 </div>
                             </div>

@@ -44,7 +44,7 @@
                                     <form action="?act=themgiohang" method="post">
                                         <input type="hidden" name="id" value="<?=$id?>">
                                         <input type="hidden" name="giasp" value="<?=$giakm?>">
-                                        <button type="submit" name="themgiohang" class="product-action-btn-2 btn btn-warning" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
+                                        <button type="submit" name="themgiohang" class="product-action-btn-2 theme-color" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
                                     </form>
                                 </div>
                             </div>
