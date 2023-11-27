@@ -284,6 +284,9 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             }
             include "../view/sanpham/chitietsp.php";
             break;
+        case "lichsumuahang":
+            include "../view/cart/lichsumuahang.php";
+            break;
         default:
         include "../view/home.php";
             break;

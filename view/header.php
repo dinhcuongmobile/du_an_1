@@ -109,7 +109,7 @@
                                                 <li><a title="Tài khoản" href="?act=thongtintk"><i class="pe-7s-user"></i></a>
                                                     <ul class="sub-menu-style">
                                                         <li><a href="?act=thongtintk" style="font-size:13px;">Thông tin tài khoản</a></li>
-                                                        <li><a href="?act=chitiethd" style="font-size:13px;">Đơn mua</a></li>
+                                                        <li><a href="?act=lichsumuahang" style="font-size:13px;">Đơn mua</a></li>
                                                         <?php if($role==1):?>
                                                             <li><a href="../admin/index.php" style="font-size:13px;">Quản trị viên</a></li>
                                                         <?php endif;?>

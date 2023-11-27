@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">     
-                <form action="?act=lichsuhd$iddh=<?=$iddh?>" method="post">
+                <form action="#">
                     <div class="cart-table-content">
                         <div class="table-content table-responsive">
                             <table>
@@ -17,9 +17,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                       
-                                    ?>
                                 </tbody>
                             </table>
                         </div>
