@@ -13,11 +13,13 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                     <form action="?act=quenmatkhau" method="post">
+                                        <input type="text" name="tendangnhap" placeholder="Tên đăng nhập...">
                                         <input type="email" name="email" placeholder="Email">
                                         <p style="color:red;"><?=$thongbao?></p>
                                         <div class="button-box btn-hover">
+                                            <?php if(isset($_SESSION['user'])) $link="?act=thongtintk"; else $link="?act=dangnhap" ?>
                                             <button type="submit" name="quenmatkhau">Gửi</button>
-                                            <a href="?act=dangnhap"><button type="button">Quay lại</button></a>
+                                            <a href="<?=$link?>"><button type="button">Quay lại</button></a>
                                         </div>
                                     </form>
                                 </div>

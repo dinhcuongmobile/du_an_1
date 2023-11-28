@@ -61,7 +61,33 @@
 }
 
 /*tu css*/
-
+.donmua nav ul {
+  display: flex;
+}
+.donmua nav ul li{
+  margin-right: 10px;
+}
+.donmua nav ul li:first-child{
+  margin-left: 10px;
+}
+.donmua nav ul li a{
+  display: block;
+  padding: 10px 28px;
+  position: relative;
+}
+.donmua nav ul li a::after{
+  content: "";
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  bottom: -9px;
+  background-color: transparent;
+}
+.donmua nav ul li.active a::after, .donmua nav ul li:hover a::after{
+  background-color: #e97730;
+}
+/**/
 .row {
   margin-right: -15px;
   margin-left: -15px;

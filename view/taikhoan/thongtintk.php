@@ -20,15 +20,19 @@
                                 <p style="color:red;"><?=$tendangnhapErr?></p>
                                 <label for="" class="form-label">Họ và tên:</label>
                                 <input type="text" name="hovaten" value="<?=$_SESSION['user']['hovaten'];?>">
+                                <p style="color:red;"><?=$hovatenErr?></p>
                                 <label for="" class="form-label">Số điện thoại:</label>
                                 <input type="text" name="sodienthoai" value="<?=$_SESSION['user']['sodienthoai'];?>">
                                 <p style="color:red;"><?=$sodienthoaiErr?></p>
+                                <?php $chuoi=$_SESSION['user']['email']; ?>
                                 <label for="" class="form-label">Email:</label>
-                                <input type="text" name="email" value="<?=$_SESSION['user']['email'];?>">
+                                <input type="text" value="<?= substr($chuoi, 0, 2) . str_repeat('*', strlen($chuoi) - 2) . substr($chuoi, strpos($chuoi, '@')); ?>">
+                                <input type="hidden" name="email" value="<?=$_SESSION['user']['email']?>">
                                 <label for="" class="form-label">Địa chỉ:</label>
                                 <input type="text" name="diachi" value="<?=$_SESSION['user']['diachi'];?>">
-                                <div class="login-toggle-btn">
+                                <div class="login-toggle-btn mb-5">
                                     <a href="?act=quenmatkhau">Quên mật khẩu?</a>
+                                    <a href="?act=doimatkhau" style="margin-right:378px;">Đổi mật khẩu</a>
                                 </div>
                                 <div class="button-box btn-hover">
                                     <button type="submit" name="luu">Lưu</button>

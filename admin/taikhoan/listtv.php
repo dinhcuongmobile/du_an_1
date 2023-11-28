@@ -28,7 +28,6 @@
                                 <th>MTV</th>
                                 <th>Họ và Tên</th>
                                 <th>Tên đăng nhập</th>
-                                <th>Mật khẩu</th>
                                 <th>Email</th>
                                 <th>Số điện thoại</th>
                                 <th>Địa chỉ</th>
@@ -50,7 +49,6 @@
                                         <td class="align-middle text-center">'.$id.'</td>
                                         <td class="col-2 align-middle">'.$hovaten.'</td>
                                         <td class="col-1 align-middle">'.$tendangnhap.'</td>
-                                        <td  class="col-1 align-middle">'.$matkhau.'</td>
                                         <td  class="col-1 align-middle">'.$email.'</td>
                                         <td class="col-1 align-middle">'.$sodienthoai.'</td>
                                         <td class="col-2 align-middle">'.$diachi.'</td>

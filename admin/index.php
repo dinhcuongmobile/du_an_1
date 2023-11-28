@@ -239,6 +239,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             $matkhauErr="";
             $emailErr="";
             $sodienthoaiErr="";
+            $hovatenErr="";
             if(isset($_POST['submit'])){
                 $hovaten=$_POST['hovaten'];
                 $tendangnhap=$_POST['tendangnhap'];
@@ -248,6 +249,10 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $diachi=$_POST['diachi'];
                 $role=$_POST['role'];
                 $check=true;
+                if(empty(trim($hovaten))){$hovatenErr="";} 
+                else{
+                    if(!preg_match("/^[a-zA-Z \p{L}\p{Mn}]{6,}$/u",$hovaten)){$check=false;$hovatenErr="Họ và tên tối thiểu 6 ký tự và không bao gồm chữ số!";}
+                }
                 if(empty(trim($tendangnhap))){$check=false; $tendangnhapErr="Vui lòng không bỏ trống !";} 
                 else{
                     if(!preg_match("/^\w{6,16}$/",$tendangnhap)){$check=false;$tendangnhapErr="Tên đăng nhập tối thiểu 6 ký tự !";}
@@ -333,6 +338,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             $matkhauErr="";
             $emailErr="";
             $sodienthoaiErr="";
+            $hovatenErr="";
             if(isset($_POST['submit'])){
                 $id=$_POST['id'];
                 $hovaten=$_POST['hovaten'];
@@ -343,6 +349,10 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $diachi=$_POST['diachi'];
                 $role=$_POST['role'];
                 $check=true;
+                if(empty(trim($hovaten))){$hovatenErr="";} 
+                else{
+                    if(!preg_match("/^[a-zA-Z \p{L}\p{Mn}]{6,}$/u",$hovaten)){$check=false;$hovatenErr="Họ và tên tối thiểu 6 ký tự và không bao gồm chữ số!";}
+                }
                 if(empty(trim($tendangnhap))){$check=false; $tendangnhapErr="Vui lòng không bỏ trống !";} 
                 else{
                     if(!preg_match("/^\w{6,16}$/",$tendangnhap)){$check=false;$tendangnhapErr="Tên đăng nhập tối thiểu 6 ký tự !";}

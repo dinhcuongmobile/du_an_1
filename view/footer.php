@@ -87,7 +87,7 @@
             $('#slider-range').slider({
                 min: <?=$spmin['giaspmin']?>,
                 max: <?=$spmax['giaspmax']?>,
-                values: [<?=$spmin['giaspmin']?>, <?=$spmax['giaspmax']/2?>],
+                values: [<?= isset($giadau) ? ($giadau) : $spmin['giaspmin'] ?>, <?= isset($_POST['giaspcuoi']) ? ($_POST['giaspcuoi']) : ($spmax['giaspmax']/2) ?>],
                 slide: function(event, ui) {
                     $('#amount').val("đ" + addPlus(ui.values[0]) + " - đ" + addPlus(ui.values[1]));
                     $(".giaspdau").val(ui.values[0]);
@@ -112,6 +112,7 @@
     </script>
     <!-- Main JS -->
     <script src="../assets/giao_dien_home/assets/js/main.js"></script>
+    <script src="../assets/js/cuong.js"></script>
 </body>
 
 

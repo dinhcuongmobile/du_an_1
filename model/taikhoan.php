@@ -12,6 +12,10 @@ function load_all_tk($vaitro,$kyw){
     $query .=" ORDER BY id asc";
     return pdo_query($query);
 }
+function load_all_tkcheck(){
+    $query="SELECT * FROM taikhoan";
+    return pdo_query($query);
+}
 function load_one_tk($id){
     $query="SELECT * FROM taikhoan WHERE id=".$id;
     return pdo_query_one($query);
@@ -25,16 +29,20 @@ function update_tk($id,$hovaten,$tendangnhap,$matkhau,$email,$sodienthoai,$diach
     $query="UPDATE `taikhoan` SET `id`='$id',`hovaten`='$hovaten',`tendangnhap`='$tendangnhap',`matkhau`='$matkhau',`email`='$email',`sodienthoai`='$sodienthoai',`diachi`='$diachi',`role`='$role' WHERE id=".$id;
     pdo_execute($query);
 }
+function update_mk($matkhau,$id){
+    $query="UPDATE `taikhoan` SET `matkhau`='$matkhau' WHERE id=".$id;
+    pdo_execute($query);
+}
 function delete_tk($id){
     $query="DELETE FROM taikhoan WHERE id=".$id;
     pdo_execute($query);
 }
 function checkuser($tendangnhap,$matkhau){
-    $query="SELECT * FROM taikhoan WHERE tendangnhap='".$tendangnhap."' AND  matkhau='".$matkhau."'";
+    $query="SELECT * FROM taikhoan WHERE tendangnhap='$tendangnhap' AND  matkhau='$matkhau'";
     return pdo_query_one($query);
 }
-function checkemail($email){
-    $query="SELECT * FROM taikhoan WHERE email='".$email."'";
+function quenmatkhau($email , $tendangnhap){
+    $query="SELECT * FROM taikhoan WHERE email='$email' AND tendangnhap='$tendangnhap'";
     return pdo_query_one($query);
 }
 ?>

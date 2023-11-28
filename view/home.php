@@ -10,7 +10,7 @@
                                 <div class="slider-content-1 slider-animated-1">
                                     <h1 class="animated">iPhone <br>15 Promax</h1>
                                     <div class="slider-btn btn-hover">
-                                        <a href="product-details.html" class="btn animated">
+                                        <a href="?act=sanpham" class="btn animated">
                                             Shop Now <i class=" ti-arrow-right "></i>
                                         </a>
                                     </div>
@@ -36,7 +36,7 @@
                                 <div class="slider-content-1 slider-animated-1">
                                     <h1 class="animated">Oppo <br>Find N3 series</h1>
                                     <div class="slider-btn btn-hover">
-                                        <a href="product-details.html" class="btn animated">
+                                        <a href="?act=sanpham" class="btn animated">
                                             Shop Now <i class=" ti-arrow-right "></i>
                                         </a>
                                     </div>

@@ -30,10 +30,11 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $dkyemail=$_POST['dkyemail'];
                 $dkyuser=$_POST['dkyuser'];
                 $dkypass=$_POST['dkypass'];
+                $listtk=load_all_tk(0,"");
                 $check=true;
-                if(empty(trim($hovaten))){$check=false; $hovatenErr="Vui lòng không bỏ trống !";} 
+                if(empty(trim($hovaten))){$hovatenErr="";} 
                 else{
-                    if(!preg_match("/^[a-zA-Z ]{6,}$/",$hovaten)){$check=false;$hovatenErr="Họ và tên tối thiểu 6 ký tự và không bao gồm chữ số!";}
+                    if(!preg_match("/^[a-zA-Z \p{L}\p{Mn}]{6,}$/u",$hovaten)){$check=false;$hovatenErr="Họ và tên tối thiểu 6 ký tự và không bao gồm chữ số!";}
                 }
                 if(empty(trim($dkyuser))){$check=false; $tendangnhapErr="Vui lòng không bỏ trống !";} 
                 else{
@@ -46,9 +47,14 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 if(empty(trim($dkyemail))){$check=false; $emailErr="Vui lòng không bỏ trống !";}
                 else{
                     if(!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/",$dkyemail)){$check=false;$emailErr="Email không đúng định dạng !";}
+                    else{
+                        foreach ($listtk as $tk) {
+                            if($dkyemail==$tk['email']){$check=false; $emailErr="Email đã tồn tại !";}
+                        }
+                    }
                 }
                 if($check) {
-                    insert_tk("",$dkyuser,$dkypass,$dkyemail,"","",0);
+                    insert_tk($hovaten,$dkyuser,$dkypass,$dkyemail,"","",0);
                 echo '<script>
                         alert("Bạn đã đăng ký tài khoản thành công !");
                         window.location.href="?act=dangnhap";
@@ -81,6 +87,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             $tendangnhapErr="";
             $emailErr="";
             $sodienthoaiErr="";
+            $hovatenErr="";
             if(isset($_POST['luu'])){
                 $id=$_POST['id'];
                 $tendangnhap=$_POST['tendangnhap'];
@@ -91,7 +98,10 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $diachi=$_POST['diachi'];
                 $role=$_POST['role'];
                 $check=true;
-
+                if(empty(trim($hovaten))){$hovatenErr="";} 
+                else{
+                    if(!preg_match("/^[a-zA-Z \p{L}\p{Mn}]{6,}$/u",$hovaten)){$check=false;$hovatenErr="Họ và tên tối thiểu 6 ký tự và không bao gồm chữ số!";}
+                }
                 if(empty(trim($tendangnhap))){$check=false; $tendangnhapErr="Vui lòng không bỏ trống !";} 
                 else{
                     if(!preg_match("/^\w{6,16}$/",$tendangnhap)){$check=false;$tendangnhapErr="Tên đăng nhập tối thiểu 6 ký tự !";}
@@ -117,16 +127,55 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             break;
         case 'quenmatkhau':
             $thongbao="";
-            if(isset($_POST['quenmatkhau'])){
-                $email=$_POST['email'];
-                $checkemail=checkemail($email);
-                if(is_array($checkemail)){
-                    $thongbao="Mật khẩu của bạn là: ".$checkemail['matkhau'];
-                }else{
-                    $thongbao="Email này không tồn tại !";
+            if(isset($_SESSION['user'])){
+                if(isset($_POST['quenmatkhau'])){
+                    $email=$_POST['email'];
+                    $tendangnhap=$_POST['tendangnhap'];
+                    $tk=load_one_tk($_SESSION['user']['id']);
+                    if($email===$tk['email']&&($tendangnhap===$tk['tendangnhap'])){
+                        $thongbao="Mật khẩu của bạn là: ".$tk['matkhau'];
+                    }else{
+                        $thongbao="thông tin không chính xác !";
+                    }
+                }
+            }else{
+                if(isset($_POST['quenmatkhau'])){
+                    $emailcheck=$_POST['email'];
+                    $tendangnhapcheck=$_POST['tendangnhap'];
+                    $tk=quenmatkhau($emailcheck,$tendangnhapcheck);
+                    if($tk){
+                        $thongbao="Mật khẩu của bạn là: ".$tk['matkhau'];
+                    }else{
+                        $thongbao="thông tin không chính xác !";
+                    }
+                    
                 }
             }
             include "../view/taikhoan/quenmatkhau.php";
+            break;
+        case 'doimatkhau':
+            $matkhaucuErr="";
+            $matkhaumoiErr="";
+            $nhaplaimatkhaumoiErr="";
+            if(isset($_POST['doimatkhau'])){
+                $matkhaucu=$_POST['matkhaucu'];
+                $matkhaumoi=$_POST['matkhaumoi'];
+                $nhaplaimatkhaumoi=$_POST['nhaplaimatkhaumoi'];
+                $check=true;
+                $tk=load_one_tk($_SESSION['user']['id']);
+                if($tk){
+                    if($matkhaucu!==$tk['matkhau']){$check=false; $matkhaucuErr="Mật khẩu không chính xác !";}
+                }
+                if(empty(trim($matkhaumoi))){$check=false; $matkhaumoiErr="Vui lòng không bỏ trống !";}
+                else{
+                    if(!preg_match("/^(?=.*[0-9])(?=.*[A-Z])\w{8,18}$/",$matkhaumoi)){$check=false;$matkhaumoiErr="Mật khẩu tối thiểu 8 ký tự bao gồm ký tự số và ký tự in hoa !";}
+                }
+                if($nhaplaimatkhaumoi!==$matkhaumoi){$check=false;  $nhaplaimatkhaumoiErr="Mật khẩu không trùng khớp !";}
+                if($check){
+                    if($tk){update_mk($matkhaumoi,$tk['id']); $nhaplaimatkhaumoiErr="Chúc mừng bạn đã đổi mật khẩu thành công !";}
+                }
+            }
+            include "../view/taikhoan/doimatkhau.php";
             break;
         /* End tai khoan */
         case 'giohang':

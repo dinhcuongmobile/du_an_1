@@ -1,10 +1,10 @@
 <?php
 function load_sp_home(){
-    $query="SELECT * FROM sanpham WHERE 1 ORDER BY id desc limit 0,10";
+    $query="SELECT * FROM sanpham ORDER BY id desc limit 0,10";
     return pdo_query($query);
 }
 function load_sp_nb(){
-    $query="SELECT * FROM sanpham WHERE 1 ORDER BY luotxem desc limit 0,8";
+    $query="SELECT * FROM sanpham ORDER BY luotxem desc limit 0,8";
     return pdo_query($query);
 }
 function load_all_sp($kyw){

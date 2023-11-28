@@ -12,6 +12,7 @@
                 <div class="col-md-6">
                     <label for="hovaten" class="form-label">Họ và tên</label>
                     <input type="text" class="form-control" id="hovaten" name="hovaten" placeholder="Nhập họ và tên..."  value="<?= isset($hovaten) ? ($hovaten) : '' ?>">
+                    <p class="Err mt-1"><?=$hovatenErr?></p>
                 </div>
                 <div class="col-md-6">
                     <label for="tendangnhap" class="form-label">Tên đăng nhập</label>
