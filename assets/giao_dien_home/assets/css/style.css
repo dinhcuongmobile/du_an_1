@@ -65,14 +65,14 @@
   display: flex;
 }
 .donmua nav ul li{
-  margin-right: 10px;
+  margin-right: 15px;
 }
 .donmua nav ul li:first-child{
-  margin-left: 10px;
+  margin-left: 15px;
 }
 .donmua nav ul li a{
   display: block;
-  padding: 10px 28px;
+  padding: 10px 30px;
   position: relative;
 }
 .donmua nav ul li a::after{

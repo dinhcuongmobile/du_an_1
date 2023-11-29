@@ -26,10 +26,14 @@
         $query="UPDATE `giohang` SET `soluong`='$soluong',`thanhtien`='$thanhtien' WHERE idsanpham=".$idsanpham;
         pdo_execute($query);
     }
-    function update_donhang($trangthai,$giaohang,$iddonhang){
-        $query="UPDATE `donhang` SET `trangthai`='$trangthai', `giaohang`='$giaohang' WHERE id=".$iddonhang;
+    function update_donhang($trangthai,$iddonhang){
+        $query="UPDATE `donhang` SET `trangthai`='$trangthai' WHERE id=".$iddonhang;
         pdo_execute($query);
     }
+    // function update_chitietdh($trangthai,$giaohang,$iddonhang){
+    //     $query="UPDATE `chitietdonhang` SET `trangthai`='3', `giaohang`='$giaohang' WHERE id=".$iddonhang;
+    //     pdo_execute($query);
+    // }
     function load_one_dh($id){
         $query="SELECT * FROM donhang WHERE id=".$id;
         return pdo_query_one($query);
@@ -44,19 +48,26 @@
         INNER JOIN sanpham ON giohang.idsanpham=sanpham.id WHERE idtaikhoan=".$idtaikhoan;
         return pdo_query($query);
     }
-    function load_all_ctdh($kyw,$trangthai){
-        $query="SELECT donhang.id as iddh, donhang.idtaikhoan, donhang.hovatennhan, donhang.ngaydathang, donhang.diachinhan, donhang.sodienthoainhan, donhang.phuongthuctt, donhang.trangthai, donhang.giaohang,
+    function load_all_duyetdon($kyw){
+        $query="SELECT donhang.id as iddh, donhang.idtaikhoan, donhang.hovatennhan, donhang.ngaydathang, donhang.diachinhan, donhang.sodienthoainhan, donhang.phuongthuctt, donhang.trangthai,
          SUM(chitietdonhang.soluong) as soluongct, SUM(chitietdonhang.thanhtien) as thanhtien,
          taikhoan.id as idtk, taikhoan.hovaten, taikhoan.tendangnhap, taikhoan.matkhau, taikhoan.email, taikhoan.sodienthoai, taikhoan.diachi FROM chitietdonhang 
          INNER JOIN donhang ON donhang.id=chitietdonhang.iddonhang 
-         INNER JOIN taikhoan ON donhang.idtaikhoan=taikhoan.id WHERE 1";
+         INNER JOIN taikhoan ON donhang.idtaikhoan=taikhoan.id WHERE donhang.trangthai='0'";
         if($kyw!=''){
             $query .=" AND (donhang.diachinhan LIKE '%" . $kyw . "%' OR donhang.sodienthoainhan LIKE '%" . $kyw . "%' OR taikhoan.tendangnhap LIKE '%" . $kyw . "%')";
         }
-        if($trangthai==0){
-            $query .=" AND trangthai='$trangthai'";
-        }else if($trangthai==1){
-            $query .=" AND trangthai='$trangthai'";
+        $query .=" GROUP BY chitietdonhang.iddonhang ORDER BY iddh desc";
+        return pdo_query($query);
+    }
+    function load_all_ctdh($kyw){
+        $query="SELECT donhang.id as iddh, donhang.idtaikhoan, donhang.hovatennhan, donhang.ngaydathang, donhang.diachinhan, donhang.sodienthoainhan, donhang.phuongthuctt, donhang.trangthai,
+         SUM(chitietdonhang.soluong) as soluongct, SUM(chitietdonhang.thanhtien) as thanhtien,
+         taikhoan.id as idtk, taikhoan.hovaten, taikhoan.tendangnhap, taikhoan.matkhau, taikhoan.email, taikhoan.sodienthoai, taikhoan.diachi FROM chitietdonhang 
+         INNER JOIN donhang ON donhang.id=chitietdonhang.iddonhang 
+         INNER JOIN taikhoan ON donhang.idtaikhoan=taikhoan.id WHERE donhang.trangthai IN ('2', '3', '4')";
+        if($kyw!=''){
+            $query .=" AND (donhang.diachinhan LIKE '%" . $kyw . "%' OR donhang.sodienthoainhan LIKE '%" . $kyw . "%' OR taikhoan.tendangnhap LIKE '%" . $kyw . "%')";
         }
         $query .=" GROUP BY chitietdonhang.iddonhang ORDER BY iddh desc";
         return pdo_query($query);
@@ -71,6 +82,10 @@
         $query="SELECT COUNT(*) FROM giohang WHERE idtaikhoan=".$idtaikhoan;
         return pdo_query_one($query);
     }
+    function count_donhang(){
+        $query="SELECT COUNT(*) FROM donhang";
+        return pdo_query_one($query);
+    }
     function mua_hang($idtaikhoan,$hovatennhan,$ngaydathang,$diachinhan,$sodienthoainhan,$phuongthuctt){
         $query="INSERT INTO `donhang`(`idtaikhoan`, `hovatennhan`, `ngaydathang`, `diachinhan`, `sodienthoainhan`, `phuongthuctt`) 
         VALUES ('$idtaikhoan','$hovatennhan','$ngaydathang','$diachinhan','$sodienthoainhan','$phuongthuctt')";
@@ -79,5 +94,27 @@
     function insert_chitietdonhang($iddonhang,$idsanpham,$soluong,$dongia,$thanhtien){
         $query="INSERT INTO `chitietdonhang`(`iddonhang`, `idsanpham`, `soluong`, `dongia`, `thanhtien`) VALUES ('$iddonhang','$idsanpham','$soluong','$dongia','$thanhtien')";
         pdo_execute($query);
+    }
+    function load_all_dh($idtaikhoan,$trangthai){
+        $query="SELECT chitietdonhang.id, chitietdonhang.iddonhang, chitietdonhang.idsanpham, chitietdonhang.soluong, chitietdonhang.dongia, chitietdonhang.thanhtien,
+        donhang.id as iddh, donhang.idtaikhoan, donhang.hovatennhan, donhang.ngaydathang, donhang.diachinhan, donhang.sodienthoainhan, donhang.phuongthuctt, donhang.trangthai,
+        sanpham.id as idsp, sanpham.iddm, sanpham.tensp, sanpham.giakm, sanpham.image, sanpham.khuyenmai FROM chitietdonhang 
+        INNER JOIN donhang ON chitietdonhang.iddonhang=donhang.id
+        INNER JOIN sanpham ON chitietdonhang.idsanpham=sanpham.id  WHERE donhang.idtaikhoan='$idtaikhoan'";
+        if($trangthai==0){
+            $query .=" AND donhang.trangthai='$trangthai'";
+        }else if($trangthai==1){
+            $query .=" AND donhang.trangthai='4' OR donhang.trangthai='5'";
+        }else if($trangthai==2){
+            $query .=" AND donhang.trangthai='$trangthai'";
+        }else if($trangthai==3){
+            $query .=" AND donhang.trangthai='$trangthai'";
+        }else if($trangthai==4){
+            $query .=" AND donhang.trangthai='$trangthai'";
+        }
+        else if($trangthai==5){
+            $query .=" AND donhang.trangthai='$trangthai'";
+        }
+        return pdo_query($query);
     }
 ?>

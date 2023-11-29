@@ -37,9 +37,11 @@
                             <?php
                             foreach ($listdh as $dh) {
                                 extract($dh);
-                                if($giaohang==0) $giaohang="Đơn hàng mới !";
-                                else if($giaohang==1) $giaohang="Đang giao !";
-                                else $giaohang="Đã giao !";
+
+                                if($trangthai==2) $trangthai="Đơn hàng mới !";
+                                else if($trangthai==3) $trangthai="Đang giao !";
+                                else if($trangthai==4) $trangthai="Đã giao !";
+
                                 echo '<tr>
                                         <td class="text-center align-middle"><input type="checkbox" name="select[]" id="" value="'.$iddh.'"></td>
                                         <td class="col-1 align-middle">DCM-'.$iddh.'</td>
@@ -51,7 +53,7 @@
                                         </td>
                                         <td class="text-center align-middle">'.$soluongct.'</td>
                                         <td  class="col-2 align-middle">'.number_format($thanhtien, 0, ',', '.').'₫</td>
-                                        <td  class="col-2 align-middle">'.$giaohang.'</td>
+                                        <td  class="col-2 align-middle">'.$trangthai.'</td>
                                         <td class="col-2 align-middle">'.$ngaydathang.'</td>
                                         <td class="col-2 align-middle"><a href="?act=suadh&id='.$iddh.'"><button type="button" class="btn btn-secondary btn-sm">Cập nhật</button></a> | 
                                             <a href="?act=xoadh&id='.$iddh.'"><button type="button" class="btn btn-secondary btn-sm">Hủy</button></a></td>

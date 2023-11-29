@@ -15,10 +15,10 @@
             </div>
             <div class="mb-3">
                 <label for="sel1">Trạng thái giao hàng</label>
-                <select class="form-control" id="sel1" name="giaohang">
-                    <option <?= ($giaohang=="0")?'selected':'' ?> value="0">Đơn hàng mới</option>
-                    <option <?= ($giaohang=="1")?'selected':'' ?> value="1">Đang giao</option>
-                    <option <?= ($giaohang=="2")?'selected':'' ?> value="2">Đã giao</option>
+                <select class="form-control" id="sel1" name="trangthai">
+                    <option <?= ($trangthai=="2")?'selected':'' ?> value="2">Đơn hàng mới</option>
+                    <option <?= ($trangthai=="3")?'selected':'' ?> value="3">Đang giao</option>
+                    <option <?= ($trangthai=="4")?'selected':'' ?> value="4">Đã giao</option>
                 </select>
             </div>
             <div>

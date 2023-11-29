@@ -11,7 +11,10 @@ include "../model/taikhoan.php";
 include "../model/binhluan.php";
 include "../model/donhang.php";
 include "header.php";
-
+$countdh=count_donhang();
+$countbl=count_bl();
+$counttk=count_tk();
+$tongluotxem=sum_luotxem();
 if(isset($_GET['act'])&&($_GET['act']!="")){
     $act=$_GET['act'];
     switch ($act) {
@@ -420,7 +423,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             }else{
                 $kyw="";
             }
-            $listdh=load_all_ctdh($kyw,1);
+            $listdh=load_all_ctdh($kyw);
             include "donhang/list.php";
             break;
         case 'kiemduyet':
@@ -438,13 +441,13 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             }else{
                 $kyw="";
             }
-            $listdh=load_all_ctdh($kyw,0);
+            $listdh=load_all_duyetdon($kyw);
             include "donhang/kiemduyet.php";
             break;
         case 'duyetdon':
             if(isset($_GET['id'])&&($_GET['id']!="")){
                 $id=$_GET['id'];
-                update_donhang(1,0,$id);
+                update_donhang(2,$id);
                 header("location:?act=kiemduyet");
             }
             include "donhang/kiemduyet.php";
@@ -455,13 +458,13 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $dh=load_one_dh($id);
                 if($dh){
                     $id=$dh['id'];
-                    $giaohang=$dh['giaohang'];
+                    $trangthai=$dh['trangthai'];
                 }
             }
             if(isset($_POST['submit'])){
                 $id=$_POST['id'];
-                $giaohang=$_POST['giaohang'];
-                update_donhang(1,$giaohang,$id);
+                $trangthai=$_POST['trangthai'];
+                update_donhang($trangthai,$id);
                 header("location:?act=listdh");
             }
             include "donhang/update.php";

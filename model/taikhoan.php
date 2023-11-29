@@ -45,4 +45,8 @@ function quenmatkhau($email , $tendangnhap){
     $query="SELECT * FROM taikhoan WHERE email='$email' AND tendangnhap='$tendangnhap'";
     return pdo_query_one($query);
 }
+function count_tk(){
+    $query="SELECT COUNT(*) FROM taikhoan";
+    return pdo_query_one($query);
+}
 ?>

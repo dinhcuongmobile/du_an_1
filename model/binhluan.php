@@ -25,4 +25,8 @@ function delete_bl($id){
     $query="DELETE FROM binhluan WHERE id='$id'";
     pdo_execute($query);
 }
+function count_bl(){
+    $query="SELECT COUNT(*) FROM binhluan";
+    return pdo_query_one($query);
+}
 ?>

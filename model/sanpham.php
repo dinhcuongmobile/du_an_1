@@ -106,4 +106,8 @@ function giasp_max(){
     $query="SELECT MAX(giasp) AS giaspmax FROM sanpham";
     return pdo_query_one($query);
 }
+function sum_luotxem(){
+    $query="SELECT SUM(luotxem) FROM sanpham";
+    return pdo_query_one($query);
+}
 ?>
