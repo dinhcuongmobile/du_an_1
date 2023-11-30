@@ -1,7 +1,7 @@
  <!-- Begin Page Content -->
  <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800 mb-5">Danh sách đơn hàng</h1>
-    <form action="?act=listdh" method="post">
+    <h1 class="h3 mb-2 text-gray-800 mb-5">Duyệt đơn hàng</h1>
+    <form action="?act=dagiao" method="post">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <button type="button" class="btn btn-secondary btn-sm" onclick="chontatca()">Chọn tất cả</button>
@@ -30,17 +30,13 @@
                                 <th>Giá trị đơn hàng</th>
                                 <th>Tình trạng đơn hàng</th>
                                 <th>Ngày đặt hàng</th>
-                                <th>Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             foreach ($listdh as $dh) {
                                 extract($dh);
-
-                                if($trangthai==2) $trangthai="Đơn hàng mới !";
-                                else if($trangthai==3) $trangthai="Đang giao !";
-
+                                if($trangthai==4) $trangthai="Đã giao !";
                                 echo '<tr>
                                         <td class="text-center align-middle"><input type="checkbox" name="select[]" id="" value="'.$iddh.'"></td>
                                         <td class="col-1 align-middle">DCM-'.$iddh.'</td>
@@ -54,8 +50,6 @@
                                         <td  class="col-2 align-middle">'.number_format($thanhtien, 0, ',', '.').'₫</td>
                                         <td  class="col-2 align-middle">'.$trangthai.'</td>
                                         <td class="col-2 align-middle">'.$ngaydathang.'</td>
-                                        <td class="col-2 align-middle"><a href="?act=suadh&id='.$iddh.'"><button type="button" class="btn btn-secondary btn-sm">Cập nhật</button></a> | 
-                                            <a href="?act=xoadh&id='.$iddh.'"><button type="button" class="btn btn-secondary btn-sm">Hủy</button></a></td>
                                     </tr>';
                             }
                             ?>
@@ -63,8 +57,7 @@
                     </table> 
                 </div>
             </div>
-        </form> 
-    </div>
-    
+        </div>
+    </form>
 </div>
 <!-- /.container-fluid -->

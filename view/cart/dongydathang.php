@@ -96,25 +96,24 @@ if(!$_SESSION['user']){
                                     </div>
                                     <div class="your-order-info order-total">
                                         <ul>
-                                            <li>Thành tiền <span><?=number_format($tongthanhtoan, 0, ',', '.')?>đ</span></li>
+                                            <li>Thành tiền <span id="vnp_thanhcong"><?=number_format($tongthanhtoan, 0, ',', '.')?>đ</span></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="payment-method">
                                     <div class="pay-top sin-payment">
-                                        <input id="payment_method_1" class="input-radio" type="radio" value="1" checked="checked" name="phuongthuctt">
-                                        <label for="payment_method_1">CHUYỂN KHOẢN TRỰC TIẾP</label>
-                                        <div class="payment-box payment_method_bacs">
-                                            <p>Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi.
-                                             Vui lòng sử dụng ID đơn hàng của bạn làm tài liệu tham khảo thanh toán.</p>
-                                        </div>
-                                    </div>
-                                    <div class="pay-top sin-payment">
-                                        <input id="payment-method-3" class="input-radio" type="radio" value="0" name="phuongthuctt">
+                                        <input id="payment-method-3" class="input-radio" type="radio" value="0" name="phuongthuctt" checked>
                                         <label for="payment-method-3">THANH TOÁN KHI GIAO HÀNG</label>
                                         <div class="payment-box payment_method_bacs">
                                             <p>Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi.
                                                 Vui lòng sử dụng ID đơn hàng của bạn làm tài liệu tham khảo thanh toán.</p>
+                                        </div>
+                                    </div>
+                                    <div class="pay-top sin-payment">
+                                        <input id="payment_method_1" class="input-radio" type="radio" value="1" name="phuongthuctt">
+                                        <label for="payment_method_1">CHUYỂN KHOẢN</label>
+                                        <div class="payment-box payment_method_bacs">
+                                            <a href="../assets/vnpay_php/vnpay_pay.php" style="text-decoration:underline; color:blue;">Chuyển hướng tới trang thanh toán</a>
                                         </div>
                                     </div>
                                 </div>

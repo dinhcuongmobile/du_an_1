@@ -14,6 +14,7 @@
     <!-- Custom fonts for this template -->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="../assets/images/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -123,17 +124,32 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="?act=listdh">Danh sách đơn hàng</a>
                         <a class="collapse-item" href="?act=kiemduyet">Kiểm duyệt</a>
+                        <a class="collapse-item" href="?act=dagiao">Đã giao</a>
                     </div>
                 </div>
             </li>
             
             <!-- Nav Item - Tables -->
-            <li class="nav-item mb-3">
+            <li class="nav-item">
                 <a class="nav-link" href="?act=listbl">
                     <i class="fas fa-fw fa-comment"></i>
                     <span>Quản lý bình luận</span></a>
             </li>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item  mb-3">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
+                    aria-expanded="true" aria-controls="collapseSix">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Thống kê</span>
+                </a>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="?act=bieudo">Biểu đồ</a>
+                        <a class="collapse-item" href="?act=danhsachthongke">Danh sách</a>
+                    </div>
+                </div>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

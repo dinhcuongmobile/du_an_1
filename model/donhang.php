@@ -65,7 +65,19 @@
          SUM(chitietdonhang.soluong) as soluongct, SUM(chitietdonhang.thanhtien) as thanhtien,
          taikhoan.id as idtk, taikhoan.hovaten, taikhoan.tendangnhap, taikhoan.matkhau, taikhoan.email, taikhoan.sodienthoai, taikhoan.diachi FROM chitietdonhang 
          INNER JOIN donhang ON donhang.id=chitietdonhang.iddonhang 
-         INNER JOIN taikhoan ON donhang.idtaikhoan=taikhoan.id WHERE donhang.trangthai IN ('2', '3', '4')";
+         INNER JOIN taikhoan ON donhang.idtaikhoan=taikhoan.id WHERE donhang.trangthai IN ('2', '3')";
+        if($kyw!=''){
+            $query .=" AND (donhang.diachinhan LIKE '%" . $kyw . "%' OR donhang.sodienthoainhan LIKE '%" . $kyw . "%' OR taikhoan.tendangnhap LIKE '%" . $kyw . "%')";
+        }
+        $query .=" GROUP BY chitietdonhang.iddonhang ORDER BY iddh desc";
+        return pdo_query($query);
+    }
+    function dagiao($kyw){
+        $query="SELECT donhang.id as iddh, donhang.idtaikhoan, donhang.hovatennhan, donhang.ngaydathang, donhang.diachinhan, donhang.sodienthoainhan, donhang.phuongthuctt, donhang.trangthai,
+         SUM(chitietdonhang.soluong) as soluongct, SUM(chitietdonhang.thanhtien) as thanhtien,
+         taikhoan.id as idtk, taikhoan.hovaten, taikhoan.tendangnhap, taikhoan.matkhau, taikhoan.email, taikhoan.sodienthoai, taikhoan.diachi FROM chitietdonhang 
+         INNER JOIN donhang ON donhang.id=chitietdonhang.iddonhang 
+         INNER JOIN taikhoan ON donhang.idtaikhoan=taikhoan.id WHERE donhang.trangthai ='4'";
         if($kyw!=''){
             $query .=" AND (donhang.diachinhan LIKE '%" . $kyw . "%' OR donhang.sodienthoainhan LIKE '%" . $kyw . "%' OR taikhoan.tendangnhap LIKE '%" . $kyw . "%')";
         }
@@ -115,6 +127,27 @@
         else if($trangthai==5){
             $query .=" AND donhang.trangthai='$trangthai'";
         }
+        return pdo_query($query);
+    }
+    function load_all_thongke(){
+        $query="SELECT * FROM thongke WHERE ngaydat >= DATE_SUB(NOW(), INTERVAL 365 DAY)";
+        return pdo_query($query);
+    }
+    function update_thongke($doanhthu,$soluongban,$ngaydat){
+        $query="UPDATE thongke SET donhang=(donhang+1),doanhthu=(doanhthu+'$doanhthu'),soluongban=(soluongban+'$soluongban') WHERE ngaydat='$ngaydat'";
+        pdo_execute($query);
+    }
+    function insert_thongke($doanhthu,$soluongban,$ngaydat){
+        $query="INSERT INTO `thongke`(`ngaydat`, `donhang`, `doanhthu`, `soluongban`) VALUES ('$ngaydat',1,'$doanhthu','$soluongban')";
+        pdo_execute($query);
+    }
+    function load_dhtk($iddh){
+        $query="SELECT * FROM chitietdonhang WHERE iddonhang='$iddh'";
+        return pdo_query($query);
+    }
+    function load_all_checktk(){
+        $datenow=date('Y-m-d');
+        $query="SELECT * FROM thongke WHERE ngaydat='$datenow'";
         return pdo_query($query);
     }
 ?>

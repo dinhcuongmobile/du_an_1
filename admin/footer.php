@@ -41,7 +41,6 @@
             </div>
         </div>
     </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -59,7 +58,6 @@
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
     <script src="../assets/js/cuong.js"></script>
-
 </body>
 
 </html>

@@ -6,7 +6,7 @@
             <div class="card-header py-3">
                 <button type="button" class="btn btn-secondary btn-sm" onclick="chontatca()">Chọn tất cả</button>
                 <button type="button" class="btn btn-secondary btn-sm" onclick="bochontatca()">Bỏ chọn tất cả</button>
-                <button type="submit" name="xoacacmucchon" class="btn btn-secondary btn-sm">Xóa các mục đã chọn</button>
+                <button type="submit" name="xoacacmucchon" class="btn btn-secondary btn-sm">Ẩn các mục đã chọn</button>
                 <div class="float-right">
                     <div class="input-group">
                         <input type="text" class="form-control" name="kyw" placeholder="Tìm kiếm...">
@@ -43,7 +43,7 @@
                                             <td class="col-3 align-middle">'.$tensp.'</td>
                                             <td  class="col-3 align-middle">'.$noidung.'</td>
                                             <td class="col-2 align-middle">'.$ngaybinhluan.'</td>
-                                            <td class="col-1 align-middle"><a href="?act=xoabl&id='.$id.'"><button type="button" class="btn btn-secondary btn-sm">Xóa</button></a></td>
+                                            <td class="col-1 align-middle"><a href="?act=xoabl&id='.$id.'"><button type="button" class="btn btn-secondary btn-sm">Ẩn</button></a></td>
                                         </tr>';
                                 }
                             ?>

@@ -452,6 +452,24 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             }
             include "donhang/kiemduyet.php";
             break;
+        case 'dagiao':
+            if(isset($_POST['xoacacmucchon'])){
+                if(isset($_POST['select'])){
+                    $ids=$_POST['select'];
+                    foreach ($ids as $id) {
+                        delete_chitietdh($id);
+                        delete_donhang($id);
+                    }
+                }
+            }
+            if(isset($_POST['search'])){
+                $kyw=$_POST['kyw'];
+            }else{
+                $kyw="";
+            }
+            $listdh=dagiao($kyw);
+            include "donhang/dagiao.php";
+            break;
         case 'suadh':
             if(isset($_GET['id'])&&($_GET['id']!="")){
                 $id=$_GET['id'];
@@ -465,7 +483,24 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $id=$_POST['id'];
                 $trangthai=$_POST['trangthai'];
                 update_donhang($trangthai,$id);
-                header("location:?act=listdh");
+                if($_POST['trangthai']==4){
+                    $doanhthu=0;
+                    $soluongban=0;
+                    $dhthongke=load_dhtk($id);
+                    foreach ($dhthongke as $thongke) {
+                        extract($thongke);
+                        $doanhthu+=$thanhtien;
+                        $soluongban+=$soluong;
+                    }
+                    $listthongke=load_all_checktk();
+                    if($listthongke!=0){
+                        update_thongke($doanhthu,$soluongban,date('Y-m-d'));
+                        
+                    }else if($listthongke==0){
+                        insert_thongke($doanhthu,$soluongban,date('Y-m-d'));
+                    }
+                }
+                header("location: ?act=listdh");
             }
             include "donhang/update.php";
             break;
@@ -485,6 +520,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 
             }
             break;
+        //binhluan
         case 'listbl':
             if(isset($_POST['xoacacmucchon'])){
                 if(isset($_POST['select'])){
@@ -514,6 +550,15 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             $listbl=load_all_bl("");
             include "binhluan/list.php";
             break;
+        //thongke
+        case 'bieudo': 
+            $listthongke=load_all_thongke();
+            include "thongke/bieudo.php";
+            break; 
+        case 'danhsachthongke': 
+            $listthongke=load_all_thongke();
+            include "thongke/list.php";
+            break;   
         default:
         include "home.php";
             break;
