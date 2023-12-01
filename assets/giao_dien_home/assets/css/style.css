@@ -63,6 +63,7 @@
 /*tu css*/
 .donmua nav ul {
   display: flex;
+  padding-left: 40px;
 }
 .donmua nav ul li{
   margin-right: 15px;

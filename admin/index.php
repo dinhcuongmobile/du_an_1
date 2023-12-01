@@ -483,7 +483,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $id=$_POST['id'];
                 $trangthai=$_POST['trangthai'];
                 update_donhang($trangthai,$id);
-                if($_POST['trangthai']==4){
+                if($trangthai==4){
                     $doanhthu=0;
                     $soluongban=0;
                     $dhthongke=load_dhtk($id);
@@ -492,11 +492,11 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                         $doanhthu+=$thanhtien;
                         $soluongban+=$soluong;
                     }
-                    $listthongke=load_all_checktk();
-                    if($listthongke!=0){
+                    $checkthongke=load_all_checktk();
+                    if($checkthongke!=0){
                         update_thongke($doanhthu,$soluongban,date('Y-m-d'));
                         
-                    }else if($listthongke==0){
+                    }else{
                         insert_thongke($doanhthu,$soluongban,date('Y-m-d'));
                     }
                 }

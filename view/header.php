@@ -134,7 +134,7 @@
                                     <a class="cart-active" href="#"><i class="pe-7s-shopbag"></i>
                                         <?php
                                             if(isset($countgh)){
-                                                echo '<span class="product-count bg-black">'.$countgh['COUNT(*)'].'</span>';
+                                                echo '<span id="countgh" class="product-count bg-black">'.$countgh['COUNT(*)'].'</span>';
                                             }
                                         ?>
                                         
@@ -155,7 +155,7 @@
                 <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
                 <div class="cart-content">
                     <h3>Giỏ hàng</h3>
-                    <ul>
+                    <ul id="minicartajax">
                         <?php
                         $tongthanhtoan=0;
                         if(isset($minicart)){

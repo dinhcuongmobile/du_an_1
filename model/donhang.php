@@ -18,6 +18,10 @@
         $query="DELETE FROM chitietdonhang WHERE iddonhang='$iddonhang'";
         pdo_execute($query);
     }
+    function huydonhang($id){
+        $query="DELETE FROM chitietdonhang WHERE id='$id'";
+        pdo_execute($query);
+    }
     function delete_donhang($iddonhang){
         $query="DELETE FROM donhang WHERE id='$iddonhang'";
         pdo_execute($query);
@@ -30,16 +34,16 @@
         $query="UPDATE `donhang` SET `trangthai`='$trangthai' WHERE id=".$iddonhang;
         pdo_execute($query);
     }
-    // function update_chitietdh($trangthai,$giaohang,$iddonhang){
-    //     $query="UPDATE `chitietdonhang` SET `trangthai`='3', `giaohang`='$giaohang' WHERE id=".$iddonhang;
-    //     pdo_execute($query);
-    // }
     function load_one_dh($id){
         $query="SELECT * FROM donhang WHERE id=".$id;
         return pdo_query_one($query);
     }
     function load_one_gh($idsanpham){
         $query="SELECT * FROM giohang WHERE idsanpham=".$idsanpham;
+        return pdo_query_one($query);
+    }
+    function load_ctdh_delete($iddh){
+        $query="SELECT COUNT(*) FROM chitietdonhang WHERE iddonhang=".$iddh;
         return pdo_query_one($query);
     }
     function load_all_giohang($idtaikhoan){
@@ -95,7 +99,7 @@
         return pdo_query_one($query);
     }
     function count_donhang(){
-        $query="SELECT COUNT(*) FROM donhang";
+        $query="SELECT COUNT(*) FROM donhang WHERE trangthai='1' OR trangthai='2' OR trangthai='3'";
         return pdo_query_one($query);
     }
     function mua_hang($idtaikhoan,$hovatennhan,$ngaydathang,$diachinhan,$sodienthoainhan,$phuongthuctt){
@@ -147,7 +151,7 @@
     }
     function load_all_checktk(){
         $datenow=date('Y-m-d');
-        $query="SELECT * FROM thongke WHERE ngaydat='$datenow'";
-        return pdo_query($query);
+        $query="SELECT ngaydat FROM thongke WHERE ngaydat='$datenow'";
+        return pdo_query_one($query);
     }
 ?>

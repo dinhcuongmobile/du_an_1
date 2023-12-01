@@ -35,20 +35,14 @@
                                     </li>
                                 </ul>
                             </div>
-                        <form action="?act=themgiohang" method="post">
                             <div class="product-details-action-wrap">
                                 <div class="single-product-cart btn-hover">
                                 <?php
                                     extract($sanpham);
                                 ?>
-                                    <form action="?act=themgiohang" method="post">
-                                        <input type="hidden" name="id" value="<?=$id?>">
-                                        <input type="hidden" name="giasp" value="<?=$giakm?>">
-                                        <button type="submit" name="themgiohang" class="product-action-btn-2 theme-color" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
-                                    </form>
+                                    <button onclick="themgiohang(<?= $id; ?>,<?= $giakm; ?>)" class="product-action-btn-2 theme-color" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
                                 </div>
                             </div>
-                        </form>
                         </div>
                     </div>
                 </div>
@@ -67,7 +61,7 @@
                         </div>
                     </div>
                     <div id="des-details3" class="tab-pane">
-                        <div class="review-wrapper">
+                        <div id="loadbinhluan" class="review-wrapper">
                             <?php extract($dembl);?>
                             <h3><?=$countbl?> đánh giá</h3>
                             <?php
@@ -86,31 +80,28 @@
                                 ?>
                             
                         </div>
-                        <?php
-                            if(isset($_SESSION['user'])){
-                                extract($sanpham);
-                                echo '<div class="ratting-form-wrapper">
+                        <?php if(isset($_SESSION['user'])) : ?>
+                                <?php extract($sanpham); ?>
+                                    <div class="ratting-form-wrapper">
                                         <div class="ratting-form">
-                                            <form action="?act=chitietsp&id='.$id.'" method="post">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="rating-form-style mb-15">
                                                             <label>Đánh giá của bạn <span>*</span></label>
-                                                            <textarea name="noidung"></textarea>
-                                                            <p style="color:red;">'.$noidungErr.'</p>
+                                                            <textarea id="noidung"></textarea>
+                                                            <p style="color:red;"><?= $noidungErr; ?></p>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="form-submit">
-                                                            <input type="submit" name="binhluanok" value="Gửi">
+                                                            <input id="ngaybinhluan" type="hidden" value="<?= date('Y-m-d'); ?>">
+                                                            <button class="btn btn-dark" onclick="binhluanjs(<?= $id ?>,'<?= $_SESSION['user']['hovaten'] ?>')">Gửi</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form>
                                         </div>
-                                    </div>';
-                            }
-                        ?>
+                                    </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -120,6 +111,7 @@
                 <div class="section-title-2 st-border-center text-center mb-75" data-aos="fade-up" data-aos-delay="200">
                     <h2>Sản phẩm liên quan</h2>
                 </div>
+                
                 <div class="related-product-active swiper-container">
                     <div class="swiper-wrapper">
                         <?php
@@ -135,13 +127,11 @@
                                                     <span>'.$khuyenmai.'%</span>
                                                 </div>
                                                 <div class="product-action-2-wrap">
-                                                    <form action="?act=themgiohang" method="post">
-                                                        <input type="hidden" name="id" value="'.$id.'">
-                                                        <input type="hidden" name="tensp" value="'.$tensp.'">
-                                                        <input type="hidden" name="image" value="'.$image.'">
-                                                        <input type="hidden" name="giasp" value="'.$giakm.'">
-                                                        <button type="submit" name="themgiohang" class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
-                                                    </form>
+                                                    <input type="hidden" name="id" value="'.$id.'">
+                                                    <input type="hidden" name="tensp" value="'.$tensp.'">
+                                                    <input type="hidden" name="image" value="'.$image.'">
+                                                    <input type="hidden" name="giasp" value="'.$giakm.'">
+                                                    <button data-id="'.$id.'" onclick="themgiohang('.$id.','.$giakm.')" class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
                                                 </div>
                                             </div>
                                             <div class="product-content">

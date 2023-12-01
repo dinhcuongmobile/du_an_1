@@ -187,7 +187,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             break;
         case 'themgiohang':
             if(isset($_SESSION['user'])){
-                if (isset($_POST['themgiohang'])) {
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $idsanpham = $_POST['id'];
                     $giasp = $_POST['giasp'];
                     $soluong = 1;
@@ -321,14 +321,13 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     $luotxem=$sanpham['luotxem']+1;
                     update_luotxem_sp($sanpham['id'],$luotxem);
                     $noidungErr="";
-                    if(isset($_POST['binhluanok'])){
+                    if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $noidung=$_POST['noidung'];
                         $ngaybinhluan=date('Y-m-d');
                         if(empty(trim($noidung))){
                             $noidungErr="Vui lòng nhập nội dung bình luận trước khi gửi !";
                         }else{
                             insert_bl($_SESSION['user']['id'],$sanpham['id'],$noidung,$ngaybinhluan);
-                            header("location: {$_SERVER['HTTP_REFERER']}");
                         }
                     }
                     $splq = load_sp_lq($sanpham['iddm']);
@@ -352,8 +351,12 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             break;
         case "huydonhang":
             if(isset($_SESSION['user'])){
-                if(isset($_GET['id'])&&($_GET['id']!="")){
-                    
+                if(isset($_POST['huydonhang'])){
+                    $iddh=$_POST['iddh'];
+                    $idct=$_POST['idct'];
+                    $ctdh=load_ctdh_delete($iddh);
+                    huydonhang($idct);
+                    if($ctdh['COUNT(*)']==1) delete_donhang($iddh);
                     header("location: ?act=lichsumuahang");
                 }
             }else{header("location: ?act=trangchu");}
