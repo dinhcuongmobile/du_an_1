@@ -33,6 +33,7 @@
                                                         <td class="cart-quality">
                                                             <div class="product-quality">
                                                                 <input data-id="'.$id.'" type="hidden"  name="id" value="'.$id.'">
+                                                                <input data-id="'.$id.'" type="hidden"  name="idsp" value="'.$idsanpham.'">
                                                                 <input type="hidden" name="giakm" value="'.$giakm.'">
                                                                 <input data-id="'.$id.'" type="hidden" class="thanhtienjs" name="thanhtien" value="'.$thanhtien.'">
                                                                 <div  class="dec qtybutton">-</div>
@@ -71,7 +72,7 @@
                 <div class="grand-total-wrap">
                     <div class="grand-total-content">
                         <div class="grand-total">
-                            <h4>Tổng thanh toán <span id="tongthanhtoan"><?=number_format($tongthanhtoan, 0, ',', '.');?>đ</span></h4>
+                            <h4>Tổng thanh toán <span id="tongthanhtoan"><?=number_format($tongthanhtoan, 0, ',', '.');?> đ</span></h4>
                         </div>
                     </div>
                     <div class="grand-total-btn btn-hover">

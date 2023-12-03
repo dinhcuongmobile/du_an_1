@@ -183,17 +183,12 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             break;
         /* End tai khoan */
         case 'giohang':
-            // if($_SERVER["REQUEST_METHOD"] == "POST"){
-            //     $id=$_POST['id'];
-            //     $thanhtien=$_POST['thanhtien'];
-            //     $soluong=$_POST['soluong'];
-            //     foreach ($listgh as $giohang) {
-            //         if ($id == $giohang['idsanpham']) {
-            //             update_giohang(5,9909,$id);
-            //             break;
-            //         }
-            //     }
-            // }
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id=$_POST['id'];
+                $thanhtien=$_POST['thanhtien'];
+                $soluong=$_POST['soluong'];
+                update_giohang($soluong,$thanhtien,$id);
+            }
             include "../view/cart/giohang.php";
             break;
         case 'themgiohang':

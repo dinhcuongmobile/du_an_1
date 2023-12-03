@@ -224,35 +224,47 @@
     $(".qtybutton").on("click", function() {
         var $button = $(this);
         var oldValue = $button.parent().find("input[name='qtybutton']").val();
-        var id = $button.parent().find("input[name='id']").val();
         var oldgiakm = $button.parent().find("input[name='giakm']").val();
         var oldthanhtien = $button.parent().find("input[name='thanhtien']");
         var thanhtienText=$button.parent().parent().parent().find(".product-total span");
         if ($button.text() === "+") {
             var newVal = parseFloat(oldValue) + 1;
             //code vao day
-            oldthanhtien.val(parseInt(oldgiakm)*parseFloat(newVal));
-            var thanhtien=oldthanhtien.val();
-            thanhtienText.text((parseInt(oldgiakm)*parseFloat(newVal)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
-            tongthanhtoan();
-            
             //end code
-
         } else {
             if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
                 //code vao day
-                oldthanhtien.val(parseInt(oldgiakm)*parseFloat(newVal));
-                var thanhtien=oldthanhtien.val();
-                thanhtienText.text((parseInt(oldgiakm)*parseFloat(newVal)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
-                tongthanhtoan();
                 //end code
             } else {
                 newVal = 1;
-                tongthanhtoan();
             }
         }
+        oldthanhtien.val(parseInt(oldgiakm)*parseFloat(newVal));
+        thanhtienText.text((parseInt(oldgiakm)*parseFloat(newVal)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
         $button.parent().find("input[name='qtybutton']").val(newVal);
+        tongthanhtoan();
+        var idsp = $button.parent().find("input[name='idsp']").val();
+        var soluong=$button.parent().find("input[name='qtybutton']").val();
+        var thanhtien=$button.parent().find("input[name='thanhtien']").val();
+        console.log(idsp,soluong,thanhtien);
+        $.ajax({
+            type: "POST",
+            url: "index.php?act=giohang",
+            data: {
+                id: idsp,
+                soluong: soluong,
+                thanhtien: thanhtien
+            },
+            success: function(response) {
+                
+              },
+              error: function(error) {
+                console.error('Lỗi: ', error);
+                alert('Có lỗi xảy ra khi gửi bình luận');
+              }
+        });
+        
     });
     function tongthanhtoan(){
         var tong=0;
