@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 03, 2023 lúc 06:40 AM
+-- Thời gian đã tạo: Th12 03, 2023 lúc 04:36 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -142,6 +142,16 @@ CREATE TABLE `giohang` (
   `thanhtien` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `giohang`
+--
+
+INSERT INTO `giohang` (`id`, `idtaikhoan`, `idsanpham`, `soluong`, `thanhtien`) VALUES
+(239, 1, 25, 2, 12784000),
+(240, 1, 27, 2, 36784000),
+(241, 1, 26, 3, 98376000),
+(243, 24, 26, 1, 32792000);
+
 -- --------------------------------------------------------
 
 --
@@ -185,8 +195,8 @@ INSERT INTO `sanpham` (`id`, `iddm`, `tensp`, `giasp`, `giakm`, `image`, `soluon
 (22, 3, 'Xiaomi POCO X5 5G 8GB 256GB', 7490000, 5992000, '19.webp', 100, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nKhông gian gaming đúng chuẩn - Màn hình lớn 6.67\" AMOLED DotDisplay và 120Hz cho khung hình sắc nét và chuyển động mượt mà\r\nChiến game dài lâu, không lo thiếu pin - Viên pin dung lượng 5000mAh cho thời gian xem video liên tục đến 21 giờ\r\nHiệu năng chiến binh mạnh mẽ - Snapdragon® 695 cùng tốc độ 5G giúp bạn thoải mái chiến game và bắt kịp mọi trận đấu\r\nThiết kế chuẩn gaming - Phong cách độc đáo với 3 phiên bản màu sắc thời thượng phù hợp với bất kể cá tính nào', 0),
 (23, 4, 'OPPO Reno8 T 4G 256GB', 8490000, 7216500, '20.webp', 100, 0, 15, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế thời thượng - Tràn viền, mỏng nhẹ đặc biệt phù hợp với các bạn trẻ, yêu khám phá xu hướng mới\r\nGiải trí ấn tượng - Màn hình 16 triệu màu, tần số quét 90Hz ấn tượng\r\nChụp ảnh chân dung chuyên nghiệp - Camera 100MP sắc nét đi kèm thuật toán AI\r\nPin dùng cả ngày - Viên pin lớn 5000 mAh, sạc siêu nhanh đến 67 W', 0),
 (24, 4, 'OPPO A77s', 6290000, 5032000, '21.webp', 90, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nNâng tầm trải nghiệm thị giác - Tấm nền IPS LCD với kích thước 6.56 inch, tần số quét 90Hz\r\nNăng lượng tiếp sức cho cả ngày dài - 5000 mAh, sạc siêu nhanh SuperVOOC 33 W\r\nLong lanh từ trong ra ngoài với thiết kế OPPO Glow, mặt lưng hoàn thiện từ thủy tinh hữu cơ\r\nTrải nghiệm ổn định mọi tác vụ - Chip Snapdragon 680 8, RAM 8 GB và khả năng mở rộng RAM', 2),
-(25, 4, 'OPPO Reno7 4G (8GB - 128GB)', 7990000, 6392000, '22.webp', 87, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nMàn hình chất lượng, thoả sức khám phá và giải trí - 6.43 inches, AMOLED, Full HD+\r\nCamera chất lượng với cảm biến thế hệ mới - Cụm 3 camera 64 MP, đa dạng chế độ chụp\r\nChiến game ổn định nhờ con chip mạnh mẽ - Snapdragon™ 680, RAM 8GB\r\nKhông lo gián đoạn với viên pin lớn 4500 mAh, sạc nhanh SUPERVOOCTM 33W', 13),
-(26, 2, 'Samsung Galaxy Z Fold5 12GB 256GB', 40990000, 32792000, '23.webp', 91, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế tinh tế với nếp gấp vô hình - Cải tiến nếp gấp thẩm mĩ hơn và gập không kẽ hở\r\nBền bỉ bất chấp mọi tình huống - Đạt chuẩn kháng bụi và nước IP68 cùng chất liệu nhôm Armor Aluminum giúp hạn chế cong và xước\r\nMở ra không gian giải trí cực đại với màn hình trong 7.6\"\" cùng bản lề Flex dẫn đầu công nghệ\r\nThoải mái sáng tạo mọi lúc - Bút Spen tiện dụng giúp bạn phác hoạ và ghi chép không cần đến sổ tay\r\nHiệu năng cân mọi tác vụ - Snapdragon® 8 Gen 2 for Galaxy xử lí mượt mà, đa nhiệm mượt mà', 812),
+(25, 4, 'OPPO Reno7 4G (8GB - 128GB)', 7990000, 6392000, '22.webp', 87, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nMàn hình chất lượng, thoả sức khám phá và giải trí - 6.43 inches, AMOLED, Full HD+\r\nCamera chất lượng với cảm biến thế hệ mới - Cụm 3 camera 64 MP, đa dạng chế độ chụp\r\nChiến game ổn định nhờ con chip mạnh mẽ - Snapdragon™ 680, RAM 8GB\r\nKhông lo gián đoạn với viên pin lớn 4500 mAh, sạc nhanh SUPERVOOCTM 33W', 14),
+(26, 2, 'Samsung Galaxy Z Fold5 12GB 256GB', 40990000, 32792000, '23.webp', 90, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế tinh tế với nếp gấp vô hình - Cải tiến nếp gấp thẩm mĩ hơn và gập không kẽ hở\r\nBền bỉ bất chấp mọi tình huống - Đạt chuẩn kháng bụi và nước IP68 cùng chất liệu nhôm Armor Aluminum giúp hạn chế cong và xước\r\nMở ra không gian giải trí cực đại với màn hình trong 7.6\"\" cùng bản lề Flex dẫn đầu công nghệ\r\nThoải mái sáng tạo mọi lúc - Bút Spen tiện dụng giúp bạn phác hoạ và ghi chép không cần đến sổ tay\r\nHiệu năng cân mọi tác vụ - Snapdragon® 8 Gen 2 for Galaxy xử lí mượt mà, đa nhiệm mượt mà', 812),
 (27, 2, 'Samsung Galaxy S23 8GB 128GB', 22990000, 18392000, '24.webp', 85, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nHiệu năng vượt trội với con chip hàng đầu Qualcomm - Phục vụ tốt nhu cầu đa nhiệm ngày của người dùng.\r\nTrang bị bộ 3 ống kính với camera chính 50MP - Đem lại khả năng quay video và chụp ra những bức ảnh tốt, hài hòa, sống động hơn.\r\nNâng cấp trải nghiệm với màn hình Dynamic AMOLED 2X - Phù hợp dùng để xem phim hay chơi các tựa game có nội dung hình ảnh đồ họa cao.\r\nSở hữu lối thiết kế sang trọng, đẳng cấp cùng các bảng màu sắc thời thượng, trẻ trung.', 850);
 
 -- --------------------------------------------------------
@@ -211,11 +221,11 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`id`, `hovaten`, `tendangnhap`, `matkhau`, `email`, `sodienthoai`, `diachi`, `role`) VALUES
-(1, 'Nguyễn Đình Cường', 'cuongsix2004', 'cuongsix2004', 'cuongndph38237@fpt.edu.vn', '0964426518', 'Phú Nghĩa, Chương Mỹ, Hà Nội', 1),
-(2, 'Nguyễn Thiện Giáp', 'thiengiap2004', 'thiengiap2004', 'giapntph38266@fpt.edu.vn', '0357864779', 'Hà Nội', 1),
-(3, 'Nguyễn Hồng Phúc', 'nguyenhongphuc', 'nguyenhongphuc', 'phucnh34678@fpt.edu.vn', '0389119333', 'Phú Thọ', 1),
-(4, 'Nguyễn Viết Sơn', 'sonchuche', 'sonchuche123', 'nguyenvietson@gmail.com', '0123456789', 'Hà Nội', 0),
-(24, 'Tống Hoàng Bách', 'tonghoangbach123', 'Bach1234', 'tonghoangbach@gmail.com', '0123456789', 'Bắc Giang', 0);
+(1, 'Nguyễn Đình Cường', 'cuongsix2004', 'Cuongsix2004', 'cuongndph38237@fpt.edu.vn', '0964426518', 'Phú Nghĩa, Chương Mỹ, Hà Nội', 1),
+(2, 'Nguyễn Thiện Giáp', 'thiengiap2004', 'Thiengiap2004', 'giapntph38266@fpt.edu.vn', '0357864779', 'Hà Nội', 1),
+(3, 'Nguyễn Hồng Phúc', 'nguyenhongphuc', 'Nguyenhongphuc', 'phucnh34678@fpt.edu.vn', '0389119333', 'Phú Thọ', 1),
+(4, 'Nguyễn Viết Sơn', 'sonchuche', 'Sonchuche123', 'nguyenvietson@gmail.com', '0123456789', 'Hà Nội', 0),
+(24, '', 'tonghoangbach123', 'Bach1234', 'tonghoangbach@gmail.com', '0123456789', 'Bắc Giang', 0);
 
 -- --------------------------------------------------------
 
@@ -236,6 +246,10 @@ CREATE TABLE `thongke` (
 --
 
 INSERT INTO `thongke` (`id`, `ngaydat`, `donhang`, `doanhthu`, `soluongban`) VALUES
+(3, '2023-10-24', 11, '110000000', 15),
+(4, '2023-11-26', 4, '48000000', 4),
+(5, '2023-11-28', 2, '30000000', 2),
+(6, '2023-11-29', 5, '100000000', 8),
 (7, '2023-11-30', 3, '90434000', 6),
 (11, '2023-12-01', 3, '69605000', 7),
 (12, '2023-12-02', 1, '65240000', 5),
@@ -336,7 +350,7 @@ ALTER TABLE `binhluan`
 -- AUTO_INCREMENT cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc`
@@ -348,13 +362,13 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=244;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
@@ -372,7 +386,7 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT cho bảng `thongke`
 --
 ALTER TABLE `thongke`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `tintuc`

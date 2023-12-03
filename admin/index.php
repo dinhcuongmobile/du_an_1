@@ -120,7 +120,6 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $khuyenmai=$_POST['khuyenmai'];
                 $mota=$_POST['mota'];
                 $danhmuc=$_POST['danhmuc'];
-                $giakm=$giasp*((100-$khuyenmai)/100);
                 $check=true;
                 if(empty(trim($tensp))){
                     $tenspErr="Vui lòng nhập tên sản phẩm !";
@@ -130,9 +129,10 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     $motaErr="Vui lòng nhập mô tả sản phẩm !";
                     $check=false;
                 }
-                if(empty($giasp)) $giasp=0;
+                if(empty($giasp)) $giasp=1;
                 if(empty($soluong)) $soluong=1;
                 if(empty($khuyenmai)) $khuyenmai=0;
+                $giakm=intval($giasp)*((100-intval($khuyenmai))/100);
                 if(empty($image)){
                     $check=false;
                     $imageErr="Vui lòng uploads file ảnh !";
@@ -184,15 +184,15 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $khuyenmai=$_POST['khuyenmai'];
                 $mota=$_POST['mota'];
                 $danhmuc=$_POST['danhmuc'];
-                $giakm=$giasp*((100-$khuyenmai)/100);
                 $check=true;
                 if(empty(trim($tensp))){
                     $tenspErr="Vui lòng nhập tên sản phẩm !";
                     $check=false;
                 }
-                if(empty($giasp)||($giasp<0)) $giasp=0;
+                if(empty($giasp)||($giasp<1)) $giasp=1;
                 if(empty($khuyenmai)||($khuyenmai<0)) $khuyenmai=0;
                 if(empty($soluong)||($soluong<0)){$soluong=0;$trangthai=1;}
+                $giakm=intval($giasp)*((100-intval($khuyenmai))/100);
                 if(empty($image)){
                     $image=$oldImage;
                 }else{
@@ -571,11 +571,10 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             break;
         //thongke
         case 'bieudo': 
-            $listthongke=load_all_thongke();
             include "thongke/bieudo.php";
             break; 
         case 'danhsachthongke': 
-            $listthongke=load_all_thongke();
+            $listthongke=load_all_thongke(365);
             include "thongke/list.php";
             break;   
         //end thong ke

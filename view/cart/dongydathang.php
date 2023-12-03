@@ -16,22 +16,25 @@ if(!$_SESSION['user']){
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-20">
                                         <label>Họ và Tên<abbr class="required" title="required">*</abbr></label>
-                                        <input type="text" value="<?=$_SESSION['user']['hovaten']?>" disabled>
+                                        <input type="text" value="<?=$_SESSION['user']['hovaten']?>">
                                         <input type="hidden" name="hovaten" value="<?=$_SESSION['user']['hovaten']?>" >
+                                        <p style="color:red;"><?= isset($hovatenErr) ? ($hovatenErr) : '' ?></p>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-20">
                                         <label>Số điện thoại<abbr class="required" title="required">*</abbr></label>
-                                        <input type="text" value="<?=$_SESSION['user']['sodienthoai']?>" disabled>
+                                        <input type="text" value="<?=$_SESSION['user']['sodienthoai']?>">
                                         <input type="hidden" name="sodienthoai" value="<?=$_SESSION['user']['sodienthoai']?>" >
+                                        <p style="color:red;"><?= isset($sodienthoaiErr) ? ($sodienthoaiErr) : '' ?></p>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-20">
                                         <label>Địa chỉ<abbr class="required" title="required">*</abbr></label>
-                                        <input type="text" value="<?=$_SESSION['user']['diachi']?>" disabled>
+                                        <input type="text" value="<?=$_SESSION['user']['diachi']?>">
                                         <input type="hidden" name="diachi" value="<?=$_SESSION['user']['diachi']?>" >
+                                        <p style="color:red;"><?= isset($diachiErr) ? ($diachiErr) : '' ?></p>
                                     </div>
                                 </div>
                                 <div class="checkout-account mt-25">
@@ -44,21 +47,21 @@ if(!$_SESSION['user']){
                                             <div class="billing-info mb-20">
                                                 <label>Họ và Tên<abbr class="required" title="required">*</abbr></label>
                                                 <input type="text" name="hovatennhan" value="<?= isset($hovatennhan) ? ($hovatennhan) : '' ?>">
-                                                <p style="color:red;"><?= isset($hovatenErr) ? ($hovatenErr) : '' ?></p>
+                                                <p style="color:red;"><?= isset($hovatennhanErr) ? ($hovatennhanErr) : '' ?></p>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="billing-info mb-20">
                                                 <label>Số điện thoại<abbr class="required" title="required">*</abbr></label>
                                                 <input type="text" name="sodienthoainhan" value="<?= isset($sodienthoainhan) ? ($sodienthoainhan) : '' ?>">
-                                                <p style="color:red;"><?= isset($sodienthoaiErr) ? ($sodienthoaiErr) : '' ?></p>
+                                                <p style="color:red;"><?= isset($sodienthoainhanErr) ? ($sodienthoainhanErr) : '' ?></p>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="billing-info mb-20">
                                                 <label>Địa chỉ<abbr class="required" title="required">*</abbr></label>
                                                 <input type="text" name="diachinhan" value="<?= isset($diachinhan) ? ($diachinhan) : '' ?>">
-                                                <p style="color:red;"><?= isset($diachiErr) ? ($diachiErr) : '' ?></p>
+                                                <p style="color:red;"><?= isset($diachinhanErr) ? ($diachinhanErr) : '' ?></p>
                                             </div>
                                         </div>
                                     </div>

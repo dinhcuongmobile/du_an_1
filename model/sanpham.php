@@ -50,9 +50,9 @@ function load_all_spdm($iddm,$kyw,$giadau,$giacuoi){
 }
 function insert_sp($danhmuc, $tensp, $giasp, $image,$giakm, $soluong,$khuyenmai, $mota) {
     $conn=pdo_get_connection();
-    $query_check = "SELECT COUNT(*) as count FROM sanpham WHERE image = :image";
+    $query_check = "SELECT COUNT(*) as count FROM sanpham WHERE image = :image OR tensp=:tensp";
     $stmt = $conn->prepare($query_check);
-    $stmt->execute([':image'=> $image]);
+    $stmt->execute([':image'=> $image,':tensp'=> $tensp]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($result['count'] > 0) {
         echo '<script>

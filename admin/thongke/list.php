@@ -1,6 +1,6 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800 mb-5">Danh sách thống kê doanh thu</h1>
+    <h1 class="h3 mb-2 text-gray-800 mb-5">Danh sách thống kê doanh thu 365 ngày qua</h1>
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">

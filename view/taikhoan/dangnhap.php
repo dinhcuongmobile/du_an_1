@@ -13,6 +13,7 @@
                             <div class="login-register-form">
                                 <form action="?act=dangnhap" method="post">
                                     <input type="text" name="username" placeholder="Username" value="<?= isset($user) ? ($user) : '' ?>">
+                                    <p style="color:red;"><?=$tendangnhapErr?></p>
                                     <input type="password" name="password" placeholder="Password" value="<?= isset($pass) ? ($pass) : '' ?>">
                                     <p style="color:red;"><?=$tkErr?></p>
                                     <div class="login-toggle-btn">

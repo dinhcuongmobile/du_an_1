@@ -74,3 +74,6 @@ function themgiohang(idsanpham,giakm){
           }
     });
 }
+//end ajax them gio hang
+//bieudo
+//end bieudo
