@@ -183,6 +183,17 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             break;
         /* End tai khoan */
         case 'giohang':
+            // if($_SERVER["REQUEST_METHOD"] == "POST"){
+            //     $id=$_POST['id'];
+            //     $thanhtien=$_POST['thanhtien'];
+            //     $soluong=$_POST['soluong'];
+            //     foreach ($listgh as $giohang) {
+            //         if ($id == $giohang['idsanpham']) {
+            //             update_giohang(5,9909,$id);
+            //             break;
+            //         }
+            //     }
+            // }
             include "../view/cart/giohang.php";
             break;
         case 'themgiohang':
@@ -228,6 +239,8 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     date_default_timezone_set('Asia/Ho_Chi_Minh');
                     $ngaydathang = date('Y-m-d H:i:s');
                     $phuongthuctt=$_POST['phuongthuctt'];
+                    if($_POST['phuongthuctt']===0) $thanhtoan=0;
+                    else $thanhtoan=1;
                     if(isset($_POST['diachikhac'])){
                         $hovatennhan=$_POST['hovatennhan'];
                         $diachinhan=$_POST['diachinhan'];
@@ -246,7 +259,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                             if(!preg_match("/^[a-zA-Z0-9 ]{25,}$/",$diachinhan)){$checkdck=false;$diachiErr="Kiểm tra lại địa chỉ !";}
                         }
                         if($checkdck){
-                            $iddonhang=mua_hang($_SESSION['user']['id'],$hovatennhan,$ngaydathang,$diachinhan,$sodienthoainhan,$phuongthuctt,0);
+                            $iddonhang=mua_hang($_SESSION['user']['id'],$hovatennhan,$ngaydathang,$diachinhan,$sodienthoainhan,$phuongthuctt,$thanhtoan);
                             foreach ($listgh as $gh) {
                                 extract($gh);
                                 insert_chitietdonhang($iddonhang,$idsp,$soluong,$giakm,$thanhtien);
@@ -264,7 +277,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                         $hovaten=$_POST['hovaten'];
                         $sodienthoai=$_POST['sodienthoai'];
                         $diachi=$_POST['diachi'];
-                        $iddonhang=mua_hang($_SESSION['user']['id'],$hovaten,$ngaydathang,$diachi,$sodienthoai,$phuongthuctt,0);
+                        $iddonhang=mua_hang($_SESSION['user']['id'],$hovaten,$ngaydathang,$diachi,$sodienthoai,$phuongthuctt,$thanhtoan);
                         foreach ($listgh as $gh) {
                             extract($gh);
                             insert_chitietdonhang($iddonhang,$idsp,$soluong,$giakm,$thanhtien);
@@ -340,27 +353,59 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             break;
         case "lichsumuahang":
             if(isset($_SESSION['user'])){
-                $tatca=load_all_dh($_SESSION['user']['id'],1);
-                $choxacnhan=load_all_dh($_SESSION['user']['id'],0);
-                $chogiaohang=load_all_dh($_SESSION['user']['id'],2);
-                $danggiao=load_all_dh($_SESSION['user']['id'],3);
-                $hoanthanh=load_all_dh($_SESSION['user']['id'],4);
-                $dahuy=load_all_dh($_SESSION['user']['id'],5);
+                $idtaikhoan=$_SESSION['user']['id'];
+                $tatca=load_all_dh_lsmh($idtaikhoan,1);
+                $choxacnhan=load_all_dh_lsmh($idtaikhoan,0);
+                $chogiaohang=load_all_dh_lsmh($idtaikhoan,2);
+                $danggiao=load_all_dh_lsmh($idtaikhoan,3);
+                $hoanthanh=load_all_dh_lsmh($idtaikhoan,4);
+                $dahuy=load_all_dh_lsmh($idtaikhoan,5);
+                if(isset($_POST['mualai'])){
+                    if(isset($_POST['id'])&&(is_array($_POST['id']))){
+                        foreach ($_POST['id'] as $item) {
+                            $sanpham=load_one_sp($item);
+                            if($sanpham){
+                                $idsanpham = $sanpham['id'];
+                                $giasp = $sanpham['giakm'];
+                                $soluong = 1;
+                                $thanhtien = $giasp * $soluong;
+                                $check = true;
+                                foreach ($listgh as $giohang) {
+                                    if ($idsanpham == $giohang['idsanpham']) {
+                                        $giohang['soluong'] += $soluong;
+                                        $giohang['thanhtien'] = $giasp * $giohang['soluong'];
+                                        update_giohang($giohang['soluong'],$giohang['thanhtien'],$giohang['idsanpham']);
+                                        $check = false;
+                                        break;
+                                    }
+                                }
+                            
+                                if ($check) {
+                                    insert_cart($_SESSION['user']['id'], $idsanpham, $soluong, $thanhtien);
+                                }
+                            }
+                        }
+                        header("location: ?act=giohang");
+                    }
+                }
             }else{header("location: ?act=trangchu");}
             include "../view/cart/lichsumuahang.php";
             break;
         case "huydonhang":
             if(isset($_SESSION['user'])){
-                if(isset($_POST['huydonhang'])){
-                    $iddh=$_POST['iddh'];
-                    $idct=$_POST['idct'];
-                    $ctdh=load_ctdh_delete($iddh);
-                    huydonhang($idct);
-                    if($ctdh['COUNT(*)']==1) delete_donhang($iddh);
-                    header("location: ?act=lichsumuahang");
+                if(isset($_GET['id'])&&($_GET['id']!="")){
+                    $id=$_GET['id'];
+                    $listdh=load_one_dh($id);
+                    if($listdh){
+                        update_donhang(5,$listdh['id']);
+                        header("location: ?act=lichsumuahang");
+                    }     
                 }
             }else{header("location: ?act=trangchu");}
             
+            break;
+        case "tintuc":
+            include "../view/tintuc/tintuc.php";
             break;
         default:
         include "../view/home.php";

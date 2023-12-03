@@ -12,6 +12,10 @@ function bochontatca(){
 }
 //home
 
+//giohang quantity\
+
+//end giohang quantity
+
 $(document).ready(function(){
     $(".an").hide();
     $("#tap1").fadeIn();

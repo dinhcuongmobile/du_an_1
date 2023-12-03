@@ -221,25 +221,49 @@
     /*----------------------------
     	Cart Plus Minus Button
     ------------------------------ */
-    var CartPlusMinus = $('.product-quality');
-    CartPlusMinus.prepend('<div class="dec qtybutton">-</div>');
-    CartPlusMinus.append('<div class="inc qtybutton">+</div>');
     $(".qtybutton").on("click", function() {
         var $button = $(this);
-        var oldValue = $button.parent().find("input").val();
+        var oldValue = $button.parent().find("input[name='qtybutton']").val();
+        var id = $button.parent().find("input[name='id']").val();
+        var oldgiakm = $button.parent().find("input[name='giakm']").val();
+        var oldthanhtien = $button.parent().find("input[name='thanhtien']");
+        var thanhtienText=$button.parent().parent().parent().find(".product-total span");
         if ($button.text() === "+") {
             var newVal = parseFloat(oldValue) + 1;
+            //code vao day
+            oldthanhtien.val(parseInt(oldgiakm)*parseFloat(newVal));
+            var thanhtien=oldthanhtien.val();
+            thanhtienText.text((parseInt(oldgiakm)*parseFloat(newVal)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+            tongthanhtoan();
+            
+            //end code
+
         } else {
-            // Don't allow decrementing below zero
             if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
+                //code vao day
+                oldthanhtien.val(parseInt(oldgiakm)*parseFloat(newVal));
+                var thanhtien=oldthanhtien.val();
+                thanhtienText.text((parseInt(oldgiakm)*parseFloat(newVal)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+                tongthanhtoan();
+                //end code
             } else {
                 newVal = 1;
+                tongthanhtoan();
             }
         }
-        $button.parent().find("input").val(newVal);
+        $button.parent().find("input[name='qtybutton']").val(newVal);
     });
-    
+    function tongthanhtoan(){
+        var tong=0;
+        var arrTr=document.querySelectorAll(".trgiohang");
+        arrTr.forEach(function(element){
+            var thanhtien=element.querySelector("input[name='thanhtien']").value;
+            tong+=parseInt(thanhtien);
+        })
+        var tongthanhtoantext=document.querySelector("#tongthanhtoan");
+        tongthanhtoantext.innerHTML=tong.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    }
     /*------ ScrollUp -------- */
     $.scrollUp({
         scrollText: '<i class=" ti-arrow-up "></i>',

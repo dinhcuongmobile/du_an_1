@@ -28,8 +28,8 @@
                                 <th>Khách hàng</th>
                                 <th>Số lượng</th>
                                 <th>Giá trị đơn hàng</th>
-                                <th>Tình trạng đơn hàng</th>
                                 <th>Ngày đặt hàng</th>
+                                <th>Thanh toán</th>
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -37,8 +37,8 @@
                             <?php
                             foreach ($listdh as $dh) {
                                 extract($dh);
-                                if($trangthai==0) $trangthai="Đang chờ duyệt !";
-                                else $trangthai="Đã duyệt đơn !";
+                                if($thanhtoan==0) $thanhtoan="Chưa thanh toán";
+                                else $thanhtoan="Đã thanh toán";
                                 echo '<tr>
                                         <td class="text-center align-middle"><input type="checkbox" name="select[]" id="" value="'.$iddh.'"></td>
                                         <td class="col-1 align-middle">DCM-'.$iddh.'</td>
@@ -49,9 +49,9 @@
                                             '.$diachinhan.'
                                         </td>
                                         <td class="text-center align-middle">'.$soluongct.'</td>
-                                        <td  class="col-2 align-middle">'.number_format($thanhtien, 0, ',', '.').'₫</td>
-                                        <td  class="col-2 align-middle">'.$trangthai.'</td>
+                                        <td  class="col-2 align-middle">'.number_format($thanhtien, 0, ',', '.').'₫</td> 
                                         <td class="col-2 align-middle">'.$ngaydathang.'</td>
+                                        <td  class="col-2 align-middle">'.$thanhtoan.'</td>
                                         <td class="col-2 align-middle"><a href="?act=duyetdon&id='.$iddh.'"><button type="button" class="btn btn-secondary btn-sm">Duyệt</button></a> | 
                                             <a href="?act=xoadh&id='.$iddh.'"><button type="button" class="btn btn-secondary btn-sm">Hủy</button></a></td>
                                     </tr>';

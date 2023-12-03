@@ -1,7 +1,7 @@
  <!-- Begin Page Content -->
  <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800 mb-5">Danh sách đơn hàng</h1>
-    <form action="?act=listdh" method="post">
+    <h1 class="h3 mb-2 text-gray-800 mb-5">Danh sách đơn hàng đã hủy</h1>
+    <form action="?act=dahuy" method="post">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <button type="button" class="btn btn-secondary btn-sm" onclick="chontatca()">Chọn tất cả</button>
@@ -30,19 +30,13 @@
                                 <th>Giá trị đơn hàng</th>
                                 <th>Tình trạng đơn hàng</th>
                                 <th>Ngày đặt hàng</th>
-                                <th>Thanh toán</th>
-                                <th>Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             foreach ($listdh as $dh) {
                                 extract($dh);
-
-                                if($trangthai==2) $trangthai="Đơn hàng mới !";
-                                else if($trangthai==3) $trangthai="Đang giao !";
-                                if($thanhtoan==0) $thanhtoan="Chưa thanh toán";
-                                else $thanhtoan="Đã thanh toán";
+                                if($trangthai==5) $trangthai="Đã hủy !";
                                 echo '<tr>
                                         <td class="text-center align-middle"><input type="checkbox" name="select[]" id="" value="'.$iddh.'"></td>
                                         <td class="col-1 align-middle">DCM-'.$iddh.'</td>
@@ -53,12 +47,9 @@
                                             '.$diachinhan.'
                                         </td>
                                         <td class="text-center align-middle">'.$soluongct.'</td>
-                                        <td  class="col-1 align-middle">'.number_format($thanhtien, 0, ',', '.').'₫</td>
+                                        <td  class="col-2 align-middle">'.number_format($thanhtien, 0, ',', '.').'₫</td>
                                         <td  class="col-2 align-middle">'.$trangthai.'</td>
                                         <td class="col-2 align-middle">'.$ngaydathang.'</td>
-                                        <td  class="col-2 align-middle">'.$thanhtoan.'</td>
-                                        <td class="col-2 align-middle"><a href="?act=suadh&id='.$iddh.'"><button type="button" class="btn btn-secondary btn-sm">Update</button></a> <br><br>
-                                            <a href="?act=xoadh&id='.$iddh.'"><button type="button" class="btn btn-secondary btn-sm">Hủy</button></a></td>
                                     </tr>';
                             }
                             ?>
@@ -66,8 +57,7 @@
                     </table> 
                 </div>
             </div>
-        </form> 
-    </div>
-    
+        </div>
+    </form>
 </div>
 <!-- /.container-fluid -->

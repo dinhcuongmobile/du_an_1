@@ -22,7 +22,7 @@
                                         if(isset($listgh)){
                                             foreach ($listgh as $giohang) {
                                                 extract($giohang);
-                                                echo '<tr>
+                                                echo '<tr class="trgiohang">
                                                         <td class="product-thumbnail">
                                                             <a href="?act=chitietsp&id='.$idsanpham.'"><img src="../uploads/'.$image.'" alt=""></a>
                                                         </td>
@@ -31,9 +31,16 @@
                                                         </td>
                                                         <td class="product-cart-price"><span class="amount">'.number_format($giakm, 0, ',', '.').'₫</span></td>
                                                         <td class="cart-quality">
-                                                            <input type="text" name="soluong" value="'.$soluong.'" style="text-align:center; width:30%; margin-left:5%;" disabled>
+                                                            <div class="product-quality">
+                                                                <input data-id="'.$id.'" type="hidden"  name="id" value="'.$id.'">
+                                                                <input type="hidden" name="giakm" value="'.$giakm.'">
+                                                                <input data-id="'.$id.'" type="hidden" class="thanhtienjs" name="thanhtien" value="'.$thanhtien.'">
+                                                                <div  class="dec qtybutton">-</div>
+                                                                <input data-id="'.$id.'" class="cart-plus-minus-box input-text qty text" name="qtybutton" value="'.$soluong.'">
+                                                                <div  class="inc qtybutton">+</div>
+                                                            </div>
                                                         </td>
-                                                        <td class="product-total"><span>'.number_format($thanhtien, 0, ',', '.').'₫</span></td>
+                                                        <td class="product-total"><span data-id="'.$id.'">'.number_format($thanhtien, 0, ',', '.').' ₫</span></td>
                                                         <td class="product-remove"><a href="?act=xoagiohang&id='.$idsanpham.'"><i class=" ti-trash "></i></a></td>
                                                     </tr>';
                                                 $tongthanhtoan+=$thanhtien;
@@ -64,7 +71,7 @@
                 <div class="grand-total-wrap">
                     <div class="grand-total-content">
                         <div class="grand-total">
-                            <h4>Tổng thanh toán <span><?=number_format($tongthanhtoan, 0, ',', '.');?>đ</span></h4>
+                            <h4>Tổng thanh toán <span id="tongthanhtoan"><?=number_format($tongthanhtoan, 0, ',', '.');?>đ</span></h4>
                         </div>
                     </div>
                     <div class="grand-total-btn btn-hover">

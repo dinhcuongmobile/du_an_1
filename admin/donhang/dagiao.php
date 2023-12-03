@@ -1,6 +1,6 @@
  <!-- Begin Page Content -->
  <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800 mb-5">Duyệt đơn hàng</h1>
+    <h1 class="h3 mb-2 text-gray-800 mb-5">Danh sách đơn hàng đã giao</h1>
     <form action="?act=dagiao" method="post">
         <div class="card shadow mb-4">
             <div class="card-header py-3">

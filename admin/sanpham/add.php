@@ -33,6 +33,7 @@
             <div class="mb-3">
                 <label for="mota">Mô tả</label>
                 <textarea class="form-control" rows="5" id="mota" name="mota" placeholder="Nhập mô tả..."></textarea>
+                <p class="Err mt-1"><?=$motaErr?></p>
             </div>
             <div class="mb-3">
                 <label for="sel1">Danh mục</label>

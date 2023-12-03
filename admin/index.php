@@ -43,12 +43,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 if(empty(trim($tendm))){
                     $tendmErr="Vui lòng nhập tên danh mục !";
                 }else{
-                        insert_dm($tendm);
-                        echo '<script>
-                            alert("Bạn đã thêm danh mục thành công !");
-                            window.location.href="?act=listdm";
-                        </script>';
-                    
+                        insert_dm($tendm);      
                 }
             }
             include "danhmuc/add.php";
@@ -116,6 +111,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
         case 'addsp':
             $tenspErr="";
             $imageErr="";
+            $motaErr="";
             if(isset($_POST['submit'])){
                 $tensp=$_POST['tensp'];
                 $giasp=$_POST['giasp'];
@@ -128,6 +124,10 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $check=true;
                 if(empty(trim($tensp))){
                     $tenspErr="Vui lòng nhập tên sản phẩm !";
+                    $check=false;
+                }
+                if(empty(trim($mota))){
+                    $motaErr="Vui lòng nhập mô tả sản phẩm !";
                     $check=false;
                 }
                 if(empty($giasp)) $giasp=0;
@@ -467,8 +467,26 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             }else{
                 $kyw="";
             }
-            $listdh=dagiao($kyw);
+            $listdh=dagiao($kyw,4);
             include "donhang/dagiao.php";
+            break;
+        case 'dahuy':
+            if(isset($_POST['xoacacmucchon'])){
+                if(isset($_POST['select'])){
+                    $ids=$_POST['select'];
+                    foreach ($ids as $id) {
+                        delete_chitietdh($id);
+                        delete_donhang($id);
+                    }
+                }
+            }
+            if(isset($_POST['search'])){
+                $kyw=$_POST['kyw'];
+            }else{
+                $kyw="";
+            }
+            $listdh=dagiao($kyw,5);
+            include "donhang/dahuy.php";
             break;
         case 'suadh':
             if(isset($_GET['id'])&&($_GET['id']!="")){
@@ -509,11 +527,12 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $id=$_GET['id'];
                 $listdh=load_one_dh($id);
                 if($listdh){
-                    delete_chitietdh($listdh['id']);
-                    delete_donhang($listdh['id']);
                     if($listdh['trangthai']==0){
+                        delete_chitietdh($listdh['id']);
+                        delete_donhang($listdh['id']);
                         header("location: ?act=kiemduyet");
                     }else{
+                        update_donhang(5,$listdh['id']);
                         header("location: ?act=listdh");
                     }
                 }
@@ -559,6 +578,10 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             $listthongke=load_all_thongke();
             include "thongke/list.php";
             break;   
+        //end thong ke
+        case 'qltintuc': 
+            include "tintuc/list.php";
+            break;
         default:
         include "home.php";
             break;

@@ -114,6 +114,10 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
+            <?php $count_dh_kiemduyet=count_donhang_kiemduyet(); 
+                if($count_dh_kiemduyet['COUNT(*)']>0) $sup='<i class="fas fa-fw fa-circle" style="color: red;"></i>'; 
+                else $sup=''; 
+            ?>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
                     aria-expanded="true" aria-controls="collapseFive">
@@ -123,8 +127,9 @@
                 <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="?act=listdh">Danh sách đơn hàng</a>
-                        <a class="collapse-item" href="?act=kiemduyet">Kiểm duyệt</a>
-                        <a class="collapse-item" href="?act=dagiao">Đã giao</a>
+                        <a class="collapse-item" href="?act=kiemduyet">Kiểm duyệt đơn hàng <sup><?= $sup?></sup></a>
+                        <a class="collapse-item" href="?act=dagiao">Danh sách đã giao</a>
+                        <a class="collapse-item" href="?act=dahuy">Danh sách đã hủy</a>
                     </div>
                 </div>
             </li>
@@ -137,7 +142,7 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item  mb-3">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
                     aria-expanded="true" aria-controls="collapseSix">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -147,6 +152,18 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="?act=bieudo">Biểu đồ</a>
                         <a class="collapse-item" href="?act=danhsachthongke">Danh sách</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item  mb-3">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSevent"
+                    aria-expanded="true" aria-controls="collapseSevent">
+                    <i class="fas fa-fw fa-bars"></i>
+                    <span>Chức năng khác</span>
+                </a>
+                <div id="collapseSevent" class="collapse" aria-labelledby="headingSevent" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="?act=qltintuc">Quản lý tin tức</a>
                     </div>
                 </div>
             </li>

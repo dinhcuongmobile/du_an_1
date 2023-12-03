@@ -19,11 +19,15 @@
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result['count'] > 0) {
             echo '<script>
-                    alert("Sản phẩm đã tồn tại !");
+                    alert("Danh mục đã tồn tại !");
                 </script>';
         } else{
                 $query="INSERT INTO `danhmuc`(`tendm`) VALUES ('$tendm')";
                 pdo_execute($query);
+                echo '<script>
+                            alert("Bạn đã thêm danh mục thành công !");
+                            window.location.href="?act=listdm";
+                        </script>';
             }
     }
     function update_dm($id,$tendm){

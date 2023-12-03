@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 01, 2023 lúc 09:42 AM
+-- Thời gian đã tạo: Th12 03, 2023 lúc 06:40 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -40,14 +40,9 @@ CREATE TABLE `binhluan` (
 --
 
 INSERT INTO `binhluan` (`id`, `idtaikhoan`, `idsanpham`, `noidung`, `ngaybinhluan`) VALUES
-(11, 1, 25, 'i am back', '2023-11-29'),
-(12, 1, 27, 'i am back', '2023-11-29'),
-(13, 1, 27, 'okk', '2023-11-30'),
-(14, 1, 3, 'nhin đẹp nhỉ', '2023-11-30'),
-(15, 1, 27, 'okkk', '2023-12-01'),
-(16, 1, 27, 'i am backkk', '2023-12-01'),
 (17, 24, 25, 'I am back', '2023-12-01'),
-(18, 24, 26, 'ok nhi', '2023-12-01');
+(18, 24, 26, 'ok nhi', '2023-12-01'),
+(19, 1, 26, 'nhin dep nhi', '2023-12-01');
 
 -- --------------------------------------------------------
 
@@ -69,7 +64,17 @@ CREATE TABLE `chitietdonhang` (
 --
 
 INSERT INTO `chitietdonhang` (`id`, `iddonhang`, `idsanpham`, `soluong`, `dongia`, `thanhtien`) VALUES
-(75, 55, 27, 1, 18392000, 18392000);
+(86, 58, 24, 2, 5032000, 10064000),
+(87, 58, 27, 3, 18392000, 55176000),
+(95, 62, 24, 1, 5032000, 5032000),
+(96, 62, 25, 1, 6392000, 6392000),
+(97, 63, 25, 1, 6392000, 6392000),
+(98, 64, 25, 1, 6392000, 6392000),
+(99, 64, 24, 1, 5032000, 5032000),
+(100, 64, 26, 2, 32792000, 65584000),
+(101, 65, 9, 1, 11333000, 11333000),
+(102, 66, 26, 1, 32792000, 32792000),
+(103, 67, 11, 1, 13013000, 13013000);
 
 -- --------------------------------------------------------
 
@@ -106,15 +111,22 @@ CREATE TABLE `donhang` (
   `diachinhan` varchar(255) NOT NULL,
   `sodienthoainhan` varchar(20) NOT NULL,
   `phuongthuctt` tinyint(1) NOT NULL COMMENT '0. thanh toán khi nhận hàng 1. Chuyển khoản',
-  `trangthai` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0. chưa duyệt 1.Đã duyệt 2.Đơn hàng mới  3. Đang giao 4. Đã giao 5. Đã hủy'
+  `trangthai` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0. chưa duyệt 1.Đã duyệt 2.Đơn hàng mới  3. Đang giao 4. Đã giao 5. Đã hủy',
+  `thanhtoan` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0. chưa thanh toán 1. Đã thanh toán'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `donhang`
 --
 
-INSERT INTO `donhang` (`id`, `idtaikhoan`, `hovatennhan`, `ngaydathang`, `diachinhan`, `sodienthoainhan`, `phuongthuctt`, `trangthai`) VALUES
-(55, 1, 'Nguyễn Đình Cường', '2023-12-01 10:05:15', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 0, 3);
+INSERT INTO `donhang` (`id`, `idtaikhoan`, `hovatennhan`, `ngaydathang`, `diachinhan`, `sodienthoainhan`, `phuongthuctt`, `trangthai`, `thanhtoan`) VALUES
+(58, 1, 'Nguyễn Đình Cường', '2023-12-02 14:39:04', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 0, 5, 0),
+(62, 1, 'Nguyễn Đình Cường', '2023-12-03 09:34:13', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 0, 2, 0),
+(63, 1, 'Nguyễn Đình Cường', '2023-12-03 09:54:35', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 0, 4, 0),
+(64, 1, 'Nguyễn Đình Cường', '2023-12-03 10:47:26', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 0, 5, 0),
+(65, 1, 'Nguyễn Đình Cường', '2023-12-03 12:35:56', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 1, 2, 0),
+(66, 1, 'Nguyễn Đình Cường', '2023-12-03 12:36:47', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 1, 2, 0),
+(67, 1, 'Nguyễn Đình Cường', '2023-12-03 12:38:38', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -155,11 +167,11 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`id`, `iddm`, `tensp`, `giasp`, `giakm`, `image`, `soluong`, `trangthai`, `khuyenmai`, `mota`, `luotxem`) VALUES
-(1, 1, 'iPhone 14 Pro 128GB | Chính hãng VN/A', 24590000, 17213000, '1.webp', 99, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nMàn hình Dynamic Island - Sự biến mất của màn hình tai thỏ thay thế bằng thiết kế viên thuốc, OLED 6,7 inch, hỗ trợ always-on display\r\nCấu hình iPhone 14 Pro Max mạnh mẽ, hiệu năng cực khủng từ chipset A16 Bionic\r\nLàm chủ công nghệ nhiếp ảnh - Camera sau 48MP, cảm biến TOF sống động\r\nPin liền lithium-ion kết hợp cùng công nghệ sạc nhanh cải tiến', 1309),
+(1, 1, 'iPhone 14 Pro 128GB | Chính hãng VN/A', 24590000, 17213000, '1.webp', 98, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nMàn hình Dynamic Island - Sự biến mất của màn hình tai thỏ thay thế bằng thiết kế viên thuốc, OLED 6,7 inch, hỗ trợ always-on display\r\nCấu hình iPhone 14 Pro Max mạnh mẽ, hiệu năng cực khủng từ chipset A16 Bionic\r\nLàm chủ công nghệ nhiếp ảnh - Camera sau 48MP, cảm biến TOF sống động\r\nPin liền lithium-ion kết hợp cùng công nghệ sạc nhanh cải tiến', 1309),
 (3, 2, 'Samsung Galaxy Z Flip5 256GB', 21990000, 15393000, '10.webp', 99, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nThần thái nổi bật, cân mọi phong cách- Lấy cảm hứng từ thiên nhiên với màu sắc thời thượng, xu hướng\r\nThiết kế thu hút ánh nhìn - Gập không kẽ hỡ, dẫn đầu công nghệ bản lề Flex\r\nTuyệt tác selfie thoả sức sáng tạo - Camera sau hỗ trợ AI xử lí cực sắc nét ngay cả trên màn hình ngoài\r\nBền bỉ bất chấp mọi tình huống - Đạt chuẩn kháng bụi và nước IP68 cùng chất liệu nhôm Armor Aluminum giúp hạn chế cong và xước', 809),
 (4, 2, 'Samsung Galaxy S23 Ultra 256GB', 23990000, 16793000, '4.webp', 100, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nThoả sức chụp ảnh, quay video chuyên nghiệp - Camera đến 200MP, chế độ chụp đêm cải tiến, bộ xử lí ảnh thông minh\r\nChiến game bùng nổ - chip Snapdragon 8 Gen 2 8 nhân tăng tốc độ xử lí, màn hình 120Hz, pin 5.000mAh\r\nNâng cao hiệu suất làm việc với Siêu bút S Pen tích hợp, dễ dàng đánh dấu sự kiện từ hình ảnh hoặc video\r\nThiết kế bền bỉ, thân thiện - Màu sắc lấy cảm hứng từ thiên nhiên, chất liệu kính và lớp phim phủ PET tái chế', 955),
-(9, 1, 'iPhone 13 128GB | Chính hãng VN/A', 16190000, 11333000, '3.webp', 99, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nHiệu năng vượt trội - Chip Apple A15 Bionic mạnh mẽ, hỗ trợ mạng 5G tốc độ cao\r\nKhông gian hiển thị sống động - Màn hình 6.1\" Super Retina XDR độ sáng cao, sắc nét\r\nTrải nghiệm điện ảnh đỉnh cao - Camera kép 12MP, hỗ trợ ổn định hình ảnh quang học\r\nTối ưu điện năng - Sạc nhanh 20 W, đầy 50% pin trong khoảng 30 phút', 1151),
-(11, 1, 'iPhone 14 128GB | Chính hãng VN/A', 18590000, 13013000, '9.webp', 98, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nTuyệt đỉnh thiết kế, tỉ mỉ từng đường nét - Nâng cấp toàn diện với kiểu dáng mới, nhiều lựa chọn màu sắc trẻ trung\r\nNâng tầm trải ngiệm giải trí đỉnh cao - Màn hình 6,1\"\" cùng tấm nền OLED có công nghệ Super Retina XDR cao cấp\r\nChụp ảnh chuyên nghiệp hơn - Cụm 2 camera 12 MP đi kèm nhiều chế độ và chức năng chụp hiện đại\r\nHiệu năng hàng đầu thế giới - Apple A15 Bionic 6 nhân xử lí nhanh, ổn định', 1201),
+(9, 1, 'iPhone 13 128GB | Chính hãng VN/A', 16190000, 11333000, '3.webp', 98, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nHiệu năng vượt trội - Chip Apple A15 Bionic mạnh mẽ, hỗ trợ mạng 5G tốc độ cao\r\nKhông gian hiển thị sống động - Màn hình 6.1\" Super Retina XDR độ sáng cao, sắc nét\r\nTrải nghiệm điện ảnh đỉnh cao - Camera kép 12MP, hỗ trợ ổn định hình ảnh quang học\r\nTối ưu điện năng - Sạc nhanh 20 W, đầy 50% pin trong khoảng 30 phút', 1151),
+(11, 1, 'iPhone 14 128GB | Chính hãng VN/A', 18590000, 13013000, '9.webp', 97, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nTuyệt đỉnh thiết kế, tỉ mỉ từng đường nét - Nâng cấp toàn diện với kiểu dáng mới, nhiều lựa chọn màu sắc trẻ trung\r\nNâng tầm trải ngiệm giải trí đỉnh cao - Màn hình 6,1\"\" cùng tấm nền OLED có công nghệ Super Retina XDR cao cấp\r\nChụp ảnh chuyên nghiệp hơn - Cụm 2 camera 12 MP đi kèm nhiều chế độ và chức năng chụp hiện đại\r\nHiệu năng hàng đầu thế giới - Apple A15 Bionic 6 nhân xử lí nhanh, ổn định', 1201),
 (12, 1, 'iPhone 11 128GB | Chính hãng VN/A', 12190000, 8533000, '7.webp', 99, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nMàu sắc phù hợp cá tính - 6 màu sắc bắt mắt để lựa chọn\r\nHiệu năng mượt mà, ổn định - Chip A13, RAM 4GB\r\nBắt trọn khung hình - Camera kép hỗ trợ góc rộng, chế độ Night Mode\r\nYên tâm sử dụng - Kháng nước, kháng bụi IP68, kính cường lực Gorilla Glass', 1000),
 (13, 4, 'OPPO Find N3 Flip 12GB 256GB', 22990000, 16093000, '11.webp', 100, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế gập linh hoạt, đường cong 3D, đường cắt kim cương - biểu tượng của sự phong cách giúp bạn luôn toả sáng\r\nĐiện thoại gập sở hữu 3 camera sắc nét - Chụp hình đơn giản hơn với Chế độ Flexform\r\nMàn hình phụ vạn năng - dễ dàng thao tác các tác vụ ngay trên màn hình phụ và tuỳ biến theo sở thích\r\nMàn hình sống động đáng kinh ngạc - Kích thước 6.8i nches, hỗ trợ 120Hz, HDR10+', 1100),
 (14, 2, 'Samsung Galaxy M34 5G 8GB 128GB', 7490000, 5243000, '12.webp', 100, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nNâng cao hiệu suất của bạn với bộ xử lý cực nhanh Exynos 1280 - 5nm.\r\nCông nghệ Voice Focus - Cuộc gọi video và âm thanh của bạn luôn được rõ ràng hơn.\r\nPin cực khỏe 6000mAh cho bạn thoải mái sử dụng cả ngày dài.\r\nThiết kế sang trọng, sở hữu những gam màu thời thượng khơi dậy những ngày mới của bạn.', 0),
@@ -172,10 +184,10 @@ INSERT INTO `sanpham` (`id`, `iddm`, `tensp`, `giasp`, `giakm`, `image`, `soluon
 (21, 3, 'Xiaomi Redmi 12C 4GB 64GB', 3590000, 3051500, '18.webp', 100, 0, 15, 'ĐẶC ĐIỂM NỔI BẬT\r\nỔn định hiệu năng - Chip MediaTek Helio G85 mạnh mẽ xử lí tốt các tác vụ thường ngày\r\nSử dụng đa nhiệm nhiều ứng dụng, thao tác cùng lúc tốt hơn - Hỗ trợ bộ nhớ mở rộng\r\nGiải trí thả ga - Màn hình 6.71\" HD+ cho khung hình rõ nét\r\nẢnh sắc nét với chế độ chụp đêm - Camera kép AI 50MP', 0),
 (22, 3, 'Xiaomi POCO X5 5G 8GB 256GB', 7490000, 5992000, '19.webp', 100, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nKhông gian gaming đúng chuẩn - Màn hình lớn 6.67\" AMOLED DotDisplay và 120Hz cho khung hình sắc nét và chuyển động mượt mà\r\nChiến game dài lâu, không lo thiếu pin - Viên pin dung lượng 5000mAh cho thời gian xem video liên tục đến 21 giờ\r\nHiệu năng chiến binh mạnh mẽ - Snapdragon® 695 cùng tốc độ 5G giúp bạn thoải mái chiến game và bắt kịp mọi trận đấu\r\nThiết kế chuẩn gaming - Phong cách độc đáo với 3 phiên bản màu sắc thời thượng phù hợp với bất kể cá tính nào', 0),
 (23, 4, 'OPPO Reno8 T 4G 256GB', 8490000, 7216500, '20.webp', 100, 0, 15, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế thời thượng - Tràn viền, mỏng nhẹ đặc biệt phù hợp với các bạn trẻ, yêu khám phá xu hướng mới\r\nGiải trí ấn tượng - Màn hình 16 triệu màu, tần số quét 90Hz ấn tượng\r\nChụp ảnh chân dung chuyên nghiệp - Camera 100MP sắc nét đi kèm thuật toán AI\r\nPin dùng cả ngày - Viên pin lớn 5000 mAh, sạc siêu nhanh đến 67 W', 0),
-(24, 4, 'OPPO A77s', 6290000, 5032000, '21.webp', 95, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nNâng tầm trải nghiệm thị giác - Tấm nền IPS LCD với kích thước 6.56 inch, tần số quét 90Hz\r\nNăng lượng tiếp sức cho cả ngày dài - 5000 mAh, sạc siêu nhanh SuperVOOC 33 W\r\nLong lanh từ trong ra ngoài với thiết kế OPPO Glow, mặt lưng hoàn thiện từ thủy tinh hữu cơ\r\nTrải nghiệm ổn định mọi tác vụ - Chip Snapdragon 680 8, RAM 8 GB và khả năng mở rộng RAM', 2),
-(25, 4, 'OPPO Reno7 4G (8GB - 128GB)', 7990000, 6392000, '22.webp', 92, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nMàn hình chất lượng, thoả sức khám phá và giải trí - 6.43 inches, AMOLED, Full HD+\r\nCamera chất lượng với cảm biến thế hệ mới - Cụm 3 camera 64 MP, đa dạng chế độ chụp\r\nChiến game ổn định nhờ con chip mạnh mẽ - Snapdragon™ 680, RAM 8GB\r\nKhông lo gián đoạn với viên pin lớn 4500 mAh, sạc nhanh SUPERVOOCTM 33W', 13),
-(26, 2, 'Samsung Galaxy Z Fold5 12GB 256GB', 40990000, 32792000, '23.webp', 96, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế tinh tế với nếp gấp vô hình - Cải tiến nếp gấp thẩm mĩ hơn và gập không kẽ hở\r\nBền bỉ bất chấp mọi tình huống - Đạt chuẩn kháng bụi và nước IP68 cùng chất liệu nhôm Armor Aluminum giúp hạn chế cong và xước\r\nMở ra không gian giải trí cực đại với màn hình trong 7.6\"\" cùng bản lề Flex dẫn đầu công nghệ\r\nThoải mái sáng tạo mọi lúc - Bút Spen tiện dụng giúp bạn phác hoạ và ghi chép không cần đến sổ tay\r\nHiệu năng cân mọi tác vụ - Snapdragon® 8 Gen 2 for Galaxy xử lí mượt mà, đa nhiệm mượt mà', 809),
-(27, 2, 'Samsung Galaxy S23 8GB 128GB', 22990000, 18392000, '24.webp', 92, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nHiệu năng vượt trội với con chip hàng đầu Qualcomm - Phục vụ tốt nhu cầu đa nhiệm ngày của người dùng.\r\nTrang bị bộ 3 ống kính với camera chính 50MP - Đem lại khả năng quay video và chụp ra những bức ảnh tốt, hài hòa, sống động hơn.\r\nNâng cấp trải nghiệm với màn hình Dynamic AMOLED 2X - Phù hợp dùng để xem phim hay chơi các tựa game có nội dung hình ảnh đồ họa cao.\r\nSở hữu lối thiết kế sang trọng, đẳng cấp cùng các bảng màu sắc thời thượng, trẻ trung.', 848);
+(24, 4, 'OPPO A77s', 6290000, 5032000, '21.webp', 90, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nNâng tầm trải nghiệm thị giác - Tấm nền IPS LCD với kích thước 6.56 inch, tần số quét 90Hz\r\nNăng lượng tiếp sức cho cả ngày dài - 5000 mAh, sạc siêu nhanh SuperVOOC 33 W\r\nLong lanh từ trong ra ngoài với thiết kế OPPO Glow, mặt lưng hoàn thiện từ thủy tinh hữu cơ\r\nTrải nghiệm ổn định mọi tác vụ - Chip Snapdragon 680 8, RAM 8 GB và khả năng mở rộng RAM', 2),
+(25, 4, 'OPPO Reno7 4G (8GB - 128GB)', 7990000, 6392000, '22.webp', 87, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nMàn hình chất lượng, thoả sức khám phá và giải trí - 6.43 inches, AMOLED, Full HD+\r\nCamera chất lượng với cảm biến thế hệ mới - Cụm 3 camera 64 MP, đa dạng chế độ chụp\r\nChiến game ổn định nhờ con chip mạnh mẽ - Snapdragon™ 680, RAM 8GB\r\nKhông lo gián đoạn với viên pin lớn 4500 mAh, sạc nhanh SUPERVOOCTM 33W', 13),
+(26, 2, 'Samsung Galaxy Z Fold5 12GB 256GB', 40990000, 32792000, '23.webp', 91, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế tinh tế với nếp gấp vô hình - Cải tiến nếp gấp thẩm mĩ hơn và gập không kẽ hở\r\nBền bỉ bất chấp mọi tình huống - Đạt chuẩn kháng bụi và nước IP68 cùng chất liệu nhôm Armor Aluminum giúp hạn chế cong và xước\r\nMở ra không gian giải trí cực đại với màn hình trong 7.6\"\" cùng bản lề Flex dẫn đầu công nghệ\r\nThoải mái sáng tạo mọi lúc - Bút Spen tiện dụng giúp bạn phác hoạ và ghi chép không cần đến sổ tay\r\nHiệu năng cân mọi tác vụ - Snapdragon® 8 Gen 2 for Galaxy xử lí mượt mà, đa nhiệm mượt mà', 812),
+(27, 2, 'Samsung Galaxy S23 8GB 128GB', 22990000, 18392000, '24.webp', 85, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nHiệu năng vượt trội với con chip hàng đầu Qualcomm - Phục vụ tốt nhu cầu đa nhiệm ngày của người dùng.\r\nTrang bị bộ 3 ống kính với camera chính 50MP - Đem lại khả năng quay video và chụp ra những bức ảnh tốt, hài hòa, sống động hơn.\r\nNâng cấp trải nghiệm với màn hình Dynamic AMOLED 2X - Phù hợp dùng để xem phim hay chơi các tựa game có nội dung hình ảnh đồ họa cao.\r\nSở hữu lối thiết kế sang trọng, đẳng cấp cùng các bảng màu sắc thời thượng, trẻ trung.', 850);
 
 -- --------------------------------------------------------
 
@@ -225,7 +237,23 @@ CREATE TABLE `thongke` (
 
 INSERT INTO `thongke` (`id`, `ngaydat`, `donhang`, `doanhthu`, `soluongban`) VALUES
 (7, '2023-11-30', 3, '90434000', 6),
-(11, '2023-12-01', 3, '69605000', 7);
+(11, '2023-12-01', 3, '69605000', 7),
+(12, '2023-12-02', 1, '65240000', 5),
+(13, '2023-12-03', 3, '29240000', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tintuc`
+--
+
+CREATE TABLE `tintuc` (
+  `id` int(5) NOT NULL,
+  `ngaydang` varchar(100) NOT NULL,
+  `tieude` varchar(255) NOT NULL,
+  `noidung` text NOT NULL,
+  `idtaikhoan` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -288,6 +316,13 @@ ALTER TABLE `thongke`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `tintuc`
+--
+ALTER TABLE `tintuc`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_tt_tk` (`idtaikhoan`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -295,13 +330,13 @@ ALTER TABLE `thongke`
 -- AUTO_INCREMENT cho bảng `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc`
@@ -313,13 +348,13 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
@@ -337,7 +372,13 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT cho bảng `thongke`
 --
 ALTER TABLE `thongke`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT cho bảng `tintuc`
+--
+ALTER TABLE `tintuc`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -375,6 +416,12 @@ ALTER TABLE `giohang`
 --
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `fk_sp_dm` FOREIGN KEY (`iddm`) REFERENCES `danhmuc` (`id`);
+
+--
+-- Các ràng buộc cho bảng `tintuc`
+--
+ALTER TABLE `tintuc`
+  ADD CONSTRAINT `fk_tt_tk` FOREIGN KEY (`idtaikhoan`) REFERENCES `taikhoan` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

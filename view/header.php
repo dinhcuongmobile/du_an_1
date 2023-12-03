@@ -68,7 +68,7 @@
                                 <nav>
                                     <ul>
                                         <li><a href="?act=trangchu">Trang Chủ</a></li>
-                                        <li><a href="../assets/giao_dien_home/gioithieu.html">Giới Thiệu</a></li>
+                                        <li><a href="?act=gioithieu">Giới Thiệu</a></li>
                                         <li><a href="?act=sanpham">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a> 
                                             <ul class="sub-menu-style">
                                                 <?php
@@ -79,8 +79,8 @@
                                                 ?>
                                             </ul>
                                         </li>
-                                        <li><a href="../assets/giao_dien_home/blog.html">Tin Tức</a></li>
-                                        <li><a href="../assets/giao_dien_home/about-us.html">Liên Hệ </a></li>  
+                                        <li><a href="?act=tintuc">Tin Tức</a></li>
+                                        <li><a href="?act=lienhe">Liên Hệ </a></li>  
                                     </ul>
                                 </nav>
                             </div>

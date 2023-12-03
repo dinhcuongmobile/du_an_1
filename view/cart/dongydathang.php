@@ -104,10 +104,9 @@ if(!$_SESSION['user']){
                                     <div class="pay-top sin-payment">
                                         <input id="payment-method-3" class="input-radio" type="radio" value="0" name="phuongthuctt" checked>
                                         <label for="payment-method-3">THANH TOÁN KHI GIAO HÀNG</label>
-                                        <div class="payment-box payment_method_bacs">
-                                            <p>Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi.
-                                                Vui lòng sử dụng ID đơn hàng của bạn làm tài liệu tham khảo thanh toán.</p>
-                                        </div>
+                                        <!-- <div class="payment-box payment_method_bacs">
+
+                                        </div> -->
                                     </div>
                                     <div class="pay-top sin-payment">
                                         <input id="payment_method_1" class="input-radio" type="radio" value="1" name="phuongthuctt">
