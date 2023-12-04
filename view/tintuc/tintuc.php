@@ -1,6 +1,6 @@
 <div class="blog-area pt-100 pb-100">
             <div class="container">
-                <div class="row">
+                <!-- <div class="row">
                     <?php
                         $delay=200;
                         foreach ($listtintuc as $tintuc) {
@@ -35,14 +35,14 @@
                                 $delay+=200;
                         }
                     ?>
-                </div>
-                <div class="pagination-style-1" data-aos="fade-up" data-aos-delay="200">
+                </div> -->
+                <!-- <div class="pagination-style-1" data-aos="fade-up" data-aos-delay="200">
                     <ul>
                         <li><a class="active" href="#">1</a></li>
                         <li><a href="#">2</a></li>
                         <li><a href="#">3</a></li>
                         <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
