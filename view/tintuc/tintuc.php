@@ -1,4 +1,4 @@
-<!-- <div class="blog-area pt-100 pb-100">
+<div class="blog-area pt-100 pb-100">
             <div class="container">
                 <div class="row">
                     <?php
@@ -45,4 +45,4 @@
                     </ul>
                 </div>
             </div>
-        </div> -->
+        </div>

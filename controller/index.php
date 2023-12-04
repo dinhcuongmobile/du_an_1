@@ -369,7 +369,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                                 }
                             }
                         }else if(isset($_GET['thanhtoan'])&&($_GET['thanhtoan']=="chuachuyenkhoan")){
-                            // header("location: ../assets/vnpay_php/vnpay_pay.php");
+                            header("location: ../assets/vnpay_php/vnpay_pay.php");
                         }
                         if(!isset($_GET['thanhtoan'])){ header("location: ../assets/vnpay_php/vnpay_pay.php");}
                     }
