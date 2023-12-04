@@ -94,12 +94,12 @@
                     <?php
                         if ($secureHash == $vnp_SecureHash) {
                             if ($_GET['vnp_ResponseCode'] == '00') {
-                                echo "<br><br><span style='color:blue'>Vui lòng nhấn quay lại và tiếp tục đặt hàng</span><br><br><a href='../../controller/index.php?act=tieptucdathang'><button type='button'>Quay lại</button></a>";
+                                echo "<br><br><span style='color:blue'>Vui lòng nhấn quay lại và tiếp tục đặt hàng</span><br><br><a href='../../controller/index.php?act=tieptucdathang&thanhtoan=dachuyenkhoan'><button type='button'>Quay lại</button></a>";
                             } else {
-                                echo "<br><br><a href='../../controller/index.php?act=tieptucdathang'><button type='button'>Quay lại</button></a>";
+                                echo "<br><br><a href='../../controller/index.php?act=tieptucdathang&thanhtoan=chuachuyenkhoan'><button type='button'>Quay lại</button></a>";
                             }
                         } else {
-                            echo "<br><br><a href='../../controller/index.php?act=tieptucdathang'><button type='button'>Quay lại</button></a>";
+                            echo "<br><br><a href='../../controller/index.php?act=tieptucdathang&thanhtoan=chuachuyenkhoan'><button type='button'>Quay lại</button></a>";
                         }
                         ?>
                 </div> 
