@@ -14,7 +14,7 @@
             </div>
             <div class="mb-3">
                 <label for="tendm" class="form-label">Danh mục</label>
-                <input type="text" name="tendm" id="tendm" class="form-control" placeholder="Nhập tên danh mục...">
+                <input type="text" name="tendm" id="tendm" class="form-control" placeholder="Nhập tên danh mục..." value="<?= isset($tendm) ? ($tendm) : '' ?>">
                 <p class="Err mt-1"><?=$tendmErr?></p>
             </div>
             <div>

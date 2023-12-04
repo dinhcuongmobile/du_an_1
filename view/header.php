@@ -170,7 +170,7 @@
                                             <span> '.$soluong.' × '.number_format($giakm, 0, ',', '.').'₫</span>
                                         </div>
                                         <div class="cart-delete">
-                                            <a href="#">×</a>
+                                            <a href="?act=xoagiohang&id='.$idsp.'">×</a>
                                         </div>
                                     </li>';
                                     $tongthanhtoan+=$thanhtien;

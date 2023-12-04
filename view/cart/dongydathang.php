@@ -85,7 +85,8 @@ if(!$_SESSION['user']){
                                             $tongthanhtoan=0;
                                             foreach ($listgh as $giohang) {
                                                 extract($giohang);
-                                                echo ' <li>'.$tensp.'<span>'.number_format($thanhtien, 0, ',', '.').'₫ '.$soluong.'</span></li>';
+                                                if(strlen($tensp)>23) $tensp=substr($tensp,0,23)."...";
+                                                echo ' <li>'.$tensp.' X '.$soluong.' <span>'.number_format($thanhtien, 0, ',', '.').' ₫</span></li>';
                                                 $tongthanhtoan+=$thanhtien;
                                             }
                                             ?>
@@ -115,7 +116,7 @@ if(!$_SESSION['user']){
                                         <input id="payment_method_1" class="input-radio" type="radio" value="1" name="phuongthuctt">
                                         <label for="payment_method_1">CHUYỂN KHOẢN</label>
                                         <div class="payment-box payment_method_bacs">
-                                            <a href="../assets/vnpay_php/vnpay_pay.php" style="text-decoration:underline; color:blue;">Chuyển hướng tới trang thanh toán</a>
+                                            <a href="?act=chuyenkhoanvnp" style="text-decoration:underline; color:blue;">Chuyển hướng tới trang thanh toán</a>
                                         </div>
                                     </div>
                                 </div>

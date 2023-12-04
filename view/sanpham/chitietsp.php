@@ -37,10 +37,17 @@
                             </div>
                             <div class="product-details-action-wrap">
                                 <div class="single-product-cart btn-hover">
-                                <?php
-                                    extract($sanpham);
-                                ?>
+                                    <?php
+                                        extract($sanpham);
+                                    ?>
                                     <button onclick="themgiohang(<?= $id; ?>,<?= $giakm; ?>)" class="product-action-btn-2 theme-color" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
+                                </div>
+                                <div class="single-product-cart btn-hover">
+                                    <?php if(isset($_SESSION['user'])) : ?>
+                                        <form action="?act=chitietsp&id=<?= $id?>" method="post">
+                                            <button type="submit" name="datngayct" class="product-action-btn-2 theme-color">Mua ngay</button>
+                                        </form>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +70,7 @@
                     <div id="des-details3" class="tab-pane">
                         <div id="loadbinhluan" class="review-wrapper">
                             <?php extract($dembl);?>
-                            <h3><?=$countbl?> đánh giá</h3>
+                            <h3><span id="countbl"><?=$countbl?></span> đánh giá</h3>
                             <?php
                                 foreach ($listbl as $bl) {
                                     extract($bl);

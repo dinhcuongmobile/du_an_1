@@ -10,6 +10,7 @@ include "../model/sanpham.php";
 include "../model/taikhoan.php";
 include "../model/binhluan.php";
 include "../model/donhang.php";
+include "../model/khac.php";
 include "header.php";
 $countdh=count_donhang();
 $countbl=count_bl();
@@ -251,6 +252,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $sodienthoai=$_POST['sodienthoai'];
                 $diachi=$_POST['diachi'];
                 $role=$_POST['role'];
+                $listtk=load_all_tk(0,"");
                 $check=true;
                 if(empty(trim($hovaten))){$hovatenErr="";} 
                 else{
@@ -267,6 +269,11 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 if(empty(trim($email))){$check=false; $emailErr="Vui lòng không bỏ trống !";}
                 else{
                     if(!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/",$email)){$check=false;$emailErr="Email không đúng định dạng !";}
+                    else{
+                        foreach ($listtk as $tk) {
+                            if($email==$tk['email']){$check=false; $emailErr="Email đã tồn tại !";}
+                        }
+                    }
                 }
                 if(empty($sodienthoai)) $sodienthoai="";
                 else {if(!preg_match("/^0[1-9]\d{8}$/",$sodienthoai)){$check=false;$sodienthoaiErr="Số điện thoại không đúng định dạng !";}}
@@ -579,6 +586,131 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             break;   
         //end thong ke
         case 'qltintuc': 
+            if(isset($_POST['xoacacmucchon'])){
+                if(isset($_POST['select'])){
+                    $ids=$_POST['select'];
+                    foreach ($ids as $id) {
+                        delete_tintuc($id);
+                    }
+                }
+            }
+            if(isset($_POST['search'])){
+                $kyw=$_POST['kyw'];
+            }else{
+                $kyw="";
+            }
+            $listtintuc=load_tintuc($kyw);
+            include "tintuc/list.php";
+            break;
+        case 'addtintuc': 
+            $tieudeErr="";
+            $imageErr="";
+            $noidungErr="";
+            if(isset($_POST['submit'])){
+                date_default_timezone_set('Asia/Ho_Chi_Minh');
+                $ngaydang=date("y-m");
+                $tieude=$_POST['tieude'];
+                $noidung=$_POST['noidung'];
+                $image=basename($_FILES['image']['name']);
+                $check=true;
+                if(empty(trim($tieude))){
+                    $tieudeErr="Vui lòng nhập tiêu đề !";
+                    $check=false;
+                }
+                if(empty(trim($noidung))){
+                    $noidungErr="Vui lòng nhập nội dung !";
+                    $check=false;
+                }
+                if(empty($image)){
+                    $check=false;
+                    $imageErr="Vui lòng uploads file ảnh !";
+                }else{
+                    $file_tmp=$_FILES['image']['tmp_name'];
+                    $target_file="../uploads/tintuc/".$image;
+                    $extension=pathinfo($target_file,PATHINFO_EXTENSION);
+                    if(!in_array($extension,["png","jpeg","jpg","webp"])){
+                        $check=false;
+                        $imageErr="File không đúng định dạng !";
+                    }else{
+                        if($check){
+                            move_uploaded_file($file_tmp,$target_file);
+                        }
+                    }
+                }
+                if($check){
+                    insert_tintuc($image,$ngaydang,$tieude,$noidung,$_SESSION['user']['id']);
+                    header("location: ?act=qltintuc");        
+                }
+            }
+            include "tintuc/add.php";
+            break;
+        case 'updatetintuc': 
+            if(isset($_GET['id'])&&($_GET['id']!="")){
+                $id=$_GET['id'];
+                $tintuc=load_one_tintuc($id);
+                if($tintuc){
+                    $id=$tintuc['idtt'];
+                    $oldImage=$tintuc['image'];
+                    $tieude=$tintuc['tieude'];
+                    $noidung=$tintuc['noidung'];
+                }
+            }
+            $tieudeErr="";
+            $imageErr="";
+            $noidungErr="";
+            if(isset($_POST['submit'])){
+                $tieude=$_POST['tieude'];
+                $noidung=$_POST['noidung'];
+                $id=$_POST['id'];
+                $oldImage=$_POST['oldImage'];
+                $image=$_FILES['image']['name'];
+                $check=true;
+                if(empty(trim($tieude))){
+                    $tieudeErr="Vui lòng nhập tiêu đề !";
+                    $check=false;
+                }
+                if(empty(trim($noidung))){
+                    $noidungErr="Vui lòng nhập nội dung !";
+                    $check=false;
+                }
+                if(empty($image)){
+                    $image=$oldImage;
+                }else{
+                    $file_tmp=$_FILES['image']['tmp_name'];
+                    $target_file="../uploads/tintuc/".$image;
+                    $extension=pathinfo($target_file,PATHINFO_EXTENSION);
+                    if(!in_array($extension,["png","jpeg","jpg","webp"])){
+                        $check=false;
+                        $imageErr="File không đúng định dạng !";
+                    }else{
+                        if($check){
+                            move_uploaded_file($file_tmp,$target_file);
+                        }
+                    }
+                }
+                if($check){
+                    update_tintuc($id,$image,$oldImage,$tieude,$noidung);
+                    echo '<script>
+                        alert("Bạn đã cập nhật thành công !");
+                        window.location.href="?act=qltintuc";
+                    </script>';      
+                }
+            }
+            include "tintuc/update.php";
+            break;
+        case 'xoatintuc':
+            if(isset($_GET['id'])&&($_GET['id']!="")){
+                $id=$_GET['id'];
+                $tintuc=load_one_tintuc($id);
+                if($tintuc){
+                    delete_tintuc($tintuc['idtt']);
+                    echo '<script>
+                        alert("Bạn đã xóa thành công !");
+                        window.location.href="?act=qltintuc";
+                    </script>';
+                }
+            }
+            $listtintuc=load_tintuc($kyw);
             include "tintuc/list.php";
             break;
         default:

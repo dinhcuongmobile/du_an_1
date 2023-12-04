@@ -16,9 +16,10 @@
     </head>
 
     <body>
-        <?php require_once("./config.php"); ?>             
+    <?php require_once("config.php"); ?>  
+    <div class="cart-area pt-100 pb-100">           
         <div class="container">
-        <h3>Tạo mới đơn hàng</h3>
+            <h3>Tạo mới đơn hàng</h3>
             <div class="table-responsive">
                 <form action="vnpay_create_payment.php" id="frmCreateOrder" method="post">        
                     <div class="form-group">
@@ -48,6 +49,7 @@
             <footer class="footer">
                 <p>&copy; VNPAY 2020</p>
             </footer>
-        </div>  
+        </div> 
+    </div> 
     </body>
 </html>

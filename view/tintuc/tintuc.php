@@ -1,156 +1,40 @@
 <div class="blog-area pt-100 pb-100">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a href="blog-details.html"><img src="assets/images/blog/blog-1.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>05 <span>May</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a href="blog-details.html">Lorem ipsum dolor consectet.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" href="blog-details.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="400">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a href="blog-details.html"><img src="assets/images/blog/blog-2.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>03 <span>Jun.</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a href="blog-details.html">Duis et volutpat pellentesque.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" href="blog-details.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="600">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a href="blog-details.html"><img src="assets/images/blog/blog-3.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>07 <span>Feb.</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a href="blog-details.html">Vivamus vitae dolor convallis.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" href="blog-details.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a href="blog-details.html"><img src="assets/images/blog/blog-2.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>08 <span>Dec.</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a href="blog-details.html">Vivamus amet tristique orci.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" href="blog-details.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="400">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a href="blog-details.html"><img src="assets/images/blog/blog-3.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>02 <span>Nov.</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a href="blog-details.html">Pellentesque pretium place.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" href="blog-details.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="600">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a href="blog-details.html"><img src="assets/images/blog/blog-1.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>09 <span>Oct.</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a href="blog-details.html">Sed euismod tristique dolor.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" href="blog-details.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        $delay=200;
+                        foreach ($listtintuc as $tintuc) {
+                            extract($tintuc);
+                            if(strlen($tieude)>50) $tieude=substr($tieude,0,50);
+                            if(strlen($noidung)>150) $noidung=substr($noidung,0,150)."...";
+                            echo '<div class="col-lg-4 col-md-6">
+                                    <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="'.$delay.'">
+                                        <div class="blog-img-date-wrap mb-25">
+                                            <div class="blog-img">
+                                                <a href="blog-details.html"><img src="../uploads/tintuc/'.$image.'" alt=""></a>
+                                            </div>
+                                            <div class="blog-date">
+                                                <h5>'.$ngaydang.'</h5>
+                                            </div>
+                                        </div>
+                                        <div class="blog-content">
+                                            <div class="blog-meta">
+                                                <ul>
+                                                    <li><a href="#">Furniture</a>,</li>
+                                                    <li>By:<a href="#"> '.$hovaten.'</a></li>
+                                                </ul>
+                                            </div>
+                                            <h3><a href="blog-details.html">'.$tieude.'</a></h3>
+                                            <p>'.$noidung.'</p>
+                                            <div class="blog-btn-2 btn-hover">
+                                                <a class="btn hover-border-radius theme-color" href="blog-details.html">Xem thêm</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                                $delay+=200;
+                        }
+                    ?>
                 </div>
                 <div class="pagination-style-1" data-aos="fade-up" data-aos-delay="200">
                     <ul>

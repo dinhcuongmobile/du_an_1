@@ -16,6 +16,7 @@ if(isset($_SESSION['user'])) {
 $list_sp_home=load_sp_home();
 $list_sp_nb=load_sp_nb();
 $listdm=load_all_dm("");
+$listtintuchome=load_tintuc_home2();
 include "../view/header.php";
 if(isset($_GET['act'])&&($_GET['act']!="")){
     $act=$_GET['act'];
@@ -102,6 +103,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $emailErr="";
                 $sodienthoaiErr="";
                 $hovatenErr="";
+                $diachiErr="";
                 if(isset($_POST['luu'])){
                     $id=$_POST['id'];
                     $tendangnhap=$_POST['tendangnhap'];
@@ -122,6 +124,10 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     }
                     if(empty($sodienthoai)) $sodienthoai="";
                     else {if(!preg_match("/^0[1-9]\d{8}$/",$sodienthoai)){$check=false;$sodienthoaiErr="Số điện thoại không đúng định dạng !";}}
+                    if(empty(trim($diachi))){$diachiErr="";} 
+                    else{
+                        if(!preg_match("/^[a-zA-Z0-9  ,\p{L}\p{Mn}]{25,}$/u",$diachi)){$check=false;$diachiErr="Kiểm tra lại địa chỉ !";}
+                    }
                     if($check){
                         update_tk($id,$hovaten,$tendangnhap,$matkhau,$email,$sodienthoai,$diachi,$role);
                         $_SESSION['user']=checkuser($tendangnhap,$matkhau);
@@ -205,32 +211,6 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             }
             include "../view/cart/giohang.php";
             break;
-        case 'themgiohang':
-            if(isset($_SESSION['user'])){
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $idsanpham = $_POST['id'];
-                    $giasp = $_POST['giasp'];
-                    $soluong = 1;
-                    $thanhtien = $giasp * $soluong;
-                    $check = true;
-                    foreach ($listgh as $giohang) {
-                        if ($idsanpham == $giohang['idsanpham']) {
-                            $giohang['soluong'] += $soluong;
-                            $giohang['thanhtien'] = $giasp * $giohang['soluong'];
-                            update_giohang($giohang['soluong'],$giohang['thanhtien'],$giohang['idsanpham']);
-                            $check = false;
-                            break;
-                        }
-                    }
-                
-                    if ($check) {
-                        insert_cart($_SESSION['user']['id'], $idsanpham, $soluong, $thanhtien);
-                    }
-                    header('location: ?act=giohang');
-                }
-            }else{header('location: ?act=dangnhap');}
-            include "../view/cart/giohang.php";
-            break;
         case 'xoagiohang':
             if(isset($_GET['id'])){
                 delete_giohang($_GET['id'],0);
@@ -245,7 +225,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     date_default_timezone_set('Asia/Ho_Chi_Minh');
                     $ngaydathang = date('Y-m-d H:i:s');
                     $phuongthuctt=$_POST['phuongthuctt'];
-                    if($_POST['phuongthuctt']===0) $thanhtoan=0;
+                    if($_POST['phuongthuctt']==0) $thanhtoan=0;
                     else $thanhtoan=1;
                     if(isset($_POST['diachikhac'])){
                         $hovatennhan=$_POST['hovatennhan'];
@@ -254,7 +234,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                         $checkdck=true;
                         if(empty(trim($hovatennhan))){$checkdck=false; $hovatennhanErr="Vui lòng không bỏ trống !";} 
                         else{
-                            if(!preg_match("/^[a-zA-Z ]{6,}$/",$hovatennhan)){$checkdck=false;$hovatennhanErr="Họ và tên tối thiểu 6 ký tự và không bao gồm chữ số!";}
+                            if(!preg_match("/^[a-zA-Z \p{L}\p{Mn}]{6,}$/u",$hovatennhan)){$checkdck=false;$hovatennhanErr="Họ và tên tối thiểu 6 ký tự và không bao gồm chữ số!";}
                         }
                         if(empty(trim($sodienthoainhan))) {$checkdck=false; $sodienthoainhanErr="Vui lòng không bỏ trống !";} 
                         else {
@@ -262,7 +242,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                         }
                         if(empty(trim($diachinhan))){$checkdck=false; $diachinhanErr="Vui lòng không bỏ trống !";} 
                         else{
-                            if(!preg_match("/^[a-zA-Z0-9 ]{25,}$/",$diachinhan)){$checkdck=false;$diachinhanErr="Kiểm tra lại địa chỉ !";}
+                            if(!preg_match("/^[a-zA-Z0-9  ,\p{L}\p{Mn}]{25,}$/u",$diachinhan)){$checkdck=false;$diachinhanErr="Kiểm tra lại địa chỉ !";}
                         }
                         if($checkdck){
                             $iddonhang=mua_hang($_SESSION['user']['id'],$hovatennhan,$ngaydathang,$diachinhan,$sodienthoainhan,$phuongthuctt,$thanhtoan);
@@ -290,7 +270,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                         $check=true;
                         if(empty(trim($hovaten))){$check=false; $hovatenErr="Vui lòng không bỏ trống !";} 
                         else{
-                            if(!preg_match("/^[a-zA-Z ]{6,}$/",$hovaten)){$check=false;$hovatenErr="Họ và tên tối thiểu 6 ký tự và không bao gồm chữ số!";}
+                            if(!preg_match("/^[a-zA-Z \p{L}\p{Mn}]{6,}$/u",$hovaten)){$check=false;$hovatenErr="Họ và tên tối thiểu 6 ký tự và không bao gồm chữ số!";}
                         }
                         if(empty(trim($sodienthoai))) {$check=false; $sodienthoaiErr="Vui lòng không bỏ trống !";} 
                         else {
@@ -298,7 +278,7 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                         }
                         if(empty(trim($diachi))){$check=false; $diachiErr="Vui lòng không bỏ trống !";} 
                         else{
-                            if(!preg_match("/^[a-zA-Z0-9 ]{25,}$/",$diachi)){$check=false;$diachiErr="Kiểm tra lại địa chỉ !";}
+                            if(!preg_match("/^[a-zA-Z0-9  ,\p{L}\p{Mn}]{25,}$/u",$diachi)){$check=false;$diachiErr="Kiểm tra lại địa chỉ !";}
                         }
                         if($check){
                             $iddonhang=mua_hang($_SESSION['user']['id'],$hovaten,$ngaydathang,$diachi,$sodienthoai,$phuongthuctt,$thanhtoan);
@@ -320,6 +300,46 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 }
             }else{header("location: ?act=trangchu");}
             include "../view/cart/dongydathang.php";
+            break;
+        case "lichsumuahang":
+            if(isset($_SESSION['user'])){
+                $idtaikhoan=$_SESSION['user']['id'];
+                $tatca=load_all_dh_lsmh($idtaikhoan,1);
+                $choxacnhan=load_all_dh_lsmh($idtaikhoan,0);
+                $chogiaohang=load_all_dh_lsmh($idtaikhoan,2);
+                $danggiao=load_all_dh_lsmh($idtaikhoan,3);
+                $hoanthanh=load_all_dh_lsmh($idtaikhoan,4);
+                $dahuy=load_all_dh_lsmh($idtaikhoan,5);
+                if(isset($_POST['mualai'])){
+                    if(isset($_POST['id'])&&(is_array($_POST['id']))){
+                        foreach ($_POST['id'] as $item) {
+                            $sanpham=load_one_sp($item);
+                            if($sanpham){
+                                $idsanpham = $sanpham['id'];
+                                $giasp = $sanpham['giakm'];
+                                $soluong = 1;
+                                $thanhtien = $giasp * $soluong;
+                                $check = true;
+                                foreach ($listgh as $giohang) {
+                                    if ($idsanpham == $giohang['idsanpham']) {
+                                        $giohang['soluong'] += $soluong;
+                                        $giohang['thanhtien'] = $giasp * $giohang['soluong'];
+                                        update_giohang($giohang['soluong'],$giohang['thanhtien'],$giohang['idsanpham']);
+                                        $check = false;
+                                        break;
+                                    }
+                                }
+                            
+                                if ($check) {
+                                    insert_cart($_SESSION['user']['id'], $idsanpham, $soluong, $thanhtien);
+                                }
+                            }
+                        }
+                        header("location: ?act=giohang");
+                    }
+                }
+            }else{header("location: ?act=trangchu");}
+            include "../view/cart/lichsumuahang.php";
             break;
         /* END GIO HANG */
         case 'sanpham':
@@ -372,49 +392,29 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     $listbl=load_bl_sp($sanpham['id']);
                     $danhmuc = load_one_dm($sanpham['iddm']);
                     $dembl=dem_bl_sp($sanpham['id']);
-                }
-            }
-            include "../view/sanpham/chitietsp.php";
-            break;
-        case "lichsumuahang":
-            if(isset($_SESSION['user'])){
-                $idtaikhoan=$_SESSION['user']['id'];
-                $tatca=load_all_dh_lsmh($idtaikhoan,1);
-                $choxacnhan=load_all_dh_lsmh($idtaikhoan,0);
-                $chogiaohang=load_all_dh_lsmh($idtaikhoan,2);
-                $danggiao=load_all_dh_lsmh($idtaikhoan,3);
-                $hoanthanh=load_all_dh_lsmh($idtaikhoan,4);
-                $dahuy=load_all_dh_lsmh($idtaikhoan,5);
-                if(isset($_POST['mualai'])){
-                    if(isset($_POST['id'])&&(is_array($_POST['id']))){
-                        foreach ($_POST['id'] as $item) {
-                            $sanpham=load_one_sp($item);
-                            if($sanpham){
-                                $idsanpham = $sanpham['id'];
-                                $giasp = $sanpham['giakm'];
-                                $soluong = 1;
-                                $thanhtien = $giasp * $soluong;
-                                $check = true;
-                                foreach ($listgh as $giohang) {
-                                    if ($idsanpham == $giohang['idsanpham']) {
-                                        $giohang['soluong'] += $soluong;
-                                        $giohang['thanhtien'] = $giasp * $giohang['soluong'];
-                                        update_giohang($giohang['soluong'],$giohang['thanhtien'],$giohang['idsanpham']);
-                                        $check = false;
-                                        break;
-                                    }
-                                }
-                            
-                                if ($check) {
-                                    insert_cart($_SESSION['user']['id'], $idsanpham, $soluong, $thanhtien);
+                    if(isset($_POST['datngayct'])){
+                        $soluong = 1;
+                        $thanhtien = $sanpham['giakm'] * $soluong;
+                        $check = true;
+                        foreach ($listgh as $giohang) {
+                            if ($sanpham['id'] == $giohang['idsanpham']) {
+                                $giohang['soluong'] += $soluong;
+                                $giohang['thanhtien'] = $sanpham['giakm'] * $giohang['soluong'];
+                                update_giohang($giohang['soluong'],$giohang['thanhtien'],$giohang['idsanpham']);
+                                $check = false;
+                                header("location: ?act=giohang");
+                                break;
                                 }
                             }
-                        }
-                        header("location: ?act=giohang");
+                            if ($check) {
+                                insert_cart($_SESSION['user']['id'], $sanpham['id'], $soluong, $thanhtien);
+                                header("location: ?act=giohang");
+                            }
                     }
                 }
-            }else{header("location: ?act=trangchu");}
-            include "../view/cart/lichsumuahang.php";
+
+            }
+            include "../view/sanpham/chitietsp.php";
             break;
         case "huydonhang":
             if(isset($_SESSION['user'])){
@@ -430,7 +430,11 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             
             break;
         case "tintuc":
+            $listtintuc=load_tintuc_home();
             include "../view/tintuc/tintuc.php";
+            break;
+        case "chuyenkhoanvnp":
+            header("location: ../assets/vnpay_php/vnpay_pay.php");
             break;
         default:
         include "../view/home.php";

@@ -35,17 +35,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center"><input type="checkbox" name="select[]" value="'.$id.'"></td>
-                                <td>1</td>
-                                <td class="col-2">Nguyễn Đình Cường</td>
-                                <td class="col-1"><img src="" alt="err"></td>
-                                <td class="col-2">Tổng hợp 10 mẫu điện thoại mới nhất 2023</td>
-                                <td class="col-2">1</td>
-                                <td class="col-2">2023-12-01 10:05:15</td>
-                                <td class="col-2"><a href="?act=updatetintuc"><button type="button" class="btn btn-secondary btn-sm">Sửa</button></a> | 
-                                    <a href="?act=xoatintuc"><button type="button" class="btn btn-secondary btn-sm">Xóa</button></a></td>
-                            </tr>
+                            <?php
+                            foreach ($listtintuc as $tintuc) {
+                                extract($tintuc);
+                                if(strlen($tieude)>50) $tieude=substr($tieude,0,50)."...";
+                                if(strlen($noidung)>100) $noidung=substr($noidung,0,100)."...";
+                                echo '<tr>
+                                        <td class="text-center"><input type="checkbox" name="select[]" value="'.$idtt.'"></td>
+                                        <td>'.$idtt.'</td>
+                                        <td class="col-2">'.$tendangnhap.'</td>
+                                        <td class="col-1"><img src="../uploads/tintuc/'.$image.'" alt="err" height=60px></td>
+                                        <td class="col-2">'.$tieude.'</td>
+                                        <td class="col-3">'.$noidung.'</td>
+                                        <td class="col-1">'.$ngaydang.'</td>
+                                        <td class="col-2"><a href="?act=updatetintuc&id='.$idtt.'"><button type="button" class="btn btn-secondary btn-sm">Sửa</button></a> | 
+                                            <a href="?act=xoatintuc&id='.$idtt.'"><button type="button" class="btn btn-secondary btn-sm">Xóa</button></a></td>
+                                    </tr>';
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 03, 2023 lúc 04:36 PM
+-- Thời gian đã tạo: Th12 04, 2023 lúc 02:40 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `du_an_1`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `banner`
+--
+
+CREATE TABLE `banner` (
+  `id` int(5) NOT NULL,
+  `idsanpham` int(5) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `ngaydang` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -42,7 +55,9 @@ CREATE TABLE `binhluan` (
 INSERT INTO `binhluan` (`id`, `idtaikhoan`, `idsanpham`, `noidung`, `ngaybinhluan`) VALUES
 (17, 24, 25, 'I am back', '2023-12-01'),
 (18, 24, 26, 'ok nhi', '2023-12-01'),
-(19, 1, 26, 'nhin dep nhi', '2023-12-01');
+(19, 1, 26, 'nhin dep nhi', '2023-12-01'),
+(25, 1, 27, 'kkk', '2023-12-04'),
+(26, 1, 34, 'okkkk', '2023-12-04');
 
 -- --------------------------------------------------------
 
@@ -74,7 +89,10 @@ INSERT INTO `chitietdonhang` (`id`, `iddonhang`, `idsanpham`, `soluong`, `dongia
 (100, 64, 26, 2, 32792000, 65584000),
 (101, 65, 9, 1, 11333000, 11333000),
 (102, 66, 26, 1, 32792000, 32792000),
-(103, 67, 11, 1, 13013000, 13013000);
+(103, 67, 11, 1, 13013000, 13013000),
+(105, 69, 34, 2, 25042500, 50085000),
+(106, 69, 24, 1, 5032000, 5032000),
+(107, 69, 27, 1, 18392000, 18392000);
 
 -- --------------------------------------------------------
 
@@ -125,8 +143,9 @@ INSERT INTO `donhang` (`id`, `idtaikhoan`, `hovatennhan`, `ngaydathang`, `diachi
 (63, 1, 'Nguyễn Đình Cường', '2023-12-03 09:54:35', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 0, 4, 0),
 (64, 1, 'Nguyễn Đình Cường', '2023-12-03 10:47:26', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 0, 5, 0),
 (65, 1, 'Nguyễn Đình Cường', '2023-12-03 12:35:56', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 1, 2, 0),
-(66, 1, 'Nguyễn Đình Cường', '2023-12-03 12:36:47', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 1, 2, 0),
-(67, 1, 'Nguyễn Đình Cường', '2023-12-03 12:38:38', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 1, 2, 1);
+(66, 1, 'Nguyễn Đình Cường', '2023-12-03 12:36:47', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 1, 4, 0),
+(67, 1, 'Nguyễn Đình Cường', '2023-12-03 12:38:38', 'Phú Nghĩa, Chương Mỹ, Hà Nội', '0964426518', 1, 4, 1),
+(69, 1, 'nguyen dinh cuong', '2023-12-04 18:15:16', 'phu nghia chuong my ha noi', '0123456789', 0, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -147,10 +166,7 @@ CREATE TABLE `giohang` (
 --
 
 INSERT INTO `giohang` (`id`, `idtaikhoan`, `idsanpham`, `soluong`, `thanhtien`) VALUES
-(239, 1, 25, 2, 12784000),
-(240, 1, 27, 2, 36784000),
-(241, 1, 26, 3, 98376000),
-(243, 24, 26, 1, 32792000);
+(341, 1, 25, 1, 6392000);
 
 -- --------------------------------------------------------
 
@@ -180,8 +196,8 @@ INSERT INTO `sanpham` (`id`, `iddm`, `tensp`, `giasp`, `giakm`, `image`, `soluon
 (1, 1, 'iPhone 14 Pro 128GB | Chính hãng VN/A', 24590000, 17213000, '1.webp', 98, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nMàn hình Dynamic Island - Sự biến mất của màn hình tai thỏ thay thế bằng thiết kế viên thuốc, OLED 6,7 inch, hỗ trợ always-on display\r\nCấu hình iPhone 14 Pro Max mạnh mẽ, hiệu năng cực khủng từ chipset A16 Bionic\r\nLàm chủ công nghệ nhiếp ảnh - Camera sau 48MP, cảm biến TOF sống động\r\nPin liền lithium-ion kết hợp cùng công nghệ sạc nhanh cải tiến', 1309),
 (3, 2, 'Samsung Galaxy Z Flip5 256GB', 21990000, 15393000, '10.webp', 99, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nThần thái nổi bật, cân mọi phong cách- Lấy cảm hứng từ thiên nhiên với màu sắc thời thượng, xu hướng\r\nThiết kế thu hút ánh nhìn - Gập không kẽ hỡ, dẫn đầu công nghệ bản lề Flex\r\nTuyệt tác selfie thoả sức sáng tạo - Camera sau hỗ trợ AI xử lí cực sắc nét ngay cả trên màn hình ngoài\r\nBền bỉ bất chấp mọi tình huống - Đạt chuẩn kháng bụi và nước IP68 cùng chất liệu nhôm Armor Aluminum giúp hạn chế cong và xước', 809),
 (4, 2, 'Samsung Galaxy S23 Ultra 256GB', 23990000, 16793000, '4.webp', 100, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nThoả sức chụp ảnh, quay video chuyên nghiệp - Camera đến 200MP, chế độ chụp đêm cải tiến, bộ xử lí ảnh thông minh\r\nChiến game bùng nổ - chip Snapdragon 8 Gen 2 8 nhân tăng tốc độ xử lí, màn hình 120Hz, pin 5.000mAh\r\nNâng cao hiệu suất làm việc với Siêu bút S Pen tích hợp, dễ dàng đánh dấu sự kiện từ hình ảnh hoặc video\r\nThiết kế bền bỉ, thân thiện - Màu sắc lấy cảm hứng từ thiên nhiên, chất liệu kính và lớp phim phủ PET tái chế', 955),
-(9, 1, 'iPhone 13 128GB | Chính hãng VN/A', 16190000, 11333000, '3.webp', 98, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nHiệu năng vượt trội - Chip Apple A15 Bionic mạnh mẽ, hỗ trợ mạng 5G tốc độ cao\r\nKhông gian hiển thị sống động - Màn hình 6.1\" Super Retina XDR độ sáng cao, sắc nét\r\nTrải nghiệm điện ảnh đỉnh cao - Camera kép 12MP, hỗ trợ ổn định hình ảnh quang học\r\nTối ưu điện năng - Sạc nhanh 20 W, đầy 50% pin trong khoảng 30 phút', 1151),
-(11, 1, 'iPhone 14 128GB | Chính hãng VN/A', 18590000, 13013000, '9.webp', 97, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nTuyệt đỉnh thiết kế, tỉ mỉ từng đường nét - Nâng cấp toàn diện với kiểu dáng mới, nhiều lựa chọn màu sắc trẻ trung\r\nNâng tầm trải ngiệm giải trí đỉnh cao - Màn hình 6,1\"\" cùng tấm nền OLED có công nghệ Super Retina XDR cao cấp\r\nChụp ảnh chuyên nghiệp hơn - Cụm 2 camera 12 MP đi kèm nhiều chế độ và chức năng chụp hiện đại\r\nHiệu năng hàng đầu thế giới - Apple A15 Bionic 6 nhân xử lí nhanh, ổn định', 1201),
+(9, 1, 'iPhone 13 128GB | Chính hãng VN/A', 16190000, 11333000, '3.webp', 97, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nHiệu năng vượt trội - Chip Apple A15 Bionic mạnh mẽ, hỗ trợ mạng 5G tốc độ cao\r\nKhông gian hiển thị sống động - Màn hình 6.1\" Super Retina XDR độ sáng cao, sắc nét\r\nTrải nghiệm điện ảnh đỉnh cao - Camera kép 12MP, hỗ trợ ổn định hình ảnh quang học\r\nTối ưu điện năng - Sạc nhanh 20 W, đầy 50% pin trong khoảng 30 phút', 1153),
+(11, 1, 'iPhone 14 128GB | Chính hãng VN/A', 18590000, 13013000, '9.webp', 97, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nTuyệt đỉnh thiết kế, tỉ mỉ từng đường nét - Nâng cấp toàn diện với kiểu dáng mới, nhiều lựa chọn màu sắc trẻ trung\r\nNâng tầm trải ngiệm giải trí đỉnh cao - Màn hình 6,1\"\" cùng tấm nền OLED có công nghệ Super Retina XDR cao cấp\r\nChụp ảnh chuyên nghiệp hơn - Cụm 2 camera 12 MP đi kèm nhiều chế độ và chức năng chụp hiện đại\r\nHiệu năng hàng đầu thế giới - Apple A15 Bionic 6 nhân xử lí nhanh, ổn định', 1202),
 (12, 1, 'iPhone 11 128GB | Chính hãng VN/A', 12190000, 8533000, '7.webp', 99, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nMàu sắc phù hợp cá tính - 6 màu sắc bắt mắt để lựa chọn\r\nHiệu năng mượt mà, ổn định - Chip A13, RAM 4GB\r\nBắt trọn khung hình - Camera kép hỗ trợ góc rộng, chế độ Night Mode\r\nYên tâm sử dụng - Kháng nước, kháng bụi IP68, kính cường lực Gorilla Glass', 1000),
 (13, 4, 'OPPO Find N3 Flip 12GB 256GB', 22990000, 16093000, '11.webp', 100, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế gập linh hoạt, đường cong 3D, đường cắt kim cương - biểu tượng của sự phong cách giúp bạn luôn toả sáng\r\nĐiện thoại gập sở hữu 3 camera sắc nét - Chụp hình đơn giản hơn với Chế độ Flexform\r\nMàn hình phụ vạn năng - dễ dàng thao tác các tác vụ ngay trên màn hình phụ và tuỳ biến theo sở thích\r\nMàn hình sống động đáng kinh ngạc - Kích thước 6.8i nches, hỗ trợ 120Hz, HDR10+', 1100),
 (14, 2, 'Samsung Galaxy M34 5G 8GB 128GB', 7490000, 5243000, '12.webp', 100, 0, 30, 'ĐẶC ĐIỂM NỔI BẬT\r\nNâng cao hiệu suất của bạn với bộ xử lý cực nhanh Exynos 1280 - 5nm.\r\nCông nghệ Voice Focus - Cuộc gọi video và âm thanh của bạn luôn được rõ ràng hơn.\r\nPin cực khỏe 6000mAh cho bạn thoải mái sử dụng cả ngày dài.\r\nThiết kế sang trọng, sở hữu những gam màu thời thượng khơi dậy những ngày mới của bạn.', 0),
@@ -194,10 +210,11 @@ INSERT INTO `sanpham` (`id`, `iddm`, `tensp`, `giasp`, `giakm`, `image`, `soluon
 (21, 3, 'Xiaomi Redmi 12C 4GB 64GB', 3590000, 3051500, '18.webp', 100, 0, 15, 'ĐẶC ĐIỂM NỔI BẬT\r\nỔn định hiệu năng - Chip MediaTek Helio G85 mạnh mẽ xử lí tốt các tác vụ thường ngày\r\nSử dụng đa nhiệm nhiều ứng dụng, thao tác cùng lúc tốt hơn - Hỗ trợ bộ nhớ mở rộng\r\nGiải trí thả ga - Màn hình 6.71\" HD+ cho khung hình rõ nét\r\nẢnh sắc nét với chế độ chụp đêm - Camera kép AI 50MP', 0),
 (22, 3, 'Xiaomi POCO X5 5G 8GB 256GB', 7490000, 5992000, '19.webp', 100, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nKhông gian gaming đúng chuẩn - Màn hình lớn 6.67\" AMOLED DotDisplay và 120Hz cho khung hình sắc nét và chuyển động mượt mà\r\nChiến game dài lâu, không lo thiếu pin - Viên pin dung lượng 5000mAh cho thời gian xem video liên tục đến 21 giờ\r\nHiệu năng chiến binh mạnh mẽ - Snapdragon® 695 cùng tốc độ 5G giúp bạn thoải mái chiến game và bắt kịp mọi trận đấu\r\nThiết kế chuẩn gaming - Phong cách độc đáo với 3 phiên bản màu sắc thời thượng phù hợp với bất kể cá tính nào', 0),
 (23, 4, 'OPPO Reno8 T 4G 256GB', 8490000, 7216500, '20.webp', 100, 0, 15, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế thời thượng - Tràn viền, mỏng nhẹ đặc biệt phù hợp với các bạn trẻ, yêu khám phá xu hướng mới\r\nGiải trí ấn tượng - Màn hình 16 triệu màu, tần số quét 90Hz ấn tượng\r\nChụp ảnh chân dung chuyên nghiệp - Camera 100MP sắc nét đi kèm thuật toán AI\r\nPin dùng cả ngày - Viên pin lớn 5000 mAh, sạc siêu nhanh đến 67 W', 0),
-(24, 4, 'OPPO A77s', 6290000, 5032000, '21.webp', 90, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nNâng tầm trải nghiệm thị giác - Tấm nền IPS LCD với kích thước 6.56 inch, tần số quét 90Hz\r\nNăng lượng tiếp sức cho cả ngày dài - 5000 mAh, sạc siêu nhanh SuperVOOC 33 W\r\nLong lanh từ trong ra ngoài với thiết kế OPPO Glow, mặt lưng hoàn thiện từ thủy tinh hữu cơ\r\nTrải nghiệm ổn định mọi tác vụ - Chip Snapdragon 680 8, RAM 8 GB và khả năng mở rộng RAM', 2),
-(25, 4, 'OPPO Reno7 4G (8GB - 128GB)', 7990000, 6392000, '22.webp', 87, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nMàn hình chất lượng, thoả sức khám phá và giải trí - 6.43 inches, AMOLED, Full HD+\r\nCamera chất lượng với cảm biến thế hệ mới - Cụm 3 camera 64 MP, đa dạng chế độ chụp\r\nChiến game ổn định nhờ con chip mạnh mẽ - Snapdragon™ 680, RAM 8GB\r\nKhông lo gián đoạn với viên pin lớn 4500 mAh, sạc nhanh SUPERVOOCTM 33W', 14),
-(26, 2, 'Samsung Galaxy Z Fold5 12GB 256GB', 40990000, 32792000, '23.webp', 90, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế tinh tế với nếp gấp vô hình - Cải tiến nếp gấp thẩm mĩ hơn và gập không kẽ hở\r\nBền bỉ bất chấp mọi tình huống - Đạt chuẩn kháng bụi và nước IP68 cùng chất liệu nhôm Armor Aluminum giúp hạn chế cong và xước\r\nMở ra không gian giải trí cực đại với màn hình trong 7.6\"\" cùng bản lề Flex dẫn đầu công nghệ\r\nThoải mái sáng tạo mọi lúc - Bút Spen tiện dụng giúp bạn phác hoạ và ghi chép không cần đến sổ tay\r\nHiệu năng cân mọi tác vụ - Snapdragon® 8 Gen 2 for Galaxy xử lí mượt mà, đa nhiệm mượt mà', 812),
-(27, 2, 'Samsung Galaxy S23 8GB 128GB', 22990000, 18392000, '24.webp', 85, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nHiệu năng vượt trội với con chip hàng đầu Qualcomm - Phục vụ tốt nhu cầu đa nhiệm ngày của người dùng.\r\nTrang bị bộ 3 ống kính với camera chính 50MP - Đem lại khả năng quay video và chụp ra những bức ảnh tốt, hài hòa, sống động hơn.\r\nNâng cấp trải nghiệm với màn hình Dynamic AMOLED 2X - Phù hợp dùng để xem phim hay chơi các tựa game có nội dung hình ảnh đồ họa cao.\r\nSở hữu lối thiết kế sang trọng, đẳng cấp cùng các bảng màu sắc thời thượng, trẻ trung.', 850);
+(24, 4, 'OPPO A77s', 6290000, 5032000, '21.webp', 89, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nNâng tầm trải nghiệm thị giác - Tấm nền IPS LCD với kích thước 6.56 inch, tần số quét 90Hz\r\nNăng lượng tiếp sức cho cả ngày dài - 5000 mAh, sạc siêu nhanh SuperVOOC 33 W\r\nLong lanh từ trong ra ngoài với thiết kế OPPO Glow, mặt lưng hoàn thiện từ thủy tinh hữu cơ\r\nTrải nghiệm ổn định mọi tác vụ - Chip Snapdragon 680 8, RAM 8 GB và khả năng mở rộng RAM', 2),
+(25, 4, 'OPPO Reno7 4G (8GB - 128GB)', 7990000, 6392000, '22.webp', 85, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nMàn hình chất lượng, thoả sức khám phá và giải trí - 6.43 inches, AMOLED, Full HD+\r\nCamera chất lượng với cảm biến thế hệ mới - Cụm 3 camera 64 MP, đa dạng chế độ chụp\r\nChiến game ổn định nhờ con chip mạnh mẽ - Snapdragon™ 680, RAM 8GB\r\nKhông lo gián đoạn với viên pin lớn 4500 mAh, sạc nhanh SUPERVOOCTM 33W', 19),
+(26, 2, 'Samsung Galaxy Z Fold5 12GB 256GB', 40990000, 32792000, '23.webp', 89, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế tinh tế với nếp gấp vô hình - Cải tiến nếp gấp thẩm mĩ hơn và gập không kẽ hở\r\nBền bỉ bất chấp mọi tình huống - Đạt chuẩn kháng bụi và nước IP68 cùng chất liệu nhôm Armor Aluminum giúp hạn chế cong và xước\r\nMở ra không gian giải trí cực đại với màn hình trong 7.6\"\" cùng bản lề Flex dẫn đầu công nghệ\r\nThoải mái sáng tạo mọi lúc - Bút Spen tiện dụng giúp bạn phác hoạ và ghi chép không cần đến sổ tay\r\nHiệu năng cân mọi tác vụ - Snapdragon® 8 Gen 2 for Galaxy xử lí mượt mà, đa nhiệm mượt mà', 817),
+(27, 2, 'Samsung Galaxy S23 8GB 128GB', 22990000, 18392000, '24.webp', 83, 0, 20, 'ĐẶC ĐIỂM NỔI BẬT\r\nHiệu năng vượt trội với con chip hàng đầu Qualcomm - Phục vụ tốt nhu cầu đa nhiệm ngày của người dùng.\r\nTrang bị bộ 3 ống kính với camera chính 50MP - Đem lại khả năng quay video và chụp ra những bức ảnh tốt, hài hòa, sống động hơn.\r\nNâng cấp trải nghiệm với màn hình Dynamic AMOLED 2X - Phù hợp dùng để xem phim hay chơi các tựa game có nội dung hình ảnh đồ họa cao.\r\nSở hữu lối thiết kế sang trọng, đẳng cấp cùng các bảng màu sắc thời thượng, trẻ trung.', 876),
+(34, 1, 'iPhone 15 Pro Max 256GB | Chính hãng VN/A', 33390000, 25042500, '25.webp', 97, 0, 25, 'ĐẶC ĐIỂM NỔI BẬT\r\nThiết kế khung viền từ titan chuẩn hàng không vũ trụ - Cực nhẹ, bền cùng viền cạnh mỏng cầm nắm thoải mái\r\nHiệu năng Pro chiến game thả ga - Chip A17 Pro mang lại hiệu năng đồ họa vô cùng sống động và chân thực\r\nThoả sức sáng tạo và quay phim chuyên nghiệp - Cụm 3 camera sau đến 48MP và nhiều chế độ tiên tiến\r\nNút tác vụ mới giúp nhanh chóng kích hoạt tính năng yêu thích của bạn', 7);
 
 -- --------------------------------------------------------
 
@@ -253,7 +270,8 @@ INSERT INTO `thongke` (`id`, `ngaydat`, `donhang`, `doanhthu`, `soluongban`) VAL
 (7, '2023-11-30', 3, '90434000', 6),
 (11, '2023-12-01', 3, '69605000', 7),
 (12, '2023-12-02', 1, '65240000', 5),
-(13, '2023-12-03', 3, '29240000', 5);
+(13, '2023-12-03', 3, '29240000', 5),
+(18, '2023-12-04', 2, '45805000', 2);
 
 -- --------------------------------------------------------
 
@@ -263,15 +281,34 @@ INSERT INTO `thongke` (`id`, `ngaydat`, `donhang`, `doanhthu`, `soluongban`) VAL
 
 CREATE TABLE `tintuc` (
   `id` int(5) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `ngaydang` varchar(100) NOT NULL,
   `tieude` varchar(255) NOT NULL,
-  `noidung` text NOT NULL,
+  `noidung` longtext NOT NULL,
   `idtaikhoan` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Đang đổ dữ liệu cho bảng `tintuc`
+--
+
+INSERT INTO `tintuc` (`id`, `image`, `ngaydang`, `tieude`, `noidung`, `idtaikhoan`) VALUES
+(1, '3.jpeg', '12-04', '4 nâng cấp đáng mong chờ trên dòng Galaxy S24 sắp ra mắt', 'Những tính năng được đề cập trong bài viết dưới đây sẽ là sự bổ sung tuyệt vời cho mẫu flagship Galaxy S24 dự kiến được Samsung ra mắt vào đầu năm sau.\r\nTheo các nguồn tin rò rỉ, Samsung nhiều khả năng sẽ ra mắt loạt flagship Galaxy S thế hệ tiếp theo vào đầu năm sau. Chúng được kỳ vọng sẽ mang đến hàng loạt nâng cấp, tính năng mới so với thế hệ trước để nâng tầm trải nghiệm sử dụng của người dùng. Trong bài viết dưới đây, chúng ta hãy cùng điểm qua 4 nâng cấp đáng mong chờ trên dòng Galaxy S24 sắp ra mắt.\r\nSamsung sẽ ra mắt dòng Galaxy S24 vào đầu năm sau\r\nSamsung sẽ ra mắt dòng Galaxy S24 vào đầu năm sau\r\nMục lục	\r\nCác tính năng AI hữu ích\r\nSạc nhanh hơn\r\nNhiều bộ nhớ hơn trong Galaxy S24 cơ bản\r\nThêm nhiều năm cập nhật Android \r\nCác tính năng AI hữu ích\r\nSamsung đã không tiết lộ nhiều tham vọng AI của họ vào năm 2023 như các công ty như Google, Meta và Microsoft. Tuy nhiên, theo các báo cáo thì công ty Hàn Quốc vẫn đang tích cực làm việc để cải thiện trải nghiệm sử dụng của người dùng trên các smartphone của họ thông qua trí thông minh nhân tạo.\r\nGalaxy S24 series sẽ có AI thông minh hơn\r\nGalaxy S24 series sẽ có AI thông minh hơn\r\nDựa trên những thông báo gần đây của Samsung, có vẻ như AI sẽ là trung tâm của dòng Galaxy S24, tương tự như cách tiếp cận của Google với Pixel 8 và Pixel 8 Pro. Công ty Hàn Quốc gần đây đã công bố Gauss, một mô hình AI tổng quát mới bao gồm ngôn ngữ, hình ảnh và mã, và Galaxy AI, một \"trải nghiệm\" có thể sẽ đến với S24. Thông tin chi tiết về Gauss và Galaxy AI rất khan hiếm, nhưng Gauss sẽ có thể xử lý các tác vụ như soạn email và tóm tắt tài liệu, trong khi Galaxy AI có thể dịch trực tiếp khi người dùng đang gọi điện thoại.\r\nSạc nhanh hơn\r\nDòng Galaxy S23 cung cấp tốc độ sạc tương tự như các phiên bản tiền nhiệm, đó là 25W trên phiên bản tiêu chuẩn và 45W trên hai mẫu máy còn lại. Điều này tụt hậu khá nhiều so với các đối thủ cạnh tranh. Ví dụ: Lenovo ThinkPhone cung cấp khả năng sạc 68W, có thể sạc từ 0% đến 92% trong 30 phút. Motorola Edge Plus, cũng có tính năng sạc 68W, đã bổ sung pin từ 3% lên 80% trong 30 phút trong quá trình thử nghiệm của CNET. Cả hai đều đánh bại mức sạc 45W của Galaxy S23 Plus, chỉ đạt 11% đến 72% trong cùng một khoảng thời gian.\r\nHy vọng Samsung sẽ cải thiện công nghệ sạc cho dòng Galaxy S24\r\nHy vọng Samsung sẽ cải thiện công nghệ sạc cho dòng Galaxy S24\r\nDo đó, có khá nhiều người đang mong vọng Samsung sẽ nâng cấp công suất sạc của Galaxy S24 Plus và S24 Ultra lên mức 65W, còn S24 là 45W để giúp người dùng không phải chờ đợi quá lâu khi điện thoại nạp lại năng lượng.\r\nNhiều bộ nhớ hơn trong Galaxy S24 cơ bản\r\nHiện tại, với việc người dùng thường tải rất nhiều ứng dụng hay chụp nhiều ảnh cũng như quay video 4K thì điện thoại rất nhanh đầy bộ nhớ. Bên cạnh đó, hầu hết các nhà sản xuất điện thoại đã ngừng trang bị khe cắm thẻ nhớ microSD cho phép bạn bổ sung thêm dung lượng khi cần từ lâu, nghĩa là giờ đây bạn phải dựa vào bộ nhớ tích hợp trong điện thoại và đám mây để lưu trữ dữ liệu của mình.\r\nGalaxy S24 nên có nhiều bộ nhớ trong tối thiểu hơn\r\nGalaxy S24 nên có nhiều bộ nhớ trong tối thiểu hơn\r\nNăm ngoái, Samsung đã tăng dung lượng lưu trữ ở phiên bản rẻ nhất của Galaxy S23 Plus và Ultra từ 128GB lên 256GB, nhưng S23 tiêu chuẩn vẫn chỉ có 128GB dung lượng. Sẽ thật tuyệt khi thấy Samsung nâng cấp dung lượng lưu trữ của Galaxy S24 cơ bản để phù hợp với phần còn lại của dòng sản phẩm trong năm tới. Làm như vậy cũng sẽ giúp mẫu máy kế nhiệm Galaxy S23 có thể cạnh tranh tốt hơn với các đối thủ cùng phân khúc.\r\nThêm nhiều năm cập nhật Android \r\nSamsung là một trong những công ty đi đầu trong việc tăng thời gian hỗ trợ phần mềm cho các flagship, nhưng Google gần đây hiện đã vượt qua họ. Trong khi Samsung đảm bảo người dùng một số smartphone Galaxy của họ sẽ được trải nghiệm tính năng mới của 4 bản cập nhật Android lớn thì Pixel 8 và Pixel 8 Pro của Google sẽ nhận được 7 năm cập nhật phần mềm. Do đo, hy vọng điều này sẽ thúc đẩy Samsung có thể tăng thêm thời gian hỗ trợ phần mềm cho Galaxy S24.', 1),
+(2, '1.jpeg', '23-12', 'OnePlus 12 lộ video trên tay, xác nhận có pin 5400 mAh và sạc không dây 50W', 'Ngày mai (5/12), OnePlus sẽ ra mắt OnePlus 12 tại thị trường Trung Quốc. Chính vì vậy mà công ty đã liên tục “nhá hàng” các tính năng của điện thoại này.\r\nMới đây nhất, video trên tay OnePlus 12 vừa được chia sẻ trên mạng. Ngoài ra, các tính năng chính của điện thoại cũng được tiết lộ trong các teaser mới.\r\nhttps://www.youtube.com/shorts/TL3mxNaFbpk\r\nOnePlus đã xác nhận rằng OnePlus 12 có pin 5,400mAh, mang tới thời gian sử dụng lên tới 1.79 ngày. Viên pin được thiết kế để chịu được chu kỳ thông thường lên đến 4 năm, duy trì công suất ít nhất 80% sau 1,600 chu kỳ sạc và xả và thể hiện hiệu suất xả là 99.5%.\r\nTeaser pin\r\nTeaser pin\r\nOnePlus 12 cũng được xác nhận hỗ trợ sạc nhanh có dây SuperVOOC 100W, cho phép sạc đầy chỉ trong 25 phút và có sạc không dây 50W. Nó cũng được tích hợp chức năng sạc ngược không dây và đi kèm chip quản lý năng lượng SuperVOOC S để tối ưu hóa mức tiêu thụ điện năng.\r\nOnePlus 12 có sạc nhanh không dây 50W\r\nOnePlus 12 có sạc nhanh không dây 50W\r\nĐiện thoại hỗ trợ kháng nước IP65\r\nĐiện thoại hỗ trợ kháng nước IP65\r\nTeaser thứ ba ở trên xác nhận rằng OnePlus 12 sẽ có khả năng chống bụi và nước được xếp hạng IP65. Smartphone này sẽ xuất hiện với RAM LPDDR5x lên tới 24GB và dung lượng lưu trữ lên tới 1TB . Ngoài ra, nó sẽ có thiết lập camera tương tự như trên điện thoại màn hình gập OnePlus Open. Cuối cùng, nó gần như chắc chắn sẽ được cung cấp sức mạnh đến từ con chip Snapdragon 8 Gen 3.', 1),
+(3, '4.jpg', '12-04', 'Mua điện thoại Xiaomi chưa tới 7 triệu mà còn được giảm thêm đến 1.2 triệu đồng, xem ngay', 'Siêu khuyến mãi! Mua ngay loạt điện thoại Xiaomi dưới 7 triệu và nhận ưu đãi giảm thêm lên đến 1.2 triệu đồng. Cơ hội hiếm có, hãy khám phá ngay để sở hữu chiếc điện thoại mơ ước của bạn với giá cực kỳ hấp dẫn. Đừng bỏ lỡ cơ hội để trải nghiệm công nghệ đỉnh cao với mức giá ưu đãi này. Xem ngay để chọn lựa sản phẩm phù hợp với nhu cầu của bạn và đảm bảo bạn không bỏ lỡ cơ hội tiết kiệm lớn này!\r\nThời gian diễn ra: Đến ngày 30/11/2023. \r\n\r\nLưu ý\r\n\r\nKhuyến mãi có thể kết thúc sớm trước thời hạn nếu hết số lượng sản phẩm.\r\nÔ sản phẩm chưa hiển thị ưu đãi chính xác, để hiện ưu đãi chính xác, khách cần bấm Xem chi tiết.\r\nGiá và khuyến mãi hiện tại áp dụng cho khu vực Hồ Chí Minh, có thể khác so với các tỉnh thành khác. Khách hàng cần chọn khu vực mình sinh sống để xem giá và khuyến mãi chính xác nhất. \r\nXiaomi Redmi 12C 128GB - Đặc biệt \r\nTrả góp 0% \r\nTrả góp 0%Xiaomi Redmi 12C 128GBsim vina BOOM 65KSIM VINA BOOM 65K\r\nXiaomi Redmi 12C 128GB\r\n2.790.000₫\r\n3.990.000₫ -30%\r\n    \r\n\r\n272\r\n\r\nXem đặc điểm nổi bật\r\n\r\nXEM CHI TIẾT\r\n\r\nRedmi 12C trang bị camera kép, trong đó camera chính có độ phân giải lên đến 50 MP và sử dụng công nghệ ghép pixel 4 trong 1, tăng cường độ chi tiết để tạo ra những bức ảnh chất lượng và ấn tượng hơn. Ngoài các chế độ chụp cơ bản, máy còn độc đáo với nhiều tính năng chụp thú vị như siêu độ phân giải, HDR, chụp ban đêm, và chế độ xóa phông.\r\n\r\nĐiện thoại Android này sử dụng con chip MediaTek Helio G85 8 nhân, với mức xung nhịp tối đa đạt 2.0 GHz. Tại thời điểm ra mắt, đây được coi là một con chip đáng chú ý, khi trong cùng phân khúc, các đối thủ vẫn sử dụng Helio G35 hoặc mẫu chip từ Unisoc. Viên pin dung lượng 5.000 mAh cung cấp năng lượng cho điện thoại, và theo thời gian sử dụng thực tế đã được kiểm tra, máy có thể đáp ứng liên tục trong 8 tiếng 23 phút.\r\n\r\nXiaomi Redmi Note 12S \r\nTrả góp 0%Xiaomi Redmi Note 12S\r\nXiaomi Redmi Note 12S\r\nHÀNG PHẢI CHUYỂN VỀ\r\n5.490.000₫\r\n6.690.000₫ -17%\r\n    \r\n\r\n70\r\n\r\nXem đặc điểm nổi bật\r\n\r\nXEM CHI TIẾT\r\n\r\nMàn hình của Xiaomi Redmi Note 12S đạt chất lượng cao với tấm nền AMOLED và tần số quét mượt mà lên đến 90 Hz trên không gian rộng 6.43 inch. Với những tính năng này, bạn có thể tận hưởng mọi nội dung, từ trò chơi hấp dẫn đến những bộ phim ảnh chất lượng cao một cách thoải mái.\r\n\r\nĐược trang bị con chip Mediatek Helio G96, một CPU phổ biến trên nhiều điện thoại Android hiện nay, đảm bảo máy đáp ứng mọi nhu cầu của người dùng, từ đọc báo, lướt web đến chơi những tựa game hot trên thị trường. Với RAM 8 GB và khả năng mở rộng RAM hiện đại, điện thoại này cung cấp khả năng xử lý đa nhiệm mượt mà, cho phép người dùng mở nhiều ứng dụng cùng một lúc mà không gặp trục trặc về hiệu suất.', 3),
+(4, '5.jpg', '12-04', 'iPhone 15 Pro Max | 15 Pro giảm giá đầu tháng 12, thiết kế khung Titan cao cấp, chỉ từ 33.89 triệu', 'Bộ đôi iPhone 15 Pro Max | iPhone 15 Pro siêu hot đang giảm giá cực hời đầu tháng 12 này đó. Với hiệu năng siêu khủng cùng thiết kế khung Titan cực chất chắc chắn sẽ làm bạn mê mẩn bởi cái nhìn đầu tiên! Nay chỉ từ 33.89 triệu. Để bỏ lỡ khuyến mãi là tiếc lắm bạn nha.\r\nThời gian ưu đãi: Dự kiến đến 31/12/2023\r\n\r\nLưu ý:\r\n\r\nKhuyến mãi có thể kết thúc sớm trước thời hạn nếu hết số lượng sản phẩm hoặc thông tin khuyến mãi có thay đổi.\r\nGiá và khuyến mãi hiện tại áp dụng cho khu vực Hồ Chí Minh, có thể khác so với các tỉnh thành khác. Khách hàng cần chọn khu vực mình sinh sống để xem giá và khuyến mãi chính xác nhất.\r\nÔ sản phẩm chưa hiển thị ưu đãi chính xác, để hiện ưu đãi chính xác, khách cần bấm Xem chi tiết.\r\niPhone 15 Pro Max 256GB\r\nTrả góp 0%iPhone 15 Pro Max 256GBGiá Rẻ QuáGIÁ RẺ QUÁ\r\niPhone 15 Pro Max 256GB\r\n33.890.000₫\r\n34.990.000₫ -3%\r\n    \r\n\r\n41\r\n\r\nXem đặc điểm nổi bật\r\n\r\nXEM CHI TIẾT\r\niPhone 15 Pro Max 256GB\r\niPhone 15 Pro Max sở hữu diện mạo đẳng cấp cực kỳ sang trọng với khung viền được làm bằng chất liệu Titan cao cấp. Thiết kế hình notch dạng viên thuốc mang đến trải nghiệm sử dụng thú vị hơn, đặc biệt hơn nhờ tính năng Dynamic Island. Dynamic Island giúp bạn dễ dàng kiểm tra thông báo, xem bản đồ mà không cần thoát khỏi ứng dụng bạn đang sử dụng.\r\n\r\nĐặc biệt hơn, smartphone cao cấp đã chuyển từ cổng kết nối Lightning sang Type-C mang lại tốc độ truyền dữ liệu nhanh hơn. Cấu hình cực khủng trên thị trường nhờ trang bị vi xử lý Apple A17 Pro - một con chip mạnh mẽ được thiết kế riêng cho Apple, máy hỗ trợ hệ điều hành mới nhất là iOS 17 mang đến cải tiến đáng kể về hiệu năng và trải nghiệm.\r\n\r\nChụp ảnh sắc nét, sống động và chuyên nghiệp nhờ bộ ba camera đẳng cấp lên đến 48 MP, ngoài ra hỗ trợ thêm chế độ Smart HDR 5 để tối ưu hóa độ sáng giúp ảnh chụp luôn sáng rõ hơn bao giờ hết.\r\n\r\niPhone 15 Pro 512GB\r\nTrả góp 0%\r\niPhone 15 Pro 512GBGiá Rẻ QuáGIÁ RẺ QUÁ\r\niPhone 15 Pro 512GB\r\nHÀNG PHẢI CHUYỂN VỀ\r\n37.490.000₫\r\n37.990.000₫ -1%\r\n    \r\n\r\n4\r\n\r\nXem đặc điểm nổi bật\r\n\r\nXEM CHI TIẾT\r\niPhone 15 Pro 512GB\r\niPhone 15 Pro 512 GB mang đến một thiết kế vuông vắn tinh tế đầy sang trọng. Cũng như iPhone 15 Pro Max, máy được làm từ khung viền Titan cao cấp cung cấp độ cứng và độ bền bỉ vượt trội. Màn hình của máy trang bị tấm nền OLED cho phép hiển thị màu sắc sáng, cung cấp độ tương phản tốt hơn, ngoài ra còn hỗ trợ tiết kiệm năng lượng giúp kéo dài thời gian sử dụng thiết bị.\r\n\r\nĐiện thoại sở hữu tính năng Dynamic Island độc đáo, cho phép bạn sử dụng nhanh trên phần hình notch để tương tác thuận tiện hơn. Máy sử dụng chipset Apple A17 Pro hàng đầu, khả năng xử lý đa nhiệm mạnh mẽ, các tác vụ như chỉnh sửa hình ảnh hay chơi game giải trí đều được xử lý mượt mà.\r\n\r\nTự tin nhiếp ảnh hơn với hệ thống ống kính với độ phân giải siêu cao đến 48 MP, camera tele 12 MP với khả năng zoom quang học tối đa 3X. Đặc biệt, máy hỗ trợ tính năng chống rung luôn giữ cho hình ảnh của bạn luôn sắc nét và ổn định.', 2),
+(5, '6.jpg', '12-04', 'Xiaomi cuối cùng cũng đem loại bảo mật tân tiến này lên Xiaomi 14 Ultra', 'Xiaomi 14 Ultra có thể là mẫu smartphone đầu tiên của hãng được trang bị công nghệ này (Ảnh minh họa: AndroidAuthority)\r\nXiaomi có thể đang chuẩn bị cho ra mắt mẫu flagship Xiaomi 14 Ultra mới nhất của mình. Đây có thể sẽ là mẫu smartphone cao cấp đầu tiên của hãng được trang bị cảm biến vân tay siêu âm. Tuy nhiên, công nghệ này của Xiaomi có thể không tốt bằng công nghệ mà Vivo đã trang bị cho những sản phẩm chủ lực gần đây của họ. \r\nNói về các mẫu flagship gần đây như là Xiaomi 14, Vivo X100, Vivo X100 Pro và iQOO 12 đã được nhà sản xuất trang bị cảm biến vân tay quang học dưới màn hình. Tuy nhiên, các thiết bị này có thể đem lại trải nghiệm ấn tượng nhưng phản hồi của người dùng cho thấy loại cảm biến này vẫn cần được cải tiến thêm nữa.\r\n\r\nDigital Chat Station đã tiết lộ về cảm biến vân tay siêu âm trên Xiaomi 14 Ultra\r\nDigital Chat Station đã tiết lộ về cảm biến vân tay siêu âm trên Xiaomi 14 Ultra (Ảnh: Gizmochina)\r\nTrước đó vào năm 2016, Xiaomi cũng đã giới thiệu về cảm biến vân tay siêu âm không xốp đầu tiên trên thế giới ở trên mẫu Xiaomi 5s. Mặc dù, đây là một đặc điểm thu hút bán hàng nhưng công nghệ này đối mặt với những thách thức do đang ở giai đoạn phát triển sơ khai. Kể từ đó Xiaomi đã chuyển sang sử dụng cảm biến quang học trên các thiết bị của mình.\r\n\r\nTuy nhiên, với những tiến bộ trong công nghệ, các giải pháp nhận dạng vân tay siêu âm được cải thiện theo thời gian, vượt qua tốc độ và độ tin cậy của cảm biến quang học thay thế.\r\n\r\nBạn có đánh giá gì về sự thay đổi này của Xiaomi?\r\n\r\nXiaomi 14 Ultra\r\nXiaomi 14 Ultra\r\nTin đồn\r\nXem đặc điểm nổi bật\r\n\r\nXEM CHI TIẾT\r\nTrong lúc chờ đợi sản phẩm ra mắt, bạn đọc có thể tham khảo thêm các mẫu điện thoại thuộc dòng Xiaomi 13T chính hãng với nhiều ưu đãi tại Thế Giới Di Động, bằng cách click vào các box sản phẩm bên dưới nhé!', 1);
+
+--
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_banner_sp` (`idsanpham`);
 
 --
 -- Chỉ mục cho bảng `binhluan`
@@ -341,16 +378,22 @@ ALTER TABLE `tintuc`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `banner`
+--
+ALTER TABLE `banner`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc`
@@ -362,19 +405,19 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=244;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=342;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT cho bảng `taikhoan`
@@ -386,17 +429,23 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT cho bảng `thongke`
 --
 ALTER TABLE `thongke`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `tintuc`
 --
 ALTER TABLE `tintuc`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `banner`
+--
+ALTER TABLE `banner`
+  ADD CONSTRAINT `fk_banner_sp` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`);
 
 --
 -- Các ràng buộc cho bảng `binhluan`

@@ -10,7 +10,7 @@
         <form action="?act=addsp" method="post" enctype="multipart/form-data" class="form">
             <div class="mb-3">
                 <label for="tensp" class="form-label">Tên sản phẩm</label>
-                <input type="text" class="form-control" id="tensp" name="tensp" placeholder="Nhập tên sản phẩm...">
+                <input type="text" class="form-control" id="tensp" name="tensp" placeholder="Nhập tên sản phẩm..." value="<?= isset($tensp) ? ($tensp) : '' ?>">
                 <p class="Err mt-1"><?=$tenspErr?></p>
             </div>
             <div class="mb-3">
@@ -32,7 +32,7 @@
             </div>
             <div class="mb-3">
                 <label for="mota">Mô tả</label>
-                <textarea class="form-control" rows="5" id="mota" name="mota" placeholder="Nhập mô tả..."></textarea>
+                <textarea class="form-control" rows="5" id="mota" name="mota" placeholder="Nhập mô tả..."><?= isset($mota) ? ($mota) : '' ?></textarea>
                 <p class="Err mt-1"><?=$motaErr?></p>
             </div>
             <div class="mb-3">
