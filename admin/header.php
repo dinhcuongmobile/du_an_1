@@ -10,7 +10,6 @@
     <meta name="author" content="">
 
     <title>Admin</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
     <!-- Custom fonts for this template -->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="../assets/images/favicon-32x32.png" type="image/x-icon">
@@ -20,6 +19,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->

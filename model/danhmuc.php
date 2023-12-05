@@ -4,7 +4,7 @@
         if($kyw!=''){
             $query .=" AND tendm like '%".$kyw."%'";
         }
-            $query .=" ORDER BY id asc";
+            $query .=" ORDER BY id desc";
         return pdo_query($query);
     }
     function load_one_dm($id){

@@ -403,6 +403,28 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
             }else{header("location: ?act=trangchu");}
             include "../view/cart/lichsumuahang.php";
             break;
+        case "huydonhang":
+            if(isset($_SESSION['user'])){
+                if(isset($_GET['id'])&&($_GET['id']!="")){
+                    $id=$_GET['id'];
+                    $listdh=load_one_dh($id);
+                    if($listdh){
+                        update_donhang(5,$listdh['id']);
+                        $listctdh=load_all_ctdh_lsmh($listdh['id']);
+                        foreach ($listctdh as $ct) {
+                            $sp=load_one_sp($ct['idsp']);
+                            if($sp['id']==$ct['idsp']){
+                                print_r($sp);
+                                $sp['soluong']+=$ct['soluong'];
+                                update_sl_sp($sp['id'],$sp['soluong']);
+                            }
+                        }
+                        header("location: ?act=lichsumuahang");
+                    }     
+                }
+            }else{header("location: ?act=trangchu");}
+            
+            break;
         /* END GIO HANG */
         case 'sanpham':
             if(isset($_POST['submittimkiem'])) $kyw=$_POST['timkiem'];
@@ -455,41 +477,32 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                     $danhmuc = load_one_dm($sanpham['iddm']);
                     $dembl=dem_bl_sp($sanpham['id']);
                     if(isset($_POST['datngayct'])){
-                        $soluong = 1;
-                        $thanhtien = $sanpham['giakm'] * $soluong;
-                        $check = true;
-                        foreach ($listgh as $giohang) {
-                            if ($sanpham['id'] == $giohang['idsanpham']) {
-                                $giohang['soluong'] += $soluong;
-                                $giohang['thanhtien'] = $sanpham['giakm'] * $giohang['soluong'];
-                                update_giohang($giohang['soluong'],$giohang['thanhtien'],$giohang['idsanpham']);
-                                $check = false;
-                                header("location: ?act=giohang");
-                                break;
+                        if(isset($_SESSION['user'])){
+                            $soluong = 1;
+                            $thanhtien = $sanpham['giakm'] * $soluong;
+                            $check = true;
+                            foreach ($listgh as $giohang) {
+                                if ($sanpham['id'] == $giohang['idsanpham']) {
+                                    $giohang['soluong'] += $soluong;
+                                    $giohang['thanhtien'] = $sanpham['giakm'] * $giohang['soluong'];
+                                    update_giohang($giohang['soluong'],$giohang['thanhtien'],$giohang['idsanpham']);
+                                    $check = false;
+                                    header("location: ?act=giohang");
+                                    break;
+                                    }
                                 }
-                            }
-                            if ($check) {
-                                insert_cart($_SESSION['user']['id'], $sanpham['id'], $soluong, $thanhtien);
-                                header("location: ?act=giohang");
-                            }
+                                if ($check) {
+                                    insert_cart($_SESSION['user']['id'], $sanpham['id'], $soluong, $thanhtien);
+                                    header("location: ?act=giohang");
+                                }
+                        }else{
+                            header("location: ?act=dangnhap");
+                        }
                     }
                 }
 
             }
             include "../view/sanpham/chitietsp.php";
-            break;
-        case "huydonhang":
-            if(isset($_SESSION['user'])){
-                if(isset($_GET['id'])&&($_GET['id']!="")){
-                    $id=$_GET['id'];
-                    $listdh=load_one_dh($id);
-                    if($listdh){
-                        update_donhang(5,$listdh['id']);
-                        header("location: ?act=lichsumuahang");
-                    }     
-                }
-            }else{header("location: ?act=trangchu");}
-            
             break;
         case "tintuc":
             $listtintuc=load_tintuc_home();

@@ -88,3 +88,9 @@ function themgiohang(idsanpham,giakm){
 //end ajax them gio hang
 //bieudo
 //end bieudo
+$(".phantrang ul li a").click(function(){
+    // alert("okk");
+    //active nav tabs
+    $(".phantrang ul li a").removeClass("active");
+    $(this).addClass("active");
+});

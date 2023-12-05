@@ -23,9 +23,16 @@
                                 <span class="old-price"><?=number_format($giasp, 0, ',', '.')?>đ</span>
                                 <span class="new-price"><?=number_format($giakm, 0, ',', '.')?>đ</span>
                             </div>
-                        <?php
-                            extract($danhmuc);
-                        ?>
+                            <div class="trangthai">
+                                <?php if($soluong<1) {?>
+                                    <p class="hethang">*Tạm thời hết hàng</p>
+                                <?php }else{ ?>
+                                    <p><span><?= $soluong;?></span> sản phẩm có sẵn</p>
+                                <?php } ?>
+                            </div>
+                            <?php
+                                extract($danhmuc);
+                            ?>
                             <div class="product-details-meta">
                                 <ul>
                                     <li><span class="title">Category:</span>
@@ -35,21 +42,21 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="product-details-action-wrap">
-                                <div class="single-product-cart btn-hover">
-                                    <?php
-                                        extract($sanpham);
-                                    ?>
-                                    <button onclick="themgiohang(<?= $id; ?>,<?= $giakm; ?>)" class="product-action-btn-2 theme-color" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
-                                </div>
-                                <div class="single-product-cart btn-hover">
-                                    <?php if(isset($_SESSION['user'])) : ?>
+                            <?php
+                                extract($sanpham);
+                                if($soluong>0) {
+                            ?>
+                                <div class="product-details-action-wrap">
+                                    <div class="single-product-cart btn-hover">
+                                        <button onclick="themgiohang(<?= $id; ?>,<?= $giakm; ?>)" class="product-action-btn-2 theme-color" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
+                                    </div>
+                                    <div class="single-product-cart btn-hover">
                                         <form action="?act=chitietsp&id=<?= $id?>" method="post">
                                             <button type="submit" name="datngayct" class="product-action-btn-2 theme-color">Mua ngay</button>
                                         </form>
-                                    <?php endif; ?>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -121,37 +128,35 @@
                 
                 <div class="related-product-active swiper-container">
                     <div class="swiper-wrapper">
-                        <?php
-                            foreach($splq as $sp){
-                                extract($sp);
-                                echo '<div class="swiper-slide">
-                                        <div class="product-wrap" data-aos="fade-up" data-aos-delay="200">
-                                            <div class="product-img img-zoom mb-25">
-                                                <a href="?act=chitietsp&id='.$id.'">
-                                                    <img src="../uploads/'.$image.'" alt="">
-                                                </a>
-                                                <div class="product-badge badge-top badge-right badge-pink">
-                                                    <span>'.$khuyenmai.'%</span>
-                                                </div>
-                                                <div class="product-action-2-wrap">
-                                                    <input type="hidden" name="id" value="'.$id.'">
-                                                    <input type="hidden" name="tensp" value="'.$tensp.'">
-                                                    <input type="hidden" name="image" value="'.$image.'">
-                                                    <input type="hidden" name="giasp" value="'.$giakm.'">
-                                                    <button data-id="'.$id.'" onclick="themgiohang('.$id.','.$giakm.')" class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
-                                                </div>
-                                            </div>
-                                            <div class="product-content">
-                                                <h3><a href="?act=chitietsp&id='.$id.'">'.$tensp.'</a></h3>
-                                                <div class="product-price">
-                                                    <span class="old-price">'.number_format($giasp, 0, ',', '.').'₫</span>
-                                                    <span class="new-price">'.number_format($giakm, 0, ',', '.').'₫</span>
-                                                </div>
-                                            </div>
+                        <?php foreach($splq as $sp) : ?>
+                            <?php extract($sp); if($soluong>0) {?>
+                            <div class="swiper-slide">
+                                <div class="product-wrap" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="product-img img-zoom mb-25">
+                                        <a href="?act=chitietsp&id=<?= $id?>">
+                                            <img src="../uploads/<?= $image?>" alt="">
+                                        </a>
+                                        <div class="product-badge badge-top badge-right badge-pink">
+                                            <span>-<?= $khuyenmai?>%</span>
                                         </div>
-                                    </div>';
-                            }
-                        ?>
+                                        <div class="product-action-2-wrap">
+                                            <input type="hidden" name="id" value="<?= $id?>">
+                                            <input type="hidden" name="tensp" value="<?= $tensp?>">
+                                            <input type="hidden" name="image" value="<?= $image?>">
+                                            <input type="hidden" name="giasp" value="<?= $giakm?>">
+                                            <button data-id="<?= $id?>" onclick="themgiohang(<?= $id?>,<?= $giakm?>)" class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h3><a href="?act=chitietsp&id=<?= $id?>"><?= $tensp?></a></h3>
+                                        <div class="product-price">
+                                            <span class="old-price"><?= number_format($giasp, 0, ',', '.')?>₫</span>
+                                            <span class="new-price"><?= number_format($giakm, 0, ',', '.')?>₫</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } endforeach; ?>
                     </div>
                 </div>
             </div>

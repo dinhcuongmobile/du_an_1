@@ -8,33 +8,34 @@
                             <div class="row">
                                 <?php
                                     foreach ($list_sp_dm as $sp) {
-                                        extract($sp);
-                                        if($soluong>0){
-                                        echo '<div class="col-lg-4 col-sm-5">
-                                                <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
-                                                    <div class="product-img img-zoom mb-25">
-                                                        <a href="?act=chitietsp&id='.$id.'">
-                                                            <img src="../uploads/'.$image.'" alt="">
-                                                        </a>
-                                                        <div class="product-badge badge-top badge-right badge-pink">
-                                                            <span>-'.$khuyenmai.'%</span>
-                                                        </div>
-                                                        <div class="product-action-2-wrap">
-                                                            <button data-id="'.$id.'" onclick="themgiohang('.$id.','.$giakm.')" class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
-                                                        </div>
+                                        extract($sp); ?>
+                                        <div class="col-lg-4 col-sm-5">
+                                            <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
+                                                <div class="product-img img-zoom mb-25">
+                                                    <a href="?act=chitietsp&id=<?= $id?>">
+                                                        <img src="../uploads/<?= $image?>" alt="">
+                                                    </a>
+                                                    <div class="product-badge badge-top badge-right badge-pink">
+                                                        <span>-<?= $khuyenmai?>%</span>
                                                     </div>
-                                                    <div class="product-content">
-                                                        <h3><a href="?act=chitietsp&id='.$id.'">'.$tensp.'</a></h3>
-                                                        <div class="product-price">
-                                                            <span class="old-price">'.number_format($giasp, 0, ',', '.').'₫</span>
-                                                            <span class="new-price">'.number_format($giakm, 0, ',', '.').'₫</span>
-                                                        </div>
+                                                    <div class="product-action-2-wrap">
+                                                        <?php if($soluong>0){ ?>
+                                                            <button data-id="<?= $id?>" onclick="themgiohang(<?= $id?>,<?= $giakm?>)" class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Thêm Vào Giỏ Hàng</button>
+                                                        <?php }else{ ?>
+                                                            <button class="product-action-btn-2">Đang hết hàng</button>
+                                                        <?php } ?>
                                                     </div>
                                                 </div>
-                                            </div>';
-                                        }
-                                    }
-                                ?>
+                                                <div class="product-content">
+                                                    <h3><a href="?act=chitietsp&id=<?= $id?>"><?= $tensp?></a></h3>
+                                                    <div class="product-price">
+                                                        <span class="old-price"><?= number_format($giasp, 0, ',', '.')?>₫</span>
+                                                        <span class="new-price"><?= number_format($giakm, 0, ',', '.')?>₫</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                <?php }?>
                             </div>
                         </div>
                     </div>

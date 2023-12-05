@@ -501,6 +501,9 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                 $dh=load_one_dh($id);
                 if($dh){
                     $id=$dh['id'];
+                    $hovatennhan=$dh['hovatennhan'];
+                    $sodienthoainhan=$dh['sodienthoainhan'];
+                    $diachinhan=$dh['diachinhan'];
                     $trangthai=$dh['trangthai'];
                 }
             }
@@ -540,6 +543,15 @@ if(isset($_GET['act'])&&($_GET['act']!="")){
                         header("location: ?act=kiemduyet");
                     }else{
                         update_donhang(5,$listdh['id']);
+                        $listctdh=load_all_ctdh_lsmh($listdh['id']);
+                        foreach ($listctdh as $ct) {
+                            $sp=load_one_sp($ct['idsp']);
+                            if($sp['id']==$ct['idsp']){
+                                print_r($sp);
+                                $sp['soluong']+=$ct['soluong'];
+                                update_sl_sp($sp['id'],$sp['soluong']);
+                            }
+                        }
                         header("location: ?act=listdh");
                     }
                 }

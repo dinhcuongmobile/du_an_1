@@ -14,6 +14,18 @@
                 <input type="text" name="maloai" id="" class="form-control" value="DCM-<?=$id?>" disabled>
             </div>
             <div class="mb-3">
+                <label for="" class="form-label">Họ và tên</label>
+                <input type="text" name="hovatennhan" id="" class="form-control" value="<?= $hovatennhan?>" onkeydown="return false">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Số điện thoại</label>
+                <input type="text" name="sodienthoainhan" id="" class="form-control" value="<?= $sodienthoainhan?>" onkeydown="return false">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Địa chỉ</label>
+                <input type="text" name="diachinhan" id="" class="form-control" value="<?= $diachinhan?>" onkeydown="return false">
+            </div>
+            <div class="mb-3">
                 <label for="sel1">Trạng thái giao hàng</label>
                 <select class="form-control" id="sel1" name="trangthai">
                     <option <?= ($trangthai=="2")?'selected':'' ?> value="2">Đơn hàng mới</option>
