@@ -1,3 +1,73 @@
+<<<<<<< phuc/hphuc
+=======
+<?php 
+ob_start();
+session_start();
+include "../../model/pdo.php";
+include "../../model/sanpham.php";
+include "../../model/taikhoan.php";
+include "../../model/donhang.php";
+$listgh=load_all_giohang($_SESSION['user']['id']);
+$tongthanhtoan=0;
+foreach ($listgh as $gh) {
+    $tongthanhtoan+=$gh['thanhtien'];
+} 
+?>
+
+<style>
+    /* Trang chủ */
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.btn {
+    margin-top: 20px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Định dạng đầu vào số tiền */
+#amount {
+    width: 200px;
+}
+
+/* Định dạng các phần tử radio */
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* Các định dạng khác */
+.pt-100 {
+    padding-top: 100px;
+}
+
+.pb-100 {
+    padding-bottom: 100px;
+}
+</style>
+>>>>>>> local
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,6 +83,7 @@
         <!-- Custom styles for this template -->
         <link href="assets/jumbotron-narrow.css" rel="stylesheet">  
         <script src="assets/jquery-1.11.3.min.js"></script>
+        
     </head>
 
     <body>
@@ -53,3 +124,6 @@
     </div> 
     </body>
 </html>
+
+
+
