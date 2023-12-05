@@ -1,3 +1,17 @@
+<?php 
+ob_start();
+session_start();
+include "../../model/pdo.php";
+include "../../model/sanpham.php";
+include "../../model/taikhoan.php";
+include "../../model/donhang.php";
+$listgh=load_all_giohang($_SESSION['user']['id']);
+$tongthanhtoan=0;
+foreach ($listgh as $gh) {
+    $tongthanhtoan+=$gh['thanhtien'];
+} 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,10 +35,10 @@
         <div class="container">
             <h3>Tạo mới đơn hàng</h3>
             <div class="table-responsive">
-                <form action="vnpay_create_payment.php" id="frmCreateOrder" method="post">        
+                <form action="vnpay_create_payment.php" id="frmCreateOrder" method="post">       
                     <div class="form-group">
                         <label for="amount">Số tiền</label>
-                        <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" max="100000000" min="1" name="amount" type="number" value="10000" />
+                        <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" name="amount" type="number" value="<?= $tongthanhtoan?>" onkeydown="return false"/>
                     </div>
                      <h4>Phương thức thanh toán</h4>
                     <div class="form-group">

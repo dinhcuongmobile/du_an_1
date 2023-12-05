@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -54,7 +55,7 @@
                 <div class="form-group">
 
                     <label >Số tiền:</label>
-                    <label><?php echo $_GET['vnp_Amount'] ?></label>
+                    <label><?php echo ($_GET['vnp_Amount'] / 100) ?></label>
                 </div>  
                 <div class="form-group">
                     <label >Nội dung thanh toán:</label>
@@ -82,26 +83,30 @@
                         <?php
                         if ($secureHash == $vnp_SecureHash) {
                             if ($_GET['vnp_ResponseCode'] == '00') {
-                                echo "<span style='color:blue'>GD Thanh cong</span>";
+                                echo "<span style='color:blue'>GD Thành công</span>";
                             } else {
-                                echo "<span style='color:red'>GD Khong thanh cong</span>";
+                                echo "<span style='color:red'>GD Không thành công</span>";
                             }
                         } else {
-                            echo "<span style='color:red'>Chu ky khong hop le</span>";
+                            echo "<span style='color:red'>Chữ ký không hợp lệ</span>";
                         }
                         ?>
                     </label>
-                    <?php
-                        if ($secureHash == $vnp_SecureHash) {
-                            if ($_GET['vnp_ResponseCode'] == '00') {
-                                echo "<br><br><span style='color:blue'>Vui lòng nhấn quay lại và tiếp tục đặt hàng</span><br><br><a href='../../controller/index.php?act=tieptucdathang&thanhtoan=dachuyenkhoan'><button type='button'>Quay lại</button></a>";
-                            } else {
-                                echo "<br><br><a href='../../controller/index.php?act=tieptucdathang&thanhtoan=chuachuyenkhoan'><button type='button'>Quay lại</button></a>";
-                            }
-                        } else {
-                            echo "<br><br><a href='../../controller/index.php?act=tieptucdathang&thanhtoan=chuachuyenkhoan'><button type='button'>Quay lại</button></a>";
-                        }
-                        ?>
+                    <?php if ($secureHash == $vnp_SecureHash) { ?>
+                        <?php if ($_GET['vnp_ResponseCode'] == '00') { ?>
+                            <br><br><span style='color:blue'>Bạn đã thanh toán thành công. Vui lòng ấn tiếp tục để hoàn tất thanh toán!</span><br><br>
+                            <form action="../../controller/index.php?act=thanhtoanonline" method="post">
+                                <input type="hidden" name="hovatennhan" value="<?= $_SESSION['thongtin_dathang']['hovatennhan']; ?>">
+                                <input type="hidden" name="sodienthoainhan" value="<?= $_SESSION['thongtin_dathang']['sodienthoainhan']; ?>">
+                                <input type="hidden" name="diachinhan" value="<?= $_SESSION['thongtin_dathang']['diachinhan']; ?>">
+                                <button type="submit" name="tieptuc">Tiếp tục</button>
+                            </form>
+                        <?php } else { ?>
+                            <br><br><a href='../../controller/index.php?act=tieptucdathang'><button type='button'>Quay lại</button></a>
+                        <?php  } ?>
+                    <?php } else { ?>
+                        <br><br><a href='../../controller/index.php?act=tieptucdathang'><button type='button'>Quay lại</button></a>
+                    <?php  } ?>
                 </div> 
             </div>
             <p>

@@ -132,8 +132,6 @@
         $query="SELECT * FROM donhang WHERE donhang.idtaikhoan='$idtaikhoan'";
         if($trangthai==0){
             $query .=" AND donhang.trangthai='$trangthai'";
-        }else if($trangthai==1){
-            $query .=" AND donhang.trangthai='4' OR donhang.trangthai='5'";
         }else if($trangthai==2){
             $query .=" AND donhang.trangthai='$trangthai'";
         }else if($trangthai==3){
@@ -144,6 +142,7 @@
         else if($trangthai==5){
             $query .=" AND donhang.trangthai='$trangthai'";
         }
+        $query .=" ORDER BY donhang.id desc";
         return pdo_query($query);
     }
     function load_all_thongke($ngay){

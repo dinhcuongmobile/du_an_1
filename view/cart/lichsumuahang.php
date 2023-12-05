@@ -17,8 +17,14 @@
                     </div>
                     <div id="tap1" class="card-body p-4 bg-light an">
                         <?php foreach ($tatca as $item) : ?>
-                            <?php if($item['trangthai']==4) $item['trangthai']="Đã hoàn thành";
-                                  else if($item['trangthai']==5) $item['trangthai']="Đã hủy"; ?>
+                            <?php 
+                                if($item['trangthai']==0) $item['trangthai']="Chờ xác nhận";
+                                else if($item['trangthai']==1) $item['trangthai']="Đã xác nhận"; 
+                                else if($item['trangthai']==2) $item['trangthai']="Chuẩn bị giao cho đơn vị vận chuyển"; 
+                                else if($item['trangthai']==3) $item['trangthai']="Đơn hàng đang được giao"; 
+                                else if($item['trangthai']==4) $item['trangthai']="Đã giao hàng"; 
+                                else if($item['trangthai']==5) $item['trangthai']="Đã hủy"; 
+                            ?>
                         <form action="?act=lichsumuahang" method="post">
                             <div class="card shadow-0 border mb-4">
                                 <div class="card-body">

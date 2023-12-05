@@ -115,9 +115,6 @@ if(!$_SESSION['user']){
                                     <div class="pay-top sin-payment">
                                         <input id="payment_method_1" class="input-radio" type="radio" value="1" name="phuongthuctt">
                                         <label for="payment_method_1">CHUYỂN KHOẢN</label>
-                                        <div class="payment-box payment_method_bacs">
-                                            <a href="?act=chuyenkhoanvnp" style="text-decoration:underline; color:blue;">Chuyển hướng tới trang thanh toán</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
