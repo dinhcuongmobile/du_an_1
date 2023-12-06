@@ -20,6 +20,9 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: #f5f5f5;
+    display:flex;
+    align-items: center;
+    
 }
 
 .container {
