@@ -12,6 +12,107 @@ foreach ($listgh as $gh) {
 } 
 ?>
 
+
+<style>
+    /* Reset some default styles */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+.btn{
+    width: 100%;
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* Header styles */
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.header h1 {
+  font-size: 24px;
+}
+
+/* Main content styles */
+.cart-area {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.table-responsive {
+  margin-top: 20px;
+}
+
+/* Form styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* Button styles */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid #333;
+  background-color: #333;
+  color: #fff;
+}
+
+.btn:hover {
+  background-color: #555;
+  border-color: #555;
+}
+
+/* Footer styles */
+.footer {
+  margin-top: 40px;
+  padding: 20px 0;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+}
+
+</style>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -51,8 +152,7 @@ foreach ($listgh as $gh) {
                          <input type="radio" id="language" Checked="True" name="language" value="vn">
                          <label for="language">Tiếng việt</label><br>
                          <input type="radio" id="language" name="language" value="en">
-                         <label for="language">Tiếng anh</label><br>
-                         
+                         <label for="language">Tiếng anh</label><br>                       
                     </div>
                     <button type="submit" class="btn btn-default" href>Thanh toán</button>
                 </form>
@@ -60,9 +160,7 @@ foreach ($listgh as $gh) {
             <p>
                 &nbsp;
             </p>
-            <footer class="footer">
-                <p>&copy; VNPAY 2020</p>
-            </footer>
+            
         </div> 
     </div> 
     </body>
