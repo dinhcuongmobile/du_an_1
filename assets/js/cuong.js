@@ -13,7 +13,9 @@ function bochontatca(){
 //home
 
 //giohang quantity\
-
+    function giohang1(){
+        
+    }
 //end giohang quantity
 
 $(document).ready(function(){
